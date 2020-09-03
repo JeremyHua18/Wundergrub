@@ -19,9 +19,30 @@ class Register extends Component {
 	update(e) {
 		let name = e.target.name;
 		let value = e.target.value;
-		this.setState({
-			[name]: value
-		});
+		if (name === "password1") {
+			let password = this.state.password;
+			if (value !== password) {
+				document.getElementById("unconfirmedPassword").innerHTML = "Passwords do not match!"
+			} else {
+				document.getElementById("unconfirmedPassword").innerHTML = ""
+			}
+		} else {
+			if (name === "password") {
+				var passwordValidator = require('password-validator');
+				var validator = new passwordValidator();
+				validator
+					.is().min(6)
+					.has().lowercase()
+					.has().uppercase()
+					.has().digits()
+					.has().not().spaces()
+					.has().oneOf(["!", "?", "@", "#", "$", "%", "^", "&", "*", "(", ")"]);
+
+			}
+			this.setState({
+				[name]: value
+			});
+		}
 	}
 
 	displayLogin(e) {
@@ -73,7 +94,13 @@ class Register extends Component {
 					</div>
 
 					<div className="password">
-						<input type="password" placeholder="Confirm Password" name="password1" />
+						<input
+							type="password"
+							placeholder="Confirm Password"
+							name="password1"
+							onChange={this.update}
+						/>
+						<div id="unconfirmedPassword"></div>
 					</div>
 
 					<input type="submit" value="submit" />
