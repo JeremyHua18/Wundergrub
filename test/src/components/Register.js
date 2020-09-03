@@ -97,6 +97,7 @@ class Register extends Component {
 			console.log(password);
 
 		}
+
 		console.log('You have successfully registered');
 		console.log(this.state);
 		this.setState({
