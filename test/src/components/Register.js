@@ -5,7 +5,6 @@ class Register extends Component {
 	constructor(props) {
 		super(props);
 
-		this.okNAme = false;
 		this.okEmail = false;
 		this.okPass = false;
 		this.okComfirm = false;
@@ -87,6 +86,15 @@ class Register extends Component {
 
 	displayLogin(e) {
 		e.preventDefault();
+		if (!this.okPass) {
+			alert("Invalid password!")
+		} else if (!this.okComfirm) {
+			alert("Passwords do not match!");
+		} else if (!this.okEmail) {
+			alert("Invalid password!");
+		} else {
+
+		}
 		console.log('You have successfully registered');
 		console.log(this.state);
 		this.setState({
