@@ -22,26 +22,45 @@ class Register extends Component {
 		if (name === "password1") {
 			let password = this.state.password;
 			if (value !== password) {
-				document.getElementById("unconfirmedPassword").innerHTML = "Passwords do not match!"
+				document.getElementById("unconfirmedPassword").innerHTML = "Passwords do not match!";
 			} else {
-				document.getElementById("unconfirmedPassword").innerHTML = ""
+				document.getElementById("unconfirmedPassword").innerHTML = "";
 			}
 		} else {
 			if (name === "password") {
 				var passwordValidator = require('password-validator');
-				var validator = new passwordValidator();
-				validator
-					.is().min(6)
-					.has().lowercase()
-					.has().uppercase()
-					.has().digits()
-					.has().not().spaces()
-					.has().oneOf(["!", "?", "@", "#", "$", "%", "^", "&", "*", "(", ")"]);
-
+				var validator1 = new passwordValidator().is().min(6).is().max(50);
+				var validator2 = new passwordValidator().has().lowercase();
+				var validator3 = new passwordValidator().has().uppercase();
+				var validator4 = new passwordValidator().has().digits();
+				var validator5 = new passwordValidator().has().not().spaces();
+				if (!validator1.validate(value)) {
+					document.getElementById("invalidPassword").innerHTML =
+						"Password length must be greater than 6 and less than 50.";
+				} else if (!validator2.validate(value)) {
+					document.getElementById("invalidPassword").innerHTML =
+						"Password must contain a lowercase letter.";
+				} else if (!validator3.validate(value)) {
+					document.getElementById("invalidPassword").innerHTML =
+						"Password must contain an uppercase letter.";
+				} else if (!validator4.validate(value)) {
+					document.getElementById("invalidPassword").innerHTML =
+						"Password must contain a number.";
+				} else if (!validator5.validate(value)) {
+					document.getElementById("invalidPassword").innerHTML =
+						"Password must not contain space.";
+				} else {
+					document.getElementById("invalidPassword").innerHTML = "";
+				}
+				this.setState({
+					[name]: value
+				});
+			} else {
+				this.setState({
+					[name]: value
+				});
 			}
-			this.setState({
-				[name]: value
-			});
+
 		}
 	}
 
@@ -91,6 +110,7 @@ class Register extends Component {
 							value={this.state.password}
 							onChange={this.update}
 						/>
+						<div id="invalidPassword"></div>
 					</div>
 
 					<div className="password">
