@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+// import * as fs from 'fs';
 
 
 class NewTransaction extends Component {
@@ -7,35 +8,46 @@ class NewTransaction extends Component {
 		super(props);
         this.choice = ["pick up","delievery"];
 		this.state = {
-			delievery_type: '',
-			waste_type: '',
-            weight: '',
-            schedule:'',
-            comment:''
+			delieveryType: '',
+			userType: '',
+			wasteType: '',
+            weight: 0,
+            schedule: '',
+			comment: '',
 		};
 
-		this.update = this.update.bind(this);
+		this.updateHandler = this.updateHandler.bind(this);
 
-		this.displayLogin = this.displayLogin.bind(this);
+		this.submitHandler = this.submitHandler.bind(this);
 	}
 
-	update(e) {
+	updateHandler(e) {
 		let name = e.target.name;
 		let value = e.target.value;
-		this.setState({
-			[name]: value
-		});
+		this.setState({[name]: value});
 	}
 
-	displayLogin(e) {
+	submitHandler(e) {
 		e.preventDefault();
-		console.log('You have successfully registered');
-		console.log(this.state);
-		this.setState({
-			fullname: '',
-			email: '',
-			password: ''
-		});
+		let weight = this.state.weight;
+		if (!Number(weight)) {
+			alert("Weight must be a number");
+		} else {
+			const fs = require('browserify-fs')
+			// const path = require('path');
+			// const filePath = path.join(__dirname, '/output.json');
+			// console.log(filePath);
+			console.log( __dirname);
+			var data = JSON.stringify(this.state);
+			fs.writeFile("./myoutput.json", data,
+			(err) => { 
+				if (err) throw err; 
+				console.log('Data written to file'); 
+			});
+		}
+		console.log(this.state)
+		console.log("json: " + data);
+		
     }
 
     fakeToggle(open, value, text) {
@@ -45,42 +57,59 @@ class NewTransaction extends Component {
 	render() {
 		return (
 			<div className="transaction">
-				<form onSubmit={this.displayLogin}>
+				<form onSubmit={this.submitHandler}>
                     <h5>Home->new transaction</h5>
 					<h2>New Transaction</h2>
 					<h4>Make new transaction now!</h4>
 					<div className="type">
+						<lable> Delivery Type: </lable>
+						<input type="radio" id="pickup" value="Pick up" name="delieveryType" onChange={this.updateHandler}/>
+						<label for="pickup"> Pick up </label>
+						<input type="radio" id="del" value="Delivery" name="delieveryType" onChange={this.updateHandler}/>
+						<label for="del"> Delivery </label>
+					</div>
+
+					<div className="userType">
+						<lable> User Type: </lable>
+						<input type="radio" id="Donator" value="Donator" name="userType" onChange={this.updateHandler}/>
+						<label for="Donator"> Donator </label>
+						<input type="radio" id="Sub" value="Subscriber" name="userType" onChange={this.updateHandler}/>
+						<label for="Sub"> Subscriber </label>
+					</div>
+
+					<div className="schedule">
 						<input
 							type="text"
-							placeholder="Pick up"
-							name="Delivery Type"
-							onChange={this.update}
+							placeholder="For Subscribers: Please Enter Frequency"
+							name="schedule"
+							onChange={this.updateHandler}
 						/>
 					</div>
 
 					<div className="Weight">
 						<input
 							type="text"
-							placeholder="lbs"
-							name="Weight"
-							onChange={this.update}
+							placeholder="Weight (lbs)"
+							name="weight"
+							onChange={this.updateHandler}
 						/>
+						{this.state.errormessage}
 					</div>
 
-					<div className="Waste Type">
+					<div className="WasteType">
 						<input
 							type="text"
-							placeholder="enter type"
-							name="waste type"
-							onChange={this.update}
+							placeholder="Waste Type"
+							name="wasteType"
+							onChange={this.updateHandler}
 						/>
 					</div>
 
 					<div className="comments">
                         <input 
                             type="text" 
-                            placeholder="enter your comments" 
-                            name="password1" />
+                            placeholder="Comments" 
+                            name="comment" />
 					</div>
 
 					<input type="submit" value="submit" />
