@@ -21,6 +21,7 @@ class Login extends Component {
 		this.setState({
 			[name]: value
 		});
+		localStorage.setItem('userEmail', this.state.email);
 	}
 
 	displayLogin(e) {
@@ -43,7 +44,7 @@ class Login extends Component {
 					<div className="username">
 						<input
 							type="text"
-							placeholder="Username..."
+							placeholder="Email..."
 							value={this.state.email}
 							onChange={this.update}
 							name="email"
