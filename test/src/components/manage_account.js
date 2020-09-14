@@ -19,7 +19,6 @@ class manage_account extends Component {
 
 function deleteAccount() {
 	localStorage.clear();
-	//console.log('account has been deleted');
 	window.location.reload(false);
 }
 
