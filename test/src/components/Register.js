@@ -6,9 +6,11 @@ class Register extends Component {
 		super(props);
 
 		this.state = {
+			user: {
 			fullname: '',
 			email: '',
 			password: ''
+			}
 		};
 
 		this.update = this.update.bind(this);
@@ -19,10 +21,13 @@ class Register extends Component {
 	update(e) {
 		let name = e.target.name;
 		let value = e.target.value;
+		const { user } = this.state;
 		this.setState({
 			[name]: value
 		});
+		//localStorage.setItem('userName', this.state.fullname);
 	}
+
 
 	displayLogin(e) {
 		e.preventDefault();
@@ -73,7 +78,8 @@ class Register extends Component {
 					</div>
 
 					<div className="password">
-						<input type="password" placeholder="Confirm Password" name="password1" />
+						<input type="password" placeholder="Confirm Password" name="password1"
+/>
 					</div>
 
 					<input type="submit" value="submit" />
@@ -84,6 +90,8 @@ class Register extends Component {
 			</div>
 		);
 	}
+
+
 }
 
 export default Register;
