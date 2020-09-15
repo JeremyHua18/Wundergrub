@@ -25,13 +25,19 @@ class Register extends Component {
 		this.setState({
 			[name]: value
 		});
-		//localStorage.setItem('userName', this.state.fullname);
+	}
+
+	handleClick(e) {
+		console.log('You have successfully registered');
+		// localStorage.setItem('regEmail', this.state.email);
+		// localStorage.setItem('regPassword', this.state.password);
+		//localStorage.setItem(this.state.fullname, this.state.fullname);
+		localStorage.setItem(this.state.email, this.state.password);
 	}
 
 
 	displayLogin(e) {
 		e.preventDefault();
-		console.log('You have successfully registered');
 		console.log(this.state);
 		this.setState({
 			fullname: '',
@@ -82,7 +88,7 @@ class Register extends Component {
 />
 					</div>
 
-					<input type="submit" value="submit" />
+					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Submit </button>
 					
 				</form>
 
