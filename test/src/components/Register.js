@@ -10,6 +10,7 @@ class Register extends Component {
 		this.okComfirm = false;
 
 		this.state = {
+			user: {
 			fullname: '',
 			email: '',
 			password: '',
@@ -75,10 +76,20 @@ class Register extends Component {
 				this.okEmail = true;
 			}
 		}
+
 		this.setState({
 			[name]: value
 		});
 	}
+
+	handleClick(e) {
+		console.log('You have successfully registered');
+		// localStorage.setItem('regEmail', this.state.email);
+		// localStorage.setItem('regPassword', this.state.password);
+		//localStorage.setItem(this.state.fullname, this.state.fullname);
+		localStorage.setItem(this.state.email, this.state.password);
+	}
+
 
 	displayLogin(e) {
 		e.preventDefault();
@@ -99,6 +110,7 @@ class Register extends Component {
 		}
 
 		console.log('You have successfully registered');
+
 		console.log(this.state);
 		this.setState({
 			fullname: '',
@@ -158,7 +170,7 @@ class Register extends Component {
 						<div id="unconfirmedPassword" className="registrationError"></div>
 					</div>
 
-					<input type="submit" value="submit" />
+					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Submit </button>
 					
 				</form>
 
@@ -166,6 +178,8 @@ class Register extends Component {
 			</div>
 		);
 	}
+
+
 }
 
 export default Register;

@@ -102,6 +102,7 @@ input[type='submit'] {
   width: 100%;
 }
 
+
 .check {
   font-size: 16px;
 }
@@ -144,3 +145,18 @@ input[type='submit'] {
 
 }
 
+button {
+  text-decoration: none;
+  text-align: center;
+  padding: 6px 50px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  margin-left: 45px;
+  margin-right: 0px;
+  border: none;
+  width: 80%;
+  display: block;
+}

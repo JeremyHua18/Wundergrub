@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+
+
 
 class Login extends Component {
 	constructor(props) {
@@ -11,17 +14,26 @@ class Login extends Component {
 		};
 
 		this.update = this.update.bind(this);
-
 		this.displayLogin = this.displayLogin.bind(this);
 	}
 
 	update(e) {
-		let name = e.target.name;
-		let value = e.target.value;
-		this.setState({
-			[name]: value
-		});
+        const { name, value } = e.target;
+		this.setState({ [name]: value });
+		localStorage.setItem('loginEmail', this.state.email);
 	}
+
+	
+	handleClick(e) {
+		//if (this.state.email === localStorage.getItem('regEmail') & this.state.password === localStorage.getItem('regPassword')) {
+		if (this.state.password === localStorage.getItem(this.state.email)) {
+			console.log('You are logged in');
+			this.props.history.push("/home");
+		} else {
+			console.log('email or password is wrong');
+		}
+	}
+
 
 	displayLogin(e) {
 		e.preventDefault()
@@ -50,7 +62,7 @@ class Login extends Component {
 					<div className="username">
 						<input
 							type="text"
-							placeholder="Username..."
+							placeholder="Email..."
 							value={this.state.email}
 							onChange={this.update}
 							name="email"
@@ -67,8 +79,7 @@ class Login extends Component {
 						/>
 					</div>
 
-					<Link className="linklogin"to="/home">Login</Link>
-
+					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Login </button>
 				</form>
 				
 				<Link className="link" to="/register">Create an account</Link>
@@ -79,6 +90,9 @@ class Login extends Component {
 			</div>
 		);
 	}
+
 }
 
-export default Login;
+
+
+export default withRouter(Login);
