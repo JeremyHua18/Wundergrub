@@ -36,12 +36,20 @@ class Login extends Component {
 
 
 	displayLogin(e) {
-		e.preventDefault();
-		console.log(this.state);
-		this.setState({
-			email: '',
-			password: ''
-		});
+		e.preventDefault()
+		var hashed = '';
+		//Todo : get the password from the database and store it in var hashed
+		var passwordHash = require('password-hash');
+		if (passwordHash.verify(this.state.password, hashed)) {
+			console.log('You are logged in');
+			console.log(this.state);
+			this.setState({
+				email: '',
+				password: ''
+			});
+		} else {
+			alert("Your password is incorrect.");
+		}
 	}
 
 	render() {
