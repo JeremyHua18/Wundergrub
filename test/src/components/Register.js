@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import UserDataService from "../services/user.service"
 
 class Register extends Component {
 	constructor(props) {
@@ -15,6 +16,7 @@ class Register extends Component {
 			email: '',
 			password: '',
 			password1: ''
+        }
 		};
 
 		this.update = this.update.bind(this);
@@ -83,10 +85,9 @@ class Register extends Component {
 	}
 
 	handleClick(e) {
-		console.log('You have successfully registered');
-		// localStorage.setItem('regEmail', this.state.email);
-		// localStorage.setItem('regPassword', this.state.password);
-		//localStorage.setItem(this.state.fullname, this.state.fullname);
+		// localStorage.setItem('username', this.state.email);
+		// localStorage.setItem('password', this.state.password);
+		// localStorage.setItem('fullname', this.state.fullname);
 		localStorage.setItem(this.state.email, this.state.password);
 	}
 
@@ -102,16 +103,34 @@ class Register extends Component {
 		} else {
 			// Todo: Check duplication of username & email
 			var passwordHash = require('password-hash');
-			let username = this.state.fullname;
-			let emailaddress = this.state.email;
+			let fullname = this.state.fullname;
+			let username = this.state.email;
 			let password = passwordHash.generate(this.state.password);
-			console.log(password);
 
+			console.log(password);
+			// send data to API
+			var data = {
+				username: username,
+				password: password,
+				fullname: fullname,
+				account_type: 'user' //will be changed later
+			};
+
+			UserDataService.create(data).then(response => {
+				this.setState({
+					fullname: '',
+					email: '',
+					password: '',
+					password1: ''
+				});
+				console.log(response.data);
+				console.log('You have successfully registered');
+			})
+			.catch(e => {
+				console.log(e)
+			});
 		}
 
-		console.log('You have successfully registered');
-
-		console.log(this.state);
 		this.setState({
 			fullname: '',
 			email: '',
@@ -171,7 +190,7 @@ class Register extends Component {
 					</div>
 
 					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Submit </button>
-					
+
 				</form>
 
 				<Link className="link"to="/">Login Here</Link>
