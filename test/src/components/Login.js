@@ -27,24 +27,32 @@ class Login extends Component {
 	
 	handleClick(e) {
 		e.preventDefault();
-		var row = UserDataService.get(this.state.email);
+		var email = this.state.email;
 		var inputpass = this.state.password;
-		console.log("Get in the function");
-		row.then(function(result){
-			console.log("Data get");
-			if (result.data === '') {
-				alert("Account does not exist!");
-			} else {
-				var hashed = result.data.password;
-				var passwordHash = require('password-hash');
-				if (passwordHash.verify(inputpass, hashed)) {
-					console.log('You are logged in');
+
+		console.log(email);
+		if (email === '') {
+			alert("Please fill out your E-mail.");
+		} else {
+
+			var row = UserDataService.get(this.state.email);
+			console.log("Get in the function");
+			row.then(function (result) {
+				console.log("Data get");
+				if (result.data === '') {
+					alert("Account does not exist!");
 				} else {
-					alert("Your password is incorrect.");
+					var hashed = result.data.password;
+					var passwordHash = require('password-hash');
+					if (passwordHash.verify(inputpass, hashed)) {
+						console.log('You are logged in');
+					} else {
+						alert("Your password is incorrect.");
+					}
 				}
-			}
-			console.log(result.data);
-		});
+				console.log(result.data);
+			});
+		}
 	}
 
 
