@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.20.0",
     "browserify-fs": "^1.0.0",
+    "level-filesystem": "^1.2.0",
+    "object-keys": "^1.1.1",
     "password-hash": "^1.2.2",
     "password-validator": "^5.1.0",
     "react": "^16.4.2",
