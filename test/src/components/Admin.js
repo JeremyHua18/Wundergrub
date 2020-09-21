@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import UserDataService from "../services/user.service";
 
 class Admin extends Component {
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -24,31 +23,35 @@ class Admin extends Component {
         console.log(this);
 
     }
+
+
+
     update(e) {
 
         this.setState();
     }
-    handleClick(e) {
 
+
+    handleClick(ind) {
+        console.log(ind);
     }
 
     renderTableData() {
         return this.state.users.map((user, index) => {
             const {account_type, createdAt, fullname, password, updatedAt, username} = user;
-            console.log(index);
+            // console.log(index);
             return (
                 <tr key={username}>
                    <td>{index}</td>
                    <td>{username}</td>
                    <td>{fullname}</td> 
-                   <td>{account_type}<button onClick = {this.handleClick}>Edit</button></td>
+                   <td>{account_type}</td>
+                   <td><button onClick = {this.handleClick.bind(this)}>Edit</button></td>
                 </tr>
              )
-
-
         })
-
     }
+
 	render() {
 
         return (
