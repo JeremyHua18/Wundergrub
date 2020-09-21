@@ -115,7 +115,7 @@ class Register extends Component {
 					UserDataService.create(data).then(response => {
 						console.log(response.data);
 						alert('You have successfully registered');
-						//self.props.history.push("/home");
+						self.props.history.push("/");
 					}).catch(e => {
 						console.log(e)
 					});
