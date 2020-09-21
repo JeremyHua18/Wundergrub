@@ -26,45 +26,25 @@ class Login extends Component {
 
 	
 	handleClick(e) {
+		e.preventDefault();
 		var row = UserDataService.get(this.state.email);
+		var inputpass = this.state.password;
+		console.log("Get in the function");
 		row.then(function(result){
+			console.log("Data get");
+			if (result.data === '') {
+				alert("Account does not exist!");
+			} else {
+				var hashed = result.data.password;
+				var passwordHash = require('password-hash');
+				if (passwordHash.verify(inputpass, hashed)) {
+					console.log('You are logged in');
+				} else {
+					alert("Your password is incorrect.");
+				}
+			}
 			console.log(result.data);
 		});
-
-		var hashed = '';
-		//Todo : get the password from the database and store it in var hashed
-		var passwordHash = require('password-hash');
-		if (passwordHash.verify(this.state.password, hashed)) {
-			console.log('You are logged in');
-			console.log(this.state);
-			this.setState({
-				email: '',
-				password: ''
-			});
-		} else {
-			alert("Your password is incorrect.");
-		}
-
-		var self = this;
-		//if (this.state.email === localStorage.getItem('regEmail') & this.state.password === localStorage.getItem('regPassword')) {
-		if (this.state.password === localStorage.getItem(this.state.email)) {
-			var userInfo = UserDataService.get(this.state.email);
-			console.log(userInfo);
-			userInfo.then(function(result){
-				var userAccountType = result.data.account_type;
-				console.log(userAccountType);
-				
-				if (userAccountType === 'admin') {
-					//self.props.history.push("/admin");
-				} else {
-					//self.props.history.push("/home");
-				}
-			});
-			console.log('You are logged in');
-			
-		} else {
-			console.log('email or password is wrong');
-		}
 	}
 
 
@@ -77,7 +57,7 @@ class Login extends Component {
 		return (
 			<div className="login">
 
-				<form onSubmit= {this.handleClick.bind(this)}>
+				<form >
 					<h2>Login</h2>
 					<h3>Welcome to WUNDERgrubs</h3>
 					<div className="username">
