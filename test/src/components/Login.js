@@ -26,31 +26,11 @@ class Login extends Component {
 
 	
 	handleClick(e) {
-		var self = this;
-		//if (this.state.email === localStorage.getItem('regEmail') & this.state.password === localStorage.getItem('regPassword')) {
-		if (this.state.password === localStorage.getItem(this.state.email)) {
-			var userInfo = UserDataService.get(this.state.email);
-			console.log(userInfo);
-			userInfo.then(function(result){
-				var userAccountType = result.data.account_type;
-				console.log(userAccountType);
-				
-				if (userAccountType === 'admin') {
-					self.props.history.push("/admin");
-				} else {
-					self.props.history.push("/home");
-				}
-			});
-			console.log('You are logged in');
-			
-		} else {
-			console.log('email or password is wrong');
-		}
-	}
+		var row = UserDataService.get(this.state.email);
+		row.then(function(result){
+			console.log(result.data);
+		});
 
-
-	displayLogin(e) {
-		e.preventDefault();
 		var hashed = '';
 		//Todo : get the password from the database and store it in var hashed
 		var passwordHash = require('password-hash');
@@ -64,13 +44,40 @@ class Login extends Component {
 		} else {
 			alert("Your password is incorrect.");
 		}
+
+		var self = this;
+		//if (this.state.email === localStorage.getItem('regEmail') & this.state.password === localStorage.getItem('regPassword')) {
+		if (this.state.password === localStorage.getItem(this.state.email)) {
+			var userInfo = UserDataService.get(this.state.email);
+			console.log(userInfo);
+			userInfo.then(function(result){
+				var userAccountType = result.data.account_type;
+				console.log(userAccountType);
+				
+				if (userAccountType === 'admin') {
+					//self.props.history.push("/admin");
+				} else {
+					//self.props.history.push("/home");
+				}
+			});
+			console.log('You are logged in');
+			
+		} else {
+			console.log('email or password is wrong');
+		}
+	}
+
+
+	displayLogin(e) {
+		e.preventDefault();
+
 	}
 
 	render() {
 		return (
 			<div className="login">
 
-				<form onSubmit={this.displayLogin}>
+				<form onSubmit= {this.handleClick.bind(this)}>
 					<h2>Login</h2>
 					<h3>Welcome to WUNDERgrubs</h3>
 					<div className="username">

@@ -84,13 +84,6 @@ class Register extends Component {
 		});
 	}
 
-	handleClick(e) {
-		// localStorage.setItem('username', this.state.email);
-		// localStorage.setItem('password', this.state.password);
-		// localStorage.setItem('fullname', this.state.fullname);
-		localStorage.setItem(this.state.email, this.state.password);
-	}
-
 
 	displayLogin(e) {
 		e.preventDefault();
@@ -99,44 +92,38 @@ class Register extends Component {
 		} else if (!this.okComfirm) {
 			alert("Passwords do not match!");
 		} else if (!this.okEmail) {
-			alert("Invalid password!");
+			alert("Invalid E-mail address!");
 		} else {
-			// Todo: Check duplication of username & email
-			var passwordHash = require('password-hash');
-			let fullname = this.state.fullname;
-			let username = this.state.email;
-			let password = passwordHash.generate(this.state.password);
+			var row = UserDataService.get(this.state.email);
+			row.then(function (result) {
+				if (result.data === '') {
+					var passwordHash = require('password-hash');
+					let fullname = this.state.fullname;
+					let username = this.state.email;
+					let password = passwordHash.generate(this.state.password);
 
-			console.log(password);
-			// send data to API
-			var data = {
-				username: username,
-				password: password,
-				fullname: fullname,
-				account_type: 'user' //will be changed later
-			};
+					// send data to API
+					var data = {
+						username: username,
+						password: password,
+						fullname: fullname,
+						account_type: 'user' //will be changed later
+					};
 
-			UserDataService.create(data).then(response => {
-				this.setState({
-					fullname: '',
-					email: '',
-					password: '',
-					password1: ''
-				});
-				console.log(response.data);
-				console.log('You have successfully registered');
-			})
-			.catch(e => {
-				console.log(e)
+					UserDataService.create(data).then(response => {
+						console.log(response.data);
+						alert('You have successfully registered');
+					}).catch(e => {
+						console.log(e)
+					});
+				} else {
+					alert("This e-mail address is used!");
+
+				}
+
+				console.log(result.data);
 			});
 		}
-
-		this.setState({
-			fullname: '',
-			email: '',
-			password: '',
-			password1: ''
-		});
 	}
 
 	render() {
@@ -189,7 +176,7 @@ class Register extends Component {
 						<div id="unconfirmedPassword" className="registrationError"></div>
 					</div>
 
-					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Submit </button>
+					<button  ref={(button) => this.button = button} > Submit </button>
 
 				</form>
 
