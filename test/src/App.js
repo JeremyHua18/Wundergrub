@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
+import Admin from "./components/Admin";
 import NewTransaction from './components/NewTransaction';
 import view_report from './components/view_report';
 import transaction_history from './components/transaction_history';
@@ -22,7 +23,7 @@ class App extends Component {
         <Route path="/viewreport" component={view_report} />
         <Route path="/account" component={manage_account} />
         <Route path="/help" component={help} />
-
+        <Route path="/admin" component={Admin}/>
 
 
       </div>

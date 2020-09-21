@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
+import UserDataService from "../services/user.service";
 
 
 
@@ -25,10 +26,23 @@ class Login extends Component {
 
 	
 	handleClick(e) {
+		var self = this;
 		//if (this.state.email === localStorage.getItem('regEmail') & this.state.password === localStorage.getItem('regPassword')) {
 		if (this.state.password === localStorage.getItem(this.state.email)) {
+			var userInfo = UserDataService.get(this.state.email);
+			console.log(userInfo);
+			userInfo.then(function(result){
+				var userAccountType = result.data.account_type;
+				console.log(userAccountType);
+				
+				if (userAccountType === 'admin') {
+					self.props.history.push("/admin");
+				} else {
+					self.props.history.push("/home");
+				}
+			});
 			console.log('You are logged in');
-			this.props.history.push("/home");
+			
 		} else {
 			console.log('email or password is wrong');
 		}
@@ -36,7 +50,7 @@ class Login extends Component {
 
 
 	displayLogin(e) {
-		e.preventDefault()
+		e.preventDefault();
 		var hashed = '';
 		//Todo : get the password from the database and store it in var hashed
 		var passwordHash = require('password-hash');
@@ -82,10 +96,7 @@ class Login extends Component {
 					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Login </button>
 				</form>
 				
-				<Link className="link" to="/register">Create an account</Link>
-			
-				
-				
+				<Link className="link" to="/register">Create an account</Link>				
 
 			</div>
 		);
