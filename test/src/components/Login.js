@@ -50,13 +50,20 @@ class Login extends Component {
 					var passwordHash = require('password-hash');
 					if (passwordHash.verify(inputpass, hashed)) {
 						console.log('You are logged in');
-						var userAccountType = result.data.account_type;
-						console.log(userAccountType);
+						var status = result.data.status;
+						if (status === 'Approved') {
+							var userAccountType = result.data.account_type;
+							console.log(userAccountType);
 
-						if (userAccountType === 'admin') {
-							self.props.history.push("/admin");
-						} else {
-							self.props.history.push("/home");
+							if (userAccountType === 'admin') {
+								self.props.history.push("/admin");
+							} else {
+								self.props.history.push("/home");
+							}
+						} else if (status === 'Denied') {
+							alert("This account was denied by the administrator and is not able to be logged in.");
+						} else if (status === 'Pending') {
+							alert("This account is pending, please wait until an administrator to approve it.");
 						}
 					} else {
 						alert("Your password is incorrect.");
