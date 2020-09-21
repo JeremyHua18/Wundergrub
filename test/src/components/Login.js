@@ -40,6 +40,7 @@ class Login extends Component {
 		} else {
 			var row = UserDataService.get(this.state.email);
 			console.log("Get in the function");
+			var self = this;
 			row.then(function (result) {
 				console.log("Data get");
 				if (result.data === '') {
@@ -49,6 +50,14 @@ class Login extends Component {
 					var passwordHash = require('password-hash');
 					if (passwordHash.verify(inputpass, hashed)) {
 						console.log('You are logged in');
+						var userAccountType = result.data.account_type;
+						console.log(userAccountType);
+
+						if (userAccountType === 'admin') {
+							self.props.history.push("/admin");
+						} else {
+							self.props.history.push("/home");
+						}
 					} else {
 						alert("Your password is incorrect.");
 					}
