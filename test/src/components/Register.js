@@ -108,13 +108,14 @@ class Register extends Component {
 						username: username,
 						password: password,
 						fullname: fullname,
-						account_type: 'user' //will be changed later
+						account_type: 'user', //will be changed later
+						status: 'Pending'
 					};
 
 					UserDataService.create(data).then(response => {
 						console.log(response.data);
 						alert('You have successfully registered');
-						self.props.history.push("/home");
+						//self.props.history.push("/home");
 					}).catch(e => {
 						console.log(e)
 					});
