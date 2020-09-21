@@ -95,12 +95,13 @@ class Register extends Component {
 			alert("Invalid E-mail address!");
 		} else {
 			var row = UserDataService.get(this.state.email);
+			var self = this;
 			row.then(function (result) {
 				if (result.data === '') {
 					var passwordHash = require('password-hash');
-					let fullname = this.state.fullname;
-					let username = this.state.email;
-					let password = passwordHash.generate(this.state.password);
+					let fullname = self.state.fullname;
+					let username = self.state.email;
+					let password = passwordHash.generate(self.state.password);
 
 					// send data to API
 					var data = {
@@ -113,6 +114,7 @@ class Register extends Component {
 					UserDataService.create(data).then(response => {
 						console.log(response.data);
 						alert('You have successfully registered');
+						self.props.history.push("/home");
 					}).catch(e => {
 						console.log(e)
 					});
