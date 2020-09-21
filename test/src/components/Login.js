@@ -15,7 +15,6 @@ class Login extends Component {
 		};
 
 		this.update = this.update.bind(this);
-		this.displayLogin = this.displayLogin.bind(this);
 	}
 
 	update(e) {
@@ -39,7 +38,6 @@ class Login extends Component {
 		} else if (inputpass === '' || inputpass.length < 6) {
 			alert("Please fill out your password.");
 		} else {
-
 			var row = UserDataService.get(this.state.email);
 			console.log("Get in the function");
 			row.then(function (result) {
@@ -58,12 +56,6 @@ class Login extends Component {
 				console.log(result.data);
 			});
 		}
-	}
-
-
-	displayLogin(e) {
-		e.preventDefault();
-
 	}
 
 	render() {
