@@ -108,7 +108,7 @@ class Register extends Component {
 						username: username,
 						password: password,
 						fullname: fullname,
-						acgunt_type: 'user', //will be changed later
+						account_type: 'user', //will be changed later
 						status: 'Pending'
 					};
 
