@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import UserDataService from "../services/user.service";
-
+import Cookies from 'universal-cookie';
 
 
 class Login extends Component {
@@ -20,6 +20,10 @@ class Login extends Component {
 	update(e) {
         const { name, value } = e.target;
 		this.setState({ [name]: value });
+
+		const cookies = new Cookies();
+		console.log(cookies.get('myCat'));
+
 		localStorage.setItem('loginEmail', this.state.email);
 	}
 
@@ -28,8 +32,6 @@ class Login extends Component {
 		e.preventDefault();
 		var email = this.state.email;
 		var inputpass = this.state.password;
-
-		console.log(email);
 
 		const expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i
 
@@ -115,3 +117,9 @@ class Login extends Component {
 
 
 export default withRouter(Login);
+
+
+// import Cookies from 'universal-cookie';
+// const cookies = new Cookies();
+// cookies.set('myCat', 'Pacman', { path: '/' });
+// console.log(cookies.get('myCat'));

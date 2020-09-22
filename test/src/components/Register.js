@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import UserDataService from "../services/user.service"
+import Cookies from 'universal-cookie';
 
 class Register extends Component {
 	constructor(props) {
@@ -25,6 +26,11 @@ class Register extends Component {
 	}
 
 	update(e) {
+
+		const cookies = new Cookies();
+  		cookies.set('myCat', 'Pacman??', { path: '/' });
+  		console.log(cookies.get('myCat'));
+
 		let name = e.target.name;
 		let value = e.target.value;
 		if (name === "password1") {
