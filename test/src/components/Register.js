@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import UserDataService from "../services/user.service"
-import Cookies from 'universal-cookie';
 
 class Register extends Component {
 	constructor(props) {
@@ -109,7 +108,7 @@ class Register extends Component {
 						username: username,
 						password: password,
 						fullname: fullname,
-						account_type: 'user', //will be changed later
+						acgunt_type: 'user', //will be changed later
 						status: 'Pending'
 					};
 
