@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     account_type: {
       type: Sequelize.STRING
+    },
+    status: {
+      type: Sequelize.STRING
     }
   });
 
