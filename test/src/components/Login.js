@@ -23,8 +23,6 @@ class Login extends Component {
 
 		const cookies = new Cookies();
 		console.log(cookies.get('myCat'));
-
-		localStorage.setItem('loginEmail', this.state.email);
 	}
 
 	
@@ -55,8 +53,11 @@ class Login extends Component {
 						var status = result.data.status;
 						if (status === 'Approved') {
 							var userAccountType = result.data.account_type;
-							console.log(userAccountType);
-
+							const cookies = new Cookies();
+							cookies.set('email', result.data.username, { path: '/' });
+							cookies.set('type', userAccountType, { path: '/' });
+							console.log(cookies.get('email'));
+							console.log(cookies.get('type'));
 							if (userAccountType === 'admin') {
 								self.props.history.push("/admin");
 							} else {

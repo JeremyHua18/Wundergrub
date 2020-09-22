@@ -26,11 +26,6 @@ class Register extends Component {
 	}
 
 	update(e) {
-
-		const cookies = new Cookies();
-  		cookies.set('myCat', 'Pacman??', { path: '/' });
-  		console.log(cookies.get('myCat'));
-
 		let name = e.target.name;
 		let value = e.target.value;
 		if (name === "password1") {
