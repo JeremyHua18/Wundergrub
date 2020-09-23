@@ -46,13 +46,14 @@ class Admin extends Component {
                    <td>{username}</td>
                    <td>{fullname}</td> 
                    <td>{account_type}</td>
-                   <td><button onClick = {this.handleClick.bind(this)}>Edit</button></td>
+                   <td><button onClick = {this.handleClick.bind(this)}>Delete</button></td>
                 </tr>
              )
         })
     }
 
 	render() {
+        
 
         return (
             <div>
