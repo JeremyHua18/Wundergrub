@@ -38,27 +38,23 @@ class Admin extends Component {
     }
 
     renderTableData() {
-
-            return this.state.users.map((user, index) => {
-                const {account_type, createdAt, fullname, password, updatedAt, username} = user;
-                // console.log(index);
-                return (
-                    < tr
-                key = {username} >
-                    < td > {index} < /td>
-                    < td > {username} < /td>
-                    < td > {fullname} < /td>
-                    < td > {account_type} < /td>
-                    < td > < button
-                onClick = {this.handleClick.bind(this)} > Edit < /button></
-                td >
-                < /tr>
-            )
-            })
-
+        return this.state.users.map((user, index) => {
+            const {account_type, createdAt, fullname, password, updatedAt, username} = user;
+            // console.log(index);
+            return (
+                <tr key={username}>
+                   <td>{index}</td>
+                   <td>{username}</td>
+                   <td>{fullname}</td> 
+                   <td>{account_type}</td>
+                   <td><button onClick = {this.handleClick.bind(this)}>Delete</button></td>
+                </tr>
+             )
+        })
     }
 
 	render() {
+        
 
         const cookies = new Cookies();
         var type = cookies.get('type');
@@ -73,57 +69,6 @@ class Admin extends Component {
                   </tbody>
                </table>
             </div>
-    //         <div>
-    //           <ReactTable
-    //           data={data}
-          
-    //       columns={[
-    //         {
-    //           Header: "Name",
-
-    //           columns: [
-    //             {
-    //               Header: this.getHeader,
-    //               accessor: "firstName",
-    //               width: 180
-    //             },
-    //             {
-    //               Header: "Last Name",
-    //               id: "lastName",
-    //               accessor: d => d.lastName
-    //             }
-    //           ]
-    //         },
-    //         {
-    //           Header: "Info",
-    //           columns: [
-    //             {
-    //               Header: "Age",
-    //               accessor: "age"
-    //             },
-    //             {
-    //               Header: "Status",
-    //               accessor: "status"
-    //             }
-    //           ]
-    //         },
-    //         {
-    //           Header: "Stats",
-    //           columns: [
-    //             {
-    //               Header: "Visits",
-    //               accessor: "visits"
-    //             }
-    //           ]
-    //         }
-    //       ]}
-    //       defaultPageSize={10}
-    //       className="-striped -highlight"
-    //     />
-    //     <br />
-    //     <Tips />
-    //     <Logo />
-    //   </div>
          )
         } else {
             return (<h1>404</h1>)
