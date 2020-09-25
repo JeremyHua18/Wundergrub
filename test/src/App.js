@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Register from './components/Register';
 import Home from './components/Home';
 import Admin from "./components/Admin";
@@ -24,6 +25,8 @@ class App extends Component {
         <Route path="/account" component={manage_account} />
         <Route path="/help" component={help} />
         <Route path="/admin" component={Admin}/>
+        <Route path="/logout" component={Logout}/>
+
 
 
       </div>
