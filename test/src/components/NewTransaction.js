@@ -11,7 +11,7 @@ class NewTransaction extends Component {
 			delieveryType: '',
 			userType: '',
 			wasteType: '',
-			weight: 0,
+            weight: 0,
             schedule: '',
 			comment: '',
 		};
@@ -28,7 +28,7 @@ class NewTransaction extends Component {
 	}
 
 	submitHandler(e) {
-		e.preventDefault();
+		var dataForm = document.getElementsByName('newTrans')[0];
 		let weight = this.state.weight;
 		if (!Number(weight)) {
 			alert("Weight must be a number");
@@ -39,15 +39,18 @@ class NewTransaction extends Component {
 			// console.log(filePath);
 			console.log( __dirname);
 			var data = JSON.stringify(this.state);
-			fs.writeFile("./myoutput.json", data,
+			fs.writeFile("./myoutput1.json", data,
 			(err) => { 
 				if (err) throw err; 
-				console.log('Data written to file'); 
+				console.log('Data written to file');
+				alert("Data is successfully logged")
+				// frm.submit()
+				dataForm.reset() 
 			});
 		}
 		console.log(this.state)
 		console.log("json: " + data);
-		
+		e.preventDefault();
     }
 
     fakeToggle(open, value, text) {
@@ -57,15 +60,15 @@ class NewTransaction extends Component {
 	render() {
 		return (
 			<div className="transaction">
-				<form onSubmit={this.submitHandler}>
+				<form name = "newTrans"onSubmit={this.submitHandler}>
                     <h5>Home->new transaction</h5>
 					<h2>New Transaction</h2>
 					<h4>Make new transaction now!</h4>
 					<div className="type">
 						<lable> Delivery Type: </lable>
-						<input type="radio" id="pickup" value="Pick up" name="delieveryType" onChange={this.updateHandler}/>
+						<input type="radio" id="pickup" value="Pick up" name="delieveryType" onChange={this.updateHandler} />
 						<label for="pickup"> Pick up </label>
-						<input type="radio" id="del" value="Delivery" name="delieveryType" onChange={this.updateHandler}/>
+						<input type="radio" id="del" value="Delivery" name="delieveryType" onChange={this.updateHandler} />
 						<label for="del"> Delivery </label>
 					</div>
 
@@ -92,6 +95,7 @@ class NewTransaction extends Component {
 							placeholder="Weight (lbs)"
 							name="weight"
 							onChange={this.updateHandler}
+							required
 						/>
 						{this.state.errormessage}
 					</div>
@@ -102,6 +106,7 @@ class NewTransaction extends Component {
 							placeholder="Waste Type"
 							name="wasteType"
 							onChange={this.updateHandler}
+							required
 						/>
 					</div>
 
@@ -111,9 +116,8 @@ class NewTransaction extends Component {
                             placeholder="Comments" 
                             name="comment" />
 					</div>
-
-					<input type="submit" value="submit" />
-					
+					<input type="submit" value="Submit" />
+					<input type="reset" value="Cancel" />  	
 				</form>
 
 				<Link className="link"to="/home">return home</Link>

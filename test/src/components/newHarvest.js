@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import * as fs from 'fs';
 
 
-class farmer_logging extends Component {
+class newHarvest extends Component {
 	constructor(props) {
 		super(props);
         this.choice = ["pick up","delievery"];
@@ -11,7 +11,6 @@ class farmer_logging extends Component {
 			user: '',
 			wasteType: '',
             weight: 0,
-            schedule: '',
 			comment: '',
 		};
 
@@ -27,8 +26,8 @@ class farmer_logging extends Component {
 	}
 
 	submitHandler(e) {
-		e.preventDefault();
 		let weight = this.state.weight;
+		var dataForm = document.getElementsByName('newHarvest')[0];
 		if (!Number(weight)) {
 			alert("Weight must be a number");
 		} else {
@@ -38,15 +37,18 @@ class farmer_logging extends Component {
 			// console.log(filePath);
 			console.log( __dirname);
 			var data = JSON.stringify(this.state);
-			fs.writeFile("./myoutput.json", data,
+			fs.writeFile("./myoutput2.json", data,
 			(err) => { 
 				if (err) throw err; 
 				console.log('Data written to file'); 
+				alert("Data is successfully logged")
+				// frm.submit()
+				dataForm.reset()
 			});
 		}
 		console.log(this.state)
 		console.log("json: " + data);
-		
+		e.preventDefault();
     }
 
     fakeToggle(open, value, text) {
@@ -56,7 +58,7 @@ class farmer_logging extends Component {
 	render() {
 		return (
 			<div className="transaction">
-				<form onSubmit={this.submitHandler}>
+				<form name = "newHarvest" onSubmit={this.submitHandler}>
                     <h5>Home->Farmer Logging Harvest</h5>
 					<h2>Farmer Logging Harvest</h2>
 					<h4>Please load your harvest data</h4>
@@ -66,6 +68,17 @@ class farmer_logging extends Component {
 							placeholder="User/Company Name"
 							name="user"
 							onChange={this.updateHandler}
+							required
+						/>
+					</div>
+					
+					<div className="WasteType">
+						<input
+							type="text"
+							placeholder="Waste Type"
+							name="wasteType"
+							onChange={this.updateHandler}
+							required
 						/>
 					</div>
 
@@ -75,17 +88,9 @@ class farmer_logging extends Component {
 							placeholder="Weight (lbs)"
 							name="weight"
 							onChange={this.updateHandler}
+							required
 						/>
 						{this.state.errormessage}
-					</div>
-
-					<div className="WasteType">
-						<input
-							type="text"
-							placeholder="Waste Type"
-							name="wasteType"
-							onChange={this.updateHandler}
-						/>
 					</div>
 
 					<div className="comments">
@@ -94,9 +99,8 @@ class farmer_logging extends Component {
                             placeholder="Comments" 
                             name="comment" />
 					</div>
-
-					<input type="submit" value="submit" />
-					
+					<input type="submit" value="Submit" />
+					<input type="reset" value="Cancel" />  
 				</form>
 
 				<Link className="link"to="/home">return home</Link>
@@ -105,4 +109,4 @@ class farmer_logging extends Component {
 	}
 }
 
-export default farmer_logging;
+export default newHarvest;
