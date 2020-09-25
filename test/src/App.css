@@ -1,0 +1,259 @@
+
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login,
+.register,
+.home,
+.transaction,
+.report,
+.account,
+.help{
+  width: 400px;
+}
+
+.login h2,
+.register h2,
+.home h2,
+.transaction h2,
+.report h2,
+.account h2,
+.help h2{
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login h3{
+  font-size: 20px;
+  color: rgb(15, 148, 46);
+  text-transform: none;
+  text-align: center;
+}
+
+.register h4,
+.home h4,
+.transaction h4,
+.report h4,
+.account h4,
+.help h4 {
+  font-size: 20px;
+  color: rgb(15, 148, 46);
+  font-style: italic;
+  text-transform: none;
+  text-align: center;
+}
+
+.transaction h5,
+.report h5,
+.account h5,
+.help h5 {
+  font-size: 15px;
+  color: rgb(104, 165, 118);
+  font-style:none;
+  text-transform: none;
+  text-align: left;
+}
+
+.login a {
+  text-align: center;
+}
+
+input[type='text'] {
+  background-color: #e6e6e6;
+  color: #827ffe;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+  padding: 20px 30px;
+}
+
+input[type='password'] {
+  background-color: #e6e6e6;
+  padding: 20px 30px;
+  color: #827ffe;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+}
+
+input[type='submit'] {
+  padding: 15px 0px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: none;
+  width: 100%;
+}
+
+input[type='reset'] {
+  padding: 15px 0px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: none;
+  width: 100%;
+}
+
+.check {
+  font-size: 16px;
+}
+
+button {
+  text-decoration: none;
+  text-align: center;
+  padding: 6px 50px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  margin-left: 45px;
+  margin-right: 0px;
+  border: none;
+  width: 80%;
+  display: block;
+}
+
+.button1{
+  min-width: 100px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 6px 6px;
+}
+
+.disabled {
+  min-width: 100px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 6px 6px;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dropbtn {
+  background-color: #6bbb82;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 6px 6px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-disabled a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: none;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  position:absolute;
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(3, 99, 22);
+}
+
+.linklogin {
+  display: block;
+  text-decoration: none;
+  padding: 5px 0px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: none;
+  width: 100%;
+  display: block;
+}
+
+.linkhomepg {
+  text-decoration: none;
+  text-align: center;
+  padding: 6px 50px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: none;
+  width: 80%;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
