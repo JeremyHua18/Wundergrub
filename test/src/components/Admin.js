@@ -82,9 +82,9 @@ class Admin extends Component {
                    <td>{status}</td>
                    <td>{account_type}</td>
                    <td><button class={status == 'Approved' ? "button disabled" : "button button1"}
-                        onClick = {() => this.handleApprove(username)}>Approve</button></td>
+                        onClick = {() => {if (status == "Pending"){this.handleApprove(username)};}}>Approve</button></td>
                    <td><button class= {account_type == 'admin' ? "button disabled" : "button button1"}
-                        onClick = {() => {if (window.confirm("Delete this user?")) {this.handleDelete(username)};}}>Delete</button></td>
+                        onClick = {() => {if (account_type != 'admin'){if (window.confirm("Delete this user?")) {this.handleDelete(username)};}}}>Delete</button></td>
                    <td><div class="dropdown">
                       <button class={account_type == 'admin' ? "button disabled" : "button button1"}>Edit</button>
                       <div class={account_type == 'admin' ? "dropdown-disabled" : "dropdown-content"}>
