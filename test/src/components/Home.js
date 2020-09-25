@@ -9,12 +9,13 @@ class Home extends Component {
 				<form onSubmit={this.displayLogin}>
 					<h2>Home</h2>
 					<h4>Welcome back to WUNDERgrubs</h4>
-					<Link className="linkhomepg"to="/newtrans">new transaction</Link>
-					<Link className="linkhomepg"to="/transhistory">transaction history</Link>
-					<Link className="linkhomepg"to="/viewreport">view report</Link>
-					<Link className="linkhomepg"to="/account">manage account</Link>
-					<Link className="linkhomepg"to="/help">help center</Link>
-
+					<Link className="linkhomepg"to="/newtrans">New Transaction</Link>
+					<Link className="linkhomepg"to="/newHarvest">New Harvest</Link>
+					<Link className="linkhomepg"to="/transhistory">Transaction History</Link>
+					<Link className="linkhomepg"to="/viewreport">View Report</Link>
+					<Link className="linkhomepg"to="/account">Manage Account</Link>
+					<Link className="linkhomepg"to="/help">Help Center</Link>
+					
 				</form>
 
 				<Link className="link" to="/Logout">Logout Here</Link>
