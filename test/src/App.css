@@ -117,6 +117,22 @@ input[type='reset'] {
   font-size: 16px;
 }
 
+button {
+  text-decoration: none;
+  text-align: center;
+  padding: 6px 50px;
+  background-color: #6bbb82;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  margin-left: 45px;
+  margin-right: 0px;
+  border: none;
+  width: 80%;
+  display: block;
+}
+
 .link {
   text-decoration: none;
   color: rgb(3, 99, 22);
