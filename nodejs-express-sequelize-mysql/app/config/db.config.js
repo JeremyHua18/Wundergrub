@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "qwerty",
-  DB: "testdb",
+  HOST: "wundergrubs.c32icb01p6yc.us-east-1.rds.amazonaws.com",
+  USER: "WUNDERGrubsAWS",
+  PASSWORD: "Drmv+8yJ",
+  DB: "WUNDERGrubs",
   dialect: "mysql",
   pool: {
     max: 5,

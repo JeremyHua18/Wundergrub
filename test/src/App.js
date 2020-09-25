@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Register from './components/Register';
 import Home from './components/Home';
+import Admin from "./components/Admin";
 import NewTransaction from './components/NewTransaction';
 import newHarvest from './components/newHarvest';
 import view_report from './components/view_report';
@@ -24,6 +26,13 @@ class App extends Component {
         <Route path="/viewreport" component={view_report} />
         <Route path="/account" component={manage_account} />
         <Route path="/help" component={help} />
+
+        <Route path="/admin" component={Admin}/>
+        <Route path="/logout" component={Logout}/>
+
+
+
+
       </div>
     );
   }
