@@ -120,6 +120,8 @@ class Admin extends Component {
                      {this.renderTableData()}
                   </tbody>
                </table>
+               <br></br>
+               <Link className="link" to="/Logout">Logout Here</Link>
             </div>
          )
         } else {
