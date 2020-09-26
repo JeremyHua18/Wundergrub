@@ -1,6 +1,0 @@
-**/node_modules
-.idea
-**/.gitignore
-
-**/package-lock.json
-**/.gitignore
