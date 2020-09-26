@@ -22,10 +22,10 @@ class Login extends Component {
 		this.setState({ [name]: value });
 
 		const cookies = new Cookies();
-		console.log(cookies.get('myCat'));
+		// console.log(cookies.get('myCat'));
 	}
 
-	
+
 	handleClick(e) {
 		e.preventDefault();
 		const cookies = new Cookies();
@@ -106,8 +106,8 @@ class Login extends Component {
 
 					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Login </button>
 				</form>
-				
-				<Link className="link" to="/register">Create an account</Link>				
+
+				<Link className="link" to="/register">Create an account</Link>
 
 			</div>
 		);
