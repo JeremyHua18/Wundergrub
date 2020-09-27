@@ -38,9 +38,9 @@ class newHarvest extends Component {
 			console.log( __dirname);
 			var data = JSON.stringify(this.state);
 			fs.writeFile("./myoutput2.json", data,
-			(err) => { 
-				if (err) throw err; 
-				console.log('Data written to file'); 
+			(err) => {
+				if (err) throw err;
+				console.log('Data written to file');
 				alert("Data is successfully logged")
 				// frm.submit()
 				dataForm.reset()
@@ -71,16 +71,6 @@ class newHarvest extends Component {
 							required
 						/>
 					</div>
-					
-					<div className="WasteType">
-						<input
-							type="text"
-							placeholder="Waste Type"
-							name="wasteType"
-							onChange={this.updateHandler}
-							required
-						/>
-					</div>
 
 					<div className="Weight">
 						<input
@@ -94,13 +84,13 @@ class newHarvest extends Component {
 					</div>
 
 					<div className="comments">
-                        <input 
-                            type="text" 
-                            placeholder="Comments" 
+                        <input
+                            type="text"
+                            placeholder="Comments"
                             name="comment" />
 					</div>
 					<input type="submit" value="Submit" />
-					<input type="reset" value="Cancel" />  
+					<input type="reset" value="Cancel" />
 				</form>
 
 				<Link className="link"to="/home">return home</Link>
