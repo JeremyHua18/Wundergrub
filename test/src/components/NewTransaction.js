@@ -61,7 +61,7 @@ class NewTransaction extends Component {
 		return (
 			<div className="transaction">
 				<form name = "newTrans"onSubmit={this.submitHandler}>
-                    <h5>Home->new transaction</h5>
+				<h5><Link className = "link" to="/home">Home</Link> -> New Transaction</h5>
 					<h2>New Transaction</h2>
 					<h4>Make new transaction now!</h4>
 					<div className="type">
