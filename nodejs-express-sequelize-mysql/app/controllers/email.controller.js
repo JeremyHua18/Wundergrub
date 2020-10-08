@@ -23,6 +23,8 @@ exports.sendResetPasswordCode = (req, res) => {
         charset: 'alphanumeric'
     });
 
+    console.log(code)
+
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: req.params.email,

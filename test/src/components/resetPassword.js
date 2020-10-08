@@ -47,7 +47,7 @@ class ResetPassword extends Component {
                             name="email"
                         />
                         <div id="invalidEmail" className="registrationError"></div>
-                        <button onClick = {this.sendEmail.bind(this)} className="1st-send-btn"> Send </button>
+                        <button onClick = {this.sendEmail} className="1st-send-btn"> Send </button>
                     </div>
 
                     <div className="rp-request-resend" style={{display: "none"}}>
@@ -165,19 +165,16 @@ class ResetPassword extends Component {
         if (!this.okEmail) {
             alert("Invalid E-mail address!");
         } else {
-
             var row = UserDataService.get(this.state.email);
-            var self = this;
+            let self = this;
+            console.log(self);
             row.then(function (result) {
-                if (result.data === '') {
-                    alert("This e-mail address is not used!");
-                } else {
+                if (result.data !== '')  {
                     var data = WonderEmail.sendResetPasswrodCode(self.state.email);
                     self.state.gen_code = data.hashCode;
                     document.getElementsByClassName("rp-request-resend")[0].style.display = "block";
                     document.getElementsByClassName("rp-enter-code")[0].style.display = "block";
                     document.getElementsByClassName("rp-enter-email")[0].style.display = "none";
-                    var self = this;
                     var x = setInterval(function() {
                         var btn = document.getElementById("resend-btn");
                         var con1 = false;
@@ -196,6 +193,8 @@ class ResetPassword extends Component {
                             self.countDown = 60;
                         }
                     }, 1000);
+                } else {
+                    alert("This e-mail address is not used!");
                 }
             });
         }
@@ -208,18 +207,18 @@ class ResetPassword extends Component {
         if (btn.innerHTML === 'Re-send') {
             this.countDown = 60;
             btn.innerHTML = this.countDown;
-        }
 
-        var row = UserDataService.get(this.state.email);
-        var self = this;
-        row.then(function (result) {
-            if (result.data === '') {
-                alert("This e-mail address is not used!");
-            } else {
-                var data = WonderEmail.sendResetPasswrodCode(self.state.email);
-                self.state.gen_code = data.hashCode;
-            }
-        });
+            var row = UserDataService.get(this.state.email);
+            var self = this;
+            row.then(function (result) {
+                if (result.data === '') {
+                    alert("This e-mail address is not used!");
+                } else {
+                    var data = WonderEmail.sendResetPasswrodCode(self.state.email);
+                    self.state.gen_code = data.hashCode;
+                }
+            });
+        }
     }
 
     checkCode(e) {
