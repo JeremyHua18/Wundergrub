@@ -32,7 +32,7 @@ exports.sendResetPasswordCode = (req, res) => {
         text: "Hello, dear user \r\n" +
             "You are receiving this email because we have gotten a request for resetting your password of your account on WUNDERGrubs." +
             "If you were not making such request, you could simply ignore this email. If you made such request, then please copy the " +
-            "following code and enter it to the corresponding text field on the web page you made the request. After that, you will able to" +
+            "following code and enter it to the corresponding text field on the web page you made the request. After that, you will able to " +
             "reset your password.\r\n" +
             "Your code is: " + code
     };
