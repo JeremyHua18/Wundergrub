@@ -243,6 +243,7 @@ class ResetPassword extends Component {
     }
 
     changePassword(e) {
+        const cookies = new Cookies();
         if (this.okPass && this.okComfirm) {
             var row = UserDataService.get(this.state.email);
             var self = this;
@@ -264,6 +265,8 @@ class ResetPassword extends Component {
 
                     UserDataService.update(new_data.username, new_data).then(response => {
                         console.log(response.data);
+                        cookies.set('email', result.data.username, { path: '/' });
+                        cookies.set('type', userAccountType, { path: '/' });
                         alert('You have successfully reset your password.');
                         self.props.history.push("/");
                     }).catch(e => {
