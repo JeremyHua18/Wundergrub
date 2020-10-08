@@ -243,7 +243,37 @@ class ResetPassword extends Component {
     }
 
     changePassword(e) {
+        if (this.okPass && this.okComfirm) {
+            var row = UserDataService.get(this.state.email);
+            var self = this;
+            row.then(function (result) {
+                if (result.data === '') {
 
+                } else {
+                    var passwordHash = require('password-hash');
+                    let fullname = self.state.fullname;
+                    let username = self.state.email;
+                    let password = passwordHash.generate(self.state.password);
+
+                    // send data to API
+                    var data = {
+                        username: username,
+                        password: password,
+                        fullname: fullname,
+                        account_type: 'user', //will be changed later
+                        status: 'Pending'
+                    };
+
+                    UserDataService.create(data).then(response => {
+                        console.log(response.data);
+                        alert('You have successfully registered');
+                        self.props.history.push("/");
+                    }).catch(e => {
+                        console.log(e)
+                    });
+                }
+            });
+        }
     }
 }
 
