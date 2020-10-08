@@ -5,3 +5,5 @@ class WonderEmail {
         return http.get(`/email/${address}`);
     }
 }
+
+export default new WonderEmail();
