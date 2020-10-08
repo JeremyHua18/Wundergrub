@@ -249,7 +249,7 @@ class ResetPassword extends Component {
             var self = this;
             row.then(function (result) {
                 if (result.data === '') {
-
+                    alert("User account does not exist.")
                 } else {
                     var passwordHash = require('password-hash');
                     let password = passwordHash.generate(self.state.password);
