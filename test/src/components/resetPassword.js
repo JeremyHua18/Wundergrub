@@ -165,41 +165,39 @@ class ResetPassword extends Component {
         if (!this.okEmail) {
             alert("Invalid E-mail address!");
         } else {
-            document.getElementsByClassName("rp-request-resend")[0].style.display = "block";
-            document.getElementsByClassName("rp-enter-code")[0].style.display = "block";
-            document.getElementsByClassName("rp-enter-email")[0].style.display = "none";
+
+            var row = UserDataService.get(this.state.email);
             var self = this;
-            var x = setInterval(function() {
-                var btn = document.getElementById("resend-btn");
-                var con1 = false;
-                var con2 = false;
-                con1 = document.getElementsByClassName("rp-check-identification")[0].style.display !== 'none' &&
-                    document.getElementsByClassName("rp-request-resend")[0].style.display !== 'none';
+            row.then(function (result) {
+                if (result.data === '') {
+                    alert("This e-mail address is not used!");
+                } else {
+                    var data = WonderEmail.sendResetPasswrodCode(self.state.email);
+                    self.state.gen_code = data.hashCode;
+                    document.getElementsByClassName("rp-request-resend")[0].style.display = "block";
+                    document.getElementsByClassName("rp-enter-code")[0].style.display = "block";
+                    document.getElementsByClassName("rp-enter-email")[0].style.display = "none";
+                    var self = this;
+                    var x = setInterval(function() {
+                        var btn = document.getElementById("resend-btn");
+                        var con1 = false;
+                        var con2 = false;
+                        con1 = document.getElementsByClassName("rp-check-identification")[0].style.display !== 'none' &&
+                            document.getElementsByClassName("rp-request-resend")[0].style.display !== 'none';
 
-                con2 = btn.innerHTML !== 'Re-send';
+                        con2 = btn.innerHTML !== 'Re-send';
 
-                if (con1 && con2 && self.countDown >= 0) {
-                    self.countDown -= 1;
-                    btn.innerHTML = self.countDown
+                        if (con1 && con2 && self.countDown >= 0) {
+                            self.countDown -= 1;
+                            btn.innerHTML = self.countDown
+                        }
+                        if (self.countDown <= 0) {
+                            btn.innerHTML = 'Re-send'
+                            self.countDown = 60;
+                        }
+                    }, 1000);
                 }
-                if (self.countDown <= 0) {
-                    btn.innerHTML = 'Re-send'
-                    self.countDown = 60;
-                }
-            }, 1000);
-            // var row = UserDataService.get(this.state.email);
-            // var self = this;
-            // row.then(function (result) {
-            //     if (result.data === '') {
-            //         alert("This e-mail address is not used!");
-            //     } else {
-            //         var data = WonderEmail.sendResetPasswrodCode(self.state.email);
-            //         self.state.gen_code = data.hashCode;
-            //         document.getElementsByClassName("rp-request-resend")[0].style.display = "block";
-            //         document.getElementsByClassName("rp-enter-email")[0].style.display = "none";
-            //         document.getElementsByClassName("rp-enter-code")[0].style.display = "block";
-            //     }
-            // });
+            });
         }
 
     }
@@ -212,16 +210,16 @@ class ResetPassword extends Component {
             btn.innerHTML = this.countDown;
         }
 
-        // var row = UserDataService.get(this.state.email);
-        // var self = this;
-        // row.then(function (result) {
-        //     if (result.data === '') {
-        //         alert("This e-mail address is not used!");
-        //     } else {
-        //         var data = WonderEmail.sendResetPasswrodCode(self.state.email);
-        //         self.state.gen_code = data.hashCode;
-        //     }
-        // });
+        var row = UserDataService.get(this.state.email);
+        var self = this;
+        row.then(function (result) {
+            if (result.data === '') {
+                alert("This e-mail address is not used!");
+            } else {
+                var data = WonderEmail.sendResetPasswrodCode(self.state.email);
+                self.state.gen_code = data.hashCode;
+            }
+        });
     }
 
     checkCode(e) {
@@ -266,7 +264,7 @@ class ResetPassword extends Component {
                     UserDataService.update(new_data.username, new_data).then(response => {
                         console.log(response.data);
                         cookies.set('email', result.data.username, { path: '/' });
-                        cookies.set('type', userAccountType, { path: '/' });
+                        cookies.set('type', result.data.account_type, { path: '/' });
                         alert('You have successfully reset your password.');
                         self.props.history.push("/");
                     }).catch(e => {

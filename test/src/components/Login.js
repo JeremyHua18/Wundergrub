@@ -108,6 +108,7 @@ class Login extends Component {
 				</form>
 
 				<Link className="link" to="/register">Create an account</Link>
+				<Link className="link" to="/resetpassword">Forgot password?</Link>
 
 			</div>
 		);
