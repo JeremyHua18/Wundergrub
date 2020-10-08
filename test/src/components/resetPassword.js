@@ -95,6 +95,10 @@ class ResetPassword extends Component {
 
                     <button onClick = {this.changePassword.bind(this)}> Submit </button>
                 </div>
+
+                <div className="return-home" style={{display: "none"}}>
+                    <Link className="link" to="/home"><h2>Return to Home Page</h2></Link>
+                </div>
             </div>
         )
     }
@@ -179,8 +183,15 @@ class ResetPassword extends Component {
                         var btn = document.getElementById("resend-btn");
                         var con1 = false;
                         var con2 = false;
-                        con1 = document.getElementsByClassName("rp-check-identification")[0].style.display !== 'none' &&
-                            document.getElementsByClassName("rp-request-resend")[0].style.display !== 'none';
+
+                        var ele1 = document.getElementsByClassName("rp-check-identification");
+                        var ele2 = document.getElementsByClassName("rp-request-resend");
+                        if (ele1.length < 1 && ele2.length < 1) {
+                            con1 = false;
+                        } else {
+                            con1 = document.getElementsByClassName("rp-check-identification")[0].style.display !== 'none' &&
+                                document.getElementsByClassName("rp-request-resend")[0].style.display !== 'none';
+                        }
 
                         con2 = btn.innerHTML !== 'Re-send';
 
@@ -265,7 +276,10 @@ class ResetPassword extends Component {
                         cookies.set('email', result.data.username, { path: '/' });
                         cookies.set('type', result.data.account_type, { path: '/' });
                         alert('You have successfully reset your password.');
-                        self.props.history.push("/");
+
+                        document.getElementsByClassName("return-home")[0].style.display = "block";
+                        document.getElementsByClassName("rp-reset-password")[0].style.display = "none";
+                        document.getElementsByClassName("rp-check-identification")[0].style.display = "none";
                     }).catch(e => {
                         console.log(e)
                     });
