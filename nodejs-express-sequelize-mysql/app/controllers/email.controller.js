@@ -45,7 +45,7 @@ exports.sendResetPasswordCode = (req, res) => {
 
     var hashedCode = passwordHash.generate(code);
     var data = {
-        hashCode:g hashedCode
+        hashCode: hashedCode
     }
 
     res.send(data);
