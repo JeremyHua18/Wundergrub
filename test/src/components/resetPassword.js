@@ -251,22 +251,20 @@ class ResetPassword extends Component {
 
                 } else {
                     var passwordHash = require('password-hash');
-                    let fullname = self.state.fullname;
-                    let username = self.state.email;
                     let password = passwordHash.generate(self.state.password);
 
                     // send data to API
-                    var data = {
-                        username: username,
+                    var new_data = {
+                        username: result.data.username,
                         password: password,
-                        fullname: fullname,
-                        account_type: 'user', //will be changed later
-                        status: 'Pending'
+                        fullname: result.data.fullname,
+                        account_type: result.data.account_type,
+                        status: result.data.status
                     };
 
-                    UserDataService.create(data).then(response => {
+                    UserDataService.update(new_data.username, new_data).then(response => {
                         console.log(response.data);
-                        alert('You have successfully registered');
+                        alert('You have successfully reset your password.');
                         self.props.history.push("/");
                     }).catch(e => {
                         console.log(e)
