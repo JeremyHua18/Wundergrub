@@ -1,0 +1,5 @@
+class WonderEmail {
+    sendResetPasswrodCode (address) {
+
+    }
+}

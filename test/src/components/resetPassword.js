@@ -7,15 +7,17 @@ class ResetPassword extends Component {
     constructor(props) {
         super(props);
 
+        this.okEmail = false;
+        this.okPass = false;
+        this.okComfirm = false;
+
         this.state = {
             email: '',
             password: '',
             conf_password: '',
             gen_code: '',
             input_code: '',
-            countdown: 0,
-            okComfirm: false,
-            okPass: false
+            countdown: 0
         };
 
         //this.update = this.update.bind(this);
@@ -29,7 +31,7 @@ class ResetPassword extends Component {
                     <h2>Forgot Your Password?</h2>
                     <div className="rp-direction">
                         <p>Enter your email in the textfield below, and we will send your an email
-                            with a 6-digit code. Please enter the code so we will let you reset your
+                            with a 6-character code. Please enter the code so we will let you reset your
                             password. If you have not received the email for a while, then click "resent".
                         </p>
                     </div>
@@ -103,8 +105,10 @@ class ResetPassword extends Component {
             if (!expression.test(String(value).toLowerCase())) {
                 document.getElementById("invalidEmail").innerHTML =
                     "Your E-mail address is not valid.";
+                this.okEmail = false;
             } else {
                 document.getElementById("invalidEmail").innerHTML = "";
+                this.okEmail = true;
             }
         } else if (name === 'input_code') {
 
@@ -152,6 +156,21 @@ class ResetPassword extends Component {
     }
 
     sendEmail(e) {
+        e.preventDefault();
+        if (!this.okEmail) {
+            alert("Invalid E-mail address!");
+        } else {
+            var row = UserDataService.get(this.state.email);
+            var self = this;
+            row.then(function (result) {
+                if (result.data === '') {
+                    alert("This e-mail address is not used!");
+                } else {
+                    var nodemailer = require('nodemailer');
+
+                }
+            });
+        }
 
     }
 
