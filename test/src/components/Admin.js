@@ -10,7 +10,7 @@ class Admin extends Component {
         this.state = {
             users:[]
         };
-        var allInfo = UserDataService.getAll();
+        var allInfo = UserDataService.getActive();
         var self = this;
         allInfo.then(function(result) {
 
@@ -47,7 +47,10 @@ class Admin extends Component {
     }
 
     handleDelete(username) {
-        UserDataService.delete(username).then(response => {
+        var data = {
+            status: 'Deleted'
+        }
+        UserDataService.update(username, data).then(response => {
             console.log(response.data);
             alert('User has been deleted');
             window.location.reload(false);

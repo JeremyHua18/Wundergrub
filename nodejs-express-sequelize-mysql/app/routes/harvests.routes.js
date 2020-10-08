@@ -9,6 +9,9 @@ module.exports = app => {
   // Retrieve all Harvests
   router.get("/", harvests.findAll);
 
+  // Retrieve all pending Harvests
+  router.get("/pending", harvests.findAllPending);
+
   // Retrieve a single Harvest with id
   router.get("/:id", harvests.findOne);
 
@@ -20,9 +23,6 @@ module.exports = app => {
 
   // Delete all Harvests
   router.delete("/", harvests.deleteAll);
-
-  // Retrieve all pending Harvests
-  router.get("/pending", harvests.findAllPending);
 
   app.use('/api/harvests', router);
 };

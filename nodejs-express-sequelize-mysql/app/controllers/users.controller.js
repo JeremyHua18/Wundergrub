@@ -138,3 +138,19 @@ exports.deleteAll = (req, res) => {
     });
 
 };
+
+// Find all active (not deleted) Users
+exports.findAllActive = (req, res) => {
+
+  Users.findAll({ where: { status: {[Op.not]: "Deleted"} } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving non-deleted Users."
+      });
+    });
+
+};

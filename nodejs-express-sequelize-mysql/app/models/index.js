@@ -20,7 +20,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.users = require("./users.model.js")(sequelize, Sequelize);
-db.users = require("./transactions.model.js")(sequelize, Sequelize);
-db.users = require("./harvests.model.js")(sequelize, Sequelize);
+db.transactions = require("./transactions.model.js")(sequelize, Sequelize);
+db.harvests = require("./harvests.model.js")(sequelize, Sequelize);
+db.announcements = require("./announcements.model.js")(sequelize, Sequelize);
+db.reports = require("./reports.model.js")(sequelize, Sequelize);
+
 
 module.exports = db;
