@@ -193,7 +193,9 @@ class ResetPassword extends Component {
                                 document.getElementsByClassName("rp-request-resend")[0].style.display !== 'none';
                         }
 
-                        con2 = btn.innerHTML !== 'Re-send';
+                        if (btn != null) {
+                            con2 = btn.innerHTML !== 'Re-send';
+                        }
 
                         if (con1 && con2 && self.countDown >= 0) {
                             self.countDown -= 1;
