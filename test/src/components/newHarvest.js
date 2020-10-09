@@ -62,6 +62,14 @@ class newHarvest extends Component {
 				<h5><Link className = "link" to="/home">Home</Link></h5>
 					<h2>Farmer Logging Harvest</h2>
 					<h4>Please load your harvest data</h4>
+
+					<div class = "divCell"></div>
+
+					<label for="dateofpickup">Pick Up Date</label>
+					<input type="date" name="dateofpickup" id="dateofpickup"></input>
+
+					<div class = "divCell"></div>
+					
 					<div className="User">
 						<input
 							type="text"
@@ -95,7 +103,6 @@ class newHarvest extends Component {
 
 				<Link className="link"to="/home">return home</Link>
 				<div class="image"></div>
-
 			</div>
 		);
 	}
