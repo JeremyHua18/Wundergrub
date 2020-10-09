@@ -10,6 +10,8 @@ class transaction_history extends Component {
                 <h2>Transaction History</h2>
 				<h4>You have no transaction now.</h4>
 				<Link className="link"to="/home">return home</Link>
+							<div class="image"></div>
+
 			</div>
 		);
 	}
