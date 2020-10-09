@@ -105,6 +105,12 @@ class Admin extends Component {
 
         const cookies = new Cookies();
         var type = cookies.get('type');
+        var email = cookies.get('email');
+        if (type === '' || email === '') {
+            this.props.history.push("/");
+        } else if (type !== 'admin') {
+            this.props.history.push("/home");
+        }
         if (type === 'admin') {
         return (
             <div>
