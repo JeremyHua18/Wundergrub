@@ -35,11 +35,14 @@ class NewTransaction extends Component {
 		let weight = this.state.weight;
 		let delieveryType = this.state.delieveryType;
 		let userType = this.state.userType;
+        let frequency = this.state.frequency;
 		if (delieveryType === "Delivery Type") {
 			alert("Please select a delivery type");
 		} else if (userType === "User Type") {
 			alert("Please select a user type");
-		} else if (!Number(weight)) {
+		} else if (frequency === "" && userType == "Subscriber") {
+            alert("Please select a frequency");
+        } else if (!Number(weight)) {
 			alert("Weight must be a number");
 		} else {
 			const fs = require('browserify-fs')
@@ -118,16 +121,15 @@ class NewTransaction extends Component {
 
 					<div class = "divCell"></div>
 
+                    <select name="frequency" onChange={this.updateHandler}>
+                            <option value="">Frequency (Subscriber Only)</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                        {this.state.errormessage}
 
-					<div className="schedule">
-						<input
-							type="text"
-							placeholder="For Subscribers: Please Enter Frequency"
-							name="frequency"
-							onChange={this.updateHandler}
-						/>
-					</div>
-
+                    <div class = "divCell"></div>
 
 					<div className="Weight">
 						<input
