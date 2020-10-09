@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import TransactionDataService from "../services/transaction.service"
 // import * as fs from 'fs';
 
 
@@ -10,12 +11,12 @@ class NewTransaction extends Component {
         this.choice = ["pick up","delievery"];
 		this.state = {
 			pickup_date: new Date("01/00/2000"),
-			delieveryType: '',
-			userType: '',
+			delieveryType: 'Delivery Type',
+			userType: 'User Type',
 			frequency: '',
             weight: 0,
 			wasteType: '',
-			comment: '',
+			comments: '',
 		};
 
 		this.updateHandler = this.updateHandler.bind(this);
@@ -32,7 +33,13 @@ class NewTransaction extends Component {
 	submitHandler(e) {
 		var dataForm = document.getElementsByName('newTrans')[0];
 		let weight = this.state.weight;
-		if (!Number(weight)) {
+		let delieveryType = this.state.delieveryType;
+		let userType = this.state.userType;
+		if (delieveryType === "Delivery Type") {
+			alert("Please select a delivery type");
+		} else if (userType === "User Type") {
+			alert("Please select a user type");
+		} else if (!Number(weight)) {
 			alert("Weight must be a number");
 		} else {
 			const fs = require('browserify-fs')
@@ -40,14 +47,25 @@ class NewTransaction extends Component {
 			// const filePath = path.join(__dirname, '/output.json');
 			// console.log(filePath);
 			console.log( __dirname);
-			var data = JSON.stringify(this.state);
-			fs.writeFile("./myoutput1.json", data,
-			(err) => {
-				if (err) throw err;
-				console.log('Data written to file');
-				alert("Data is successfully logged")
-				// frm.submit()
-				dataForm.reset()
+			const cookies = new Cookies();
+			var data = {
+				username: cookies.get('email'),
+				date: this.state.pickup_date,
+				delivery_type: this.state.delieveryType,
+				donor_type: this.state.userType,
+				frequency: this.state.frequency,
+				weight: this.state.weight,
+				waste_type: this.state.wasteType,
+				comments: this.state.comments,
+				status: 'Pending'
+			}
+
+			TransactionDataService.create(data).then(response => {
+				console.log(response.data);
+				alert('Transaction successfully logged');
+				dataForm.reset
+			}).catch(e => {
+				console.log(e)
 			});
 		}
 		console.log(this.state)
@@ -78,22 +96,23 @@ class NewTransaction extends Component {
 
 					<div class = "divCell"></div>
 
-					<label for="dateofpickup">Pick Up Date</label>
-					<input type="date" name="dateofpickup" id="dateofpickup"></input>
+					<label for="pickup_date">Pick Up Date</label>
+					<input type="date" name="pickup_date" id="pickup_date" onChange={this.updateHandler} required></input>
 
 					<div class = "divCell"></div>
-						<select>
-							<option>Delievery Type</option>
-							<option>Pick up</option>
-    						<option>Delivery</option>
+						<select name="delieveryType" onChange={this.updateHandler}>
+							<option value="Delivery Type">Delievery Type</option>
+							<option value="Pick Up">Pick up</option>
+    						<option value = "Delivery">Delivery</option>
+
 						</select>
 						{this.state.errormessage}
 
 					<div class = "divCell"></div>
-						<select>
-							<option>User Type</option>
-							<option>Donator</option>
-    						<option>Subscriber</option>
+						<select name="userType" onChange={this.updateHandler}>
+							<option value="User Type">User Type</option>
+							<option value="Donator">Donator</option>
+    						<option value="Subscriber">Subscriber</option>
 						</select>
 						{this.state.errormessage}
 
@@ -135,7 +154,7 @@ class NewTransaction extends Component {
                         <input
                             type="text"
                             placeholder="Comments"
-                            name="comment" />
+                            name="comments" />
 					</div>
 
 					<input type="submit" value="Submit" />

@@ -295,9 +295,9 @@ select {
   font: 15px sans-serif;
   /*border: none;*/
   width: 100%;
-  padding: 10px 10px 10px 150px;
+  padding: 10px 10px 10px 10px;
   position: center;
-  /*text-align-last:center;*/
+  text-align-last:center;
 /*  -webkit-appearance: none;
   appearance: none;
   color: var(--baseFg);*/
