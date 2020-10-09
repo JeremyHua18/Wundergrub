@@ -59,7 +59,7 @@ class Login extends Component {
 							console.log(cookies.get('email'));
 							console.log(cookies.get('type'));
 							if (userAccountType === 'admin') {
-								self.props.history.push("/admin");
+								self.props.history.push("/home");
 							} else {
 								self.props.history.push("/home");
 							}
@@ -115,7 +115,7 @@ class Login extends Component {
 						<Link className="link" to="/home">I am already logged in...</Link>
 					</div>
 					<div className="if_logged_in" style={{display: type === 'admin' && email !== '' ? "block": "none"}}>
-						<Link className="link" to="/admin">I am already logged in...</Link>
+						<Link className="link" to="/home">I am already logged in...</Link>
 					</div>
 				</form>
 
