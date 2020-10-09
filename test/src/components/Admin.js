@@ -125,6 +125,8 @@ class Admin extends Component {
                </table>
                <br></br>
                <Link className="link" to="/Logout">Logout Here</Link>
+		<div class="image"></div>
+
             </div>
          )
         } else {
