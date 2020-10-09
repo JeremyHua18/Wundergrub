@@ -63,7 +63,7 @@ class NewTransaction extends Component {
 			TransactionDataService.create(data).then(response => {
 				console.log(response.data);
 				alert('Transaction successfully logged');
-				dataForm.reset
+				dataForm.reset();
 			}).catch(e => {
 				console.log(e)
 			});
@@ -92,7 +92,7 @@ class NewTransaction extends Component {
 				<form name = "newTrans"onSubmit={this.submitHandler}>
 				<h5><Link className = "link" to="/home">Home</Link></h5>
 					<h2>New Transaction</h2>
-					<h4>Make new transaction now!</h4>
+					<h4>Make a new transaction</h4>
 
 					<div class = "divCell"></div>
 
@@ -154,7 +154,9 @@ class NewTransaction extends Component {
                         <input
                             type="text"
                             placeholder="Comments"
-                            name="comments" />
+                            name="comments"
+                            onChange={this.updateHandler}
+                           />
 					</div>
 
 					<input type="submit" value="Submit" />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import HarvestDataService from "../services/harvest.service"
 // import * as fs from 'fs';
 
 
@@ -10,10 +11,10 @@ class newHarvest extends Component {
         this.choice = ["pick up","delievery"];
 		this.state = {
 			date: new Date("01/00/2000"),
-			user: '',
+			userCompany: '',
             weight: 0,
-            wasteType: '',
-			comment: '',
+            feedType: '',
+			comments: '',
 		};
 
 		this.updateHandler = this.updateHandler.bind(this);
@@ -38,14 +39,23 @@ class newHarvest extends Component {
 			// const filePath = path.join(__dirname, '/output.json');
 			// console.log(filePath);
 			console.log( __dirname);
-			var data = JSON.stringify(this.state);
-			fs.writeFile("./myoutput2.json", data,
-			(err) => {
-				if (err) throw err;
-				console.log('Data written to file');
-				alert("Data is successfully logged")
-				// frm.submit()
-				dataForm.reset()
+			const cookies = new Cookies();
+			var data = {
+				username: cookies.get('email'),
+				user_company: this.state.userCompany,
+				date: this.state.date,
+				weight: this.state.weight,
+				feed_type: this.state.feedType,
+				comments: this.state.comments,
+				status: 'Pending'
+			}
+
+			HarvestDataService.create(data).then(response => {
+				console.log(response.data);
+				alert('Harvest successfully logged');
+				dataForm.reset();
+			}).catch(e => {
+				console.log(e)
 			});
 		}
 		console.log(this.state)
@@ -69,12 +79,12 @@ class newHarvest extends Component {
 				<form name = "newHarvest" onSubmit={this.submitHandler}>
 				<h5><Link className = "link" to="/home">Home</Link></h5>
 					<h2>Farmer Logging Harvest</h2>
-					<h4>Please load your harvest data</h4>
+					<h4>Please log your harvest data</h4>
 
 					<div class = "divCell"></div>
 
-					<label for="dateofpickup">Pick Up Date</label>
-					<input type="date" name="dateofpickup" id="dateofpickup"></input>
+					<label for="date">Date</label>
+					<input type="date" name="date" id="date" onChange={this.updateHandler} required></input>
 
 					<div class = "divCell"></div>
 
@@ -82,7 +92,7 @@ class newHarvest extends Component {
 						<input
 							type="text"
 							placeholder="User/Company Name"
-							name="user"
+							name="userCompany"
 							onChange={this.updateHandler}
 							required
 						/>
@@ -103,14 +113,19 @@ class newHarvest extends Component {
                         <input
                             type="text"
                             placeholder="Feed Type"
-                            name="feed" />
+                            name="feedType"
+                            onChange={this.updateHandler}
+                            required
+                        />
 					</div>
 
 					<div className="comments">
                         <input
                             type="text"
                             placeholder="Comments"
-                            name="comment" />
+                            name="comments"
+                            onChange={this.updateHandler}
+                        />
 					</div>
 					<input type="submit" value="Submit" />
 					<input type="reset" value="Cancel" />

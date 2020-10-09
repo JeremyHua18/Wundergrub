@@ -320,6 +320,7 @@ select:hover {
     linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
     linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
     linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+    width:100%;
 }
 
 select:active {
@@ -330,12 +331,12 @@ select:active {
   color: var(--accentBg);
   border-color: var(--accentFg);
   background-color: var(--accentFg);
+  width:100%;
 }
 
-/*select:focus {
-  min-width: 150px;
-  width: auto;
-}*/
+select:focus {
+  width: 100%;
+}
 
 .transaction label,
 .newHarvest label{
