@@ -87,7 +87,7 @@ class Login extends Component {
 					<div className="username">
 						<input
 							type="text"
-							placeholder="Email..."
+							placeholder="Email"
 							value={this.state.email}
 							onChange={this.update}
 							name="email"
@@ -97,7 +97,7 @@ class Login extends Component {
 					<div className="password">
 						<input
 							type="password"
-							placeholder="Password..."
+							placeholder="Password"
 							value={this.state.password}
 							onChange={this.update}
 							name="password"

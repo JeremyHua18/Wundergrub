@@ -59,7 +59,7 @@ class newHarvest extends Component {
 		return (
 			<div className="transaction">
 				<form name = "newHarvest" onSubmit={this.submitHandler}>
-				<h5><Link className = "link" to="/home">Home</Link> -> Farmer Logging Harvest</h5>
+				<h5><Link className = "link" to="/home">Home</Link></h5>
 					<h2>Farmer Logging Harvest</h2>
 					<h4>Please load your harvest data</h4>
 					<div className="User">

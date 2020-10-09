@@ -12,6 +12,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
+
 }
 
 .login,
@@ -41,6 +43,7 @@ body {
   color: rgb(15, 148, 46);
   text-transform: none;
   text-align: center;
+  width: 100%;
 }
 
 .register h4,
@@ -61,7 +64,7 @@ body {
 .account h5,
 .help h5 {
   font-size: 15px;
-  color: rgb(104, 165, 118);
+  color: rgb(165, 144, 104);
   font-style:none;
   text-transform: none;
   text-align: left;
@@ -77,8 +80,9 @@ input[type='text'] {
   font-size: 16px;
   margin-bottom: 20px;
   border: none;
-  width: 85%;
+  width: 100%;
   padding: 20px 30px;
+  text-align: center;
 }
 
 input[type='password'] {
@@ -88,7 +92,9 @@ input[type='password'] {
   font-size: 16px;
   margin-bottom: 20px;
   border: none;
-  width: 85%;
+  width: 100%;
+  text-align: center;
+
 }
 
 input[type='submit'] {
@@ -126,10 +132,10 @@ button {
   font-size: 20px;
   margin-top: 5px;
   margin-bottom: 50px;
-  margin-left: 45px;
+  margin-left: 4px;
   margin-right: 0px;
   border: none;
-  width: 80%;
+  width: 100%;
   display: block;
 }
 
@@ -141,6 +147,8 @@ button {
   margin-left: 5px;
   margin-right: 5px;
   padding: 6px 6px;
+  width: 100%;
+
 }
 
 .disabled {
@@ -207,6 +215,16 @@ button {
 .link {
   text-decoration: none;
   color: rgb(3, 99, 22);
+  display: block;
+  padding: 5px 0px;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: none;
+  width: 100%;
+  display: block;
 }
 
 .linklogin {
@@ -237,7 +255,7 @@ button {
   margin-left: 0px;
   margin-right: 0px;
   border: none;
-  width: 80%;
+  width: 100%;
   display: block;
 }
 
