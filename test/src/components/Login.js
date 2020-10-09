@@ -60,8 +60,8 @@ class Login extends Component {
 							console.log(cookies.get('type'));
 							self.props.history.push("/home");
 							const autologout = new AutoLogout(self.props);
-						} else if (status === 'Denied') {
-							alert("This account was denied by the administrator and is not able to be logged in.");
+						} else if (status === 'Deleted') {
+							alert("This account was deleted by the administrator or the user and is not able to be logged in.");
 						} else if (status === 'Pending') {
 							alert("This account is pending, please wait until an administrator to approve it.");
 						}
