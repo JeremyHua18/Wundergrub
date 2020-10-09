@@ -12,6 +12,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
+
 }
 
 .login,
@@ -38,9 +40,11 @@ body {
 
 .login h3{
   font-size: 20px;
-  color: rgb(15, 148, 46);
+  /* color: rgb(15, 148, 46); */
+  color: #E57C55;
   text-transform: none;
   text-align: center;
+  width: 100%;
 }
 
 .register h4,
@@ -50,7 +54,8 @@ body {
 .account h4,
 .help h4 {
   font-size: 20px;
-  color: rgb(15, 148, 46);
+  color: #E57C55;
+  /* color: rgb(15, 148, 46); */
   font-style: italic;
   text-transform: none;
   text-align: center;
@@ -61,7 +66,7 @@ body {
 .account h5,
 .help h5 {
   font-size: 15px;
-  color: rgb(104, 165, 118);
+  color: rgb(165, 144, 104);
   font-style:none;
   text-transform: none;
   text-align: left;
@@ -77,8 +82,9 @@ input[type='text'] {
   font-size: 16px;
   margin-bottom: 20px;
   border: none;
-  width: 85%;
+  width: 100%;
   padding: 20px 30px;
+  text-align: center;
 }
 
 input[type='password'] {
@@ -88,12 +94,14 @@ input[type='password'] {
   font-size: 16px;
   margin-bottom: 20px;
   border: none;
-  width: 85%;
+  width: 100%;
+  text-align: center;
+
 }
 
 input[type='submit'] {
   padding: 15px 0px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 10px;
@@ -104,7 +112,7 @@ input[type='submit'] {
 
 input[type='reset'] {
   padding: 15px 0px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 10px;
@@ -121,15 +129,15 @@ button {
   text-decoration: none;
   text-align: center;
   padding: 6px 50px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 5px;
   margin-bottom: 50px;
-  margin-left: 45px;
+  margin-left: 4px;
   margin-right: 0px;
   border: none;
-  width: 80%;
+  width: 100%;
   display: block;
 }
 
@@ -141,6 +149,8 @@ button {
   margin-left: 5px;
   margin-right: 5px;
   padding: 6px 6px;
+  width: 100%;
+
 }
 
 .disabled {
@@ -156,7 +166,7 @@ button {
 }
 
 .dropbtn {
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: white;
   text-decoration: none;
   text-align: center;
@@ -201,19 +211,30 @@ button {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  /* background-color: #3e8e41; */
+  background-color: #E57C55;
 }
 
 .link {
   text-decoration: none;
-  color: rgb(3, 99, 22);
+  color: #E57C55;
+  display: block;
+  padding: 5px 0px;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: none;
+  width: 100%;
+  display: block;
 }
 
 .linklogin {
   display: block;
   text-decoration: none;
   padding: 5px 0px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 5px;
@@ -229,7 +250,7 @@ button {
   text-decoration: none;
   text-align: center;
   padding: 6px 50px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 5px;
@@ -237,8 +258,15 @@ button {
   margin-left: 0px;
   margin-right: 0px;
   border: none;
-  width: 80%;
+  width: 100%;
   display: block;
+}
+
+.image {
+   width: 150px;
+   height: 150px;
+   margin-left: 125px;
+   content:url(https://scontent.fhkg4-2.fna.fbcdn.net/v/t1.0-9/94240522_830042490739773_119336031391580160_n.jpg?_nc_cat=103&_nc_sid=09cbfe&_nc_ohc=AyIK-mT8BaoAX8PTbg-&_nc_ht=scontent.fhkg4-2.fna&oh=a9d24996dc2ed181ec7604501a3a979c&oe=5FA79EEB);
 }
 
 table {
@@ -254,6 +282,67 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-  background-color: #4CAF50;
+  background-color: #E57C55;
   color: white;
 }
+
+.divCell {
+  margin-top: 20px;
+}
+
+
+select {
+  font: 15px sans-serif;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--baseFg);
+  border: 1px solid var(--baseFg);
+  line-height: 1;
+  outline: 0;
+  padding: 0px 10px 10px 150px;
+  border-radius: var(--radius);
+  background-color: var(--baseBg);
+  background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
+  background-position: right 20px center, right bottom, right bottom, right bottom;   
+}
+
+select:hover {
+  background-image: linear-gradient(var(--accentFg), var(--accentFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+}
+
+select:active {
+  background-image: linear-gradient(var(--accentFg), var(--accentFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+  color: var(--accentBg);
+  border-color: var(--accentFg);
+  background-color: var(--accentFg);
+}
+
+.transaction label,
+.newHarvest label{
+  margin-left: 70px;
+}
+
+[type="date"] {
+  margin-left: 10px;
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+
+

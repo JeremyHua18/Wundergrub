@@ -41,12 +41,14 @@ class manage_account extends Component {
 		}
 		return (
 			<div className="account">
-                <h5><Link className = "link" to="/home">Home</Link> -> Manage account</h5>
+                <h5><Link className = "link" to="/home">Home</Link></h5>
                 <h2>Manage Account</h2>
 				<h4>Current Account: {email} </h4>
 				<button onClick = {() => {if (window.confirm("Delete this user?")) {this.deleteAccount(email)};}} >Delete My Account </button>
 
 				<Link className="link"to="/home">return home</Link>
+				<div class="image"></div>
+
 			</div>
 		);
 	}

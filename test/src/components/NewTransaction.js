@@ -56,7 +56,9 @@ class NewTransaction extends Component {
 
     fakeToggle(open, value, text) {
         console.log(open, value, text);
-    }
+	}
+	
+	
 
 	render() {
 		const cookies = new Cookies();
@@ -66,26 +68,41 @@ class NewTransaction extends Component {
 			this.props.history.push("/");
 		}
 		return (
+			
 			<div className="transaction">
 				<form name = "newTrans"onSubmit={this.submitHandler}>
-				<h5><Link className = "link" to="/home">Home</Link> -> New Transaction</h5>
+				<h5><Link className = "link" to="/home">Home</Link></h5>
 					<h2>New Transaction</h2>
 					<h4>Make new transaction now!</h4>
-					<div className="type">
-						<lable> Delivery Type: </lable>
-						<input type="radio" id="pickup" value="Pick up" name="delieveryType" onChange={this.updateHandler} />
-						<label for="pickup"> Pick up </label>
-						<input type="radio" id="del" value="Delivery" name="delieveryType" onChange={this.updateHandler} />
-						<label for="del"> Delivery </label>
+
+					<div class = "divCell"></div>
+
+					<label for="dateofpickup">Pick Up Date</label>
+					<input type="date" name="dateofpickup" id="dateofpickup"></input>
+
+					<div class = "divCell"></div>
+
+
+					<div class="custom-select">
+						<select>
+							<option>Delievery Type</option>
+							<option>Pick up</option>
+    						<option>Delivery</option>
+						</select>
 					</div>
 
-					<div className="userType">
-						<lable> User Type: </lable>
-						<input type="radio" id="Donator" value="Donator" name="userType" onChange={this.updateHandler}/>
-						<label for="Donator"> Donator </label>
-						<input type="radio" id="Sub" value="Subscriber" name="userType" onChange={this.updateHandler}/>
-						<label for="Sub"> Subscriber </label>
+					<div class = "divCell"></div>
+
+					<div class="custom-select">
+						<select>
+							<option>User Type</option>
+							<option>Donator</option>
+    						<option>Subscriber</option>
+						</select>
 					</div>
+
+					<div class = "divCell"></div>
+
 
 					<div className="schedule">
 						<input
@@ -95,6 +112,7 @@ class NewTransaction extends Component {
 							onChange={this.updateHandler}
 						/>
 					</div>
+
 
 					<div className="Weight">
 						<input
@@ -123,11 +141,14 @@ class NewTransaction extends Component {
                             placeholder="Comments" 
                             name="comment" />
 					</div>
+
 					<input type="submit" value="Submit" />
 					<input type="reset" value="Cancel" />  	
 				</form>
-
+				
 				<Link className="link"to="/home">return home</Link>
+				<div class="image"></div>
+
 			</div>
 		);
 	}

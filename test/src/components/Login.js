@@ -88,7 +88,7 @@ class Login extends Component {
 					<div className="username">
 						<input
 							type="text"
-							placeholder="Email..."
+							placeholder="Email"
 							value={this.state.email}
 							onChange={this.update}
 							name="email"
@@ -98,7 +98,7 @@ class Login extends Component {
 					<div className="password">
 						<input
 							type="password"
-							placeholder="Password..."
+							placeholder="Password"
 							value={this.state.password}
 							onChange={this.update}
 							name="password"
@@ -117,6 +117,8 @@ class Login extends Component {
 
 				<Link className="link" to="/register">Create an account</Link>
 				<Link className="link" to="/resetpassword">Forgot password?</Link>
+				<div class="image"></div>
+
 
 			</div>
 

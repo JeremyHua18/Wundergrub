@@ -13,10 +13,12 @@ class transaction_history extends Component {
 		}
 		return (
 			<div className="transaction">
-                <h5><Link className = "link" to="/home">Home</Link> -> Transaction History</h5>
+                <h5><Link className = "link" to="/home">Home</Link></h5>
                 <h2>Transaction History</h2>
 				<h4>You have no transaction now.</h4>
 				<Link className="link"to="/home">return home</Link>
+							<div class="image"></div>
+
 			</div>
 		);
 	}

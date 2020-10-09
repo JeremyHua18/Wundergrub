@@ -184,6 +184,8 @@ class Register extends Component {
 				</form>
 
 				<Link className="link"to="/">Login Here</Link>
+				<div class="image"></div>
+
 			</div>
 		);
 	}

@@ -13,10 +13,12 @@ class view_report extends Component {
 		}
 		return (
 			<div className="report">
-                <h5><Link className = "link" to="/home">Home</Link> -> View Report</h5>
+                <h5><Link className = "link" to="/home">Home</Link></h5>
                 <h2>Report</h2>
 				<h4>You have no availabe report now.</h4>
 				<Link className="link"to="/home">return home</Link>
+							<div class="image"></div>
+
 			</div>
 		);
 	}

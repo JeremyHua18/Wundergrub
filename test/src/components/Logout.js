@@ -15,6 +15,8 @@ class Logout extends Component {
                 <h2>You have successfully logged out.</h2>
 
                 <Link className="linkhomepg"to="/">Going back to login page.</Link>
+		<div class="image"></div>
+
 
 
             </form>

@@ -39,6 +39,8 @@ class Home extends Component {
 				</form>
 
 				<Link className="link" to="/Logout">Logout Here</Link>
+				<div class="image"></div>
+
 			</div>
 		);
 	}
