@@ -58,11 +58,7 @@ class Login extends Component {
 							cookies.set('type', userAccountType, { path: '/' });
 							console.log(cookies.get('email'));
 							console.log(cookies.get('type'));
-							if (userAccountType === 'admin') {
-								self.props.history.push("/home");
-							} else {
-								self.props.history.push("/home");
-							}
+							self.props.history.push("/home");
 							const autologout = new AutoLogout(self.props);
 						} else if (status === 'Denied') {
 							alert("This account was denied by the administrator and is not able to be logged in.");

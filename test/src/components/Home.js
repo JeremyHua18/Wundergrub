@@ -25,7 +25,7 @@ class Home extends Component {
 				<form onSubmit={this.displayLogin}>
 					<h2>Home</h2>
 					<h4>Welcome back to WUNDERgrubs</h4>
-					<Link className="linkhomepg"to="/newtrans">View Announcements</Link>
+					<Link className="linkhomepg"to="/viewAnnouncements">View Announcements</Link>
 					{(type === 'admin') &&
 						this.renderAdmin()
 					}
