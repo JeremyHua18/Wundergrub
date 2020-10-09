@@ -10,6 +10,8 @@ class view_report extends Component {
                 <h2>Report</h2>
 				<h4>You have no availabe report now.</h4>
 				<Link className="link"to="/home">return home</Link>
+							<div class="image"></div>
+
 			</div>
 		);
 	}
