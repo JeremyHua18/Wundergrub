@@ -10,6 +10,8 @@ class help extends Component {
                 <h2>Help Center</h2>
 				<h4>to implement later</h4>
 				<Link className="link"to="/home">return home</Link>
+				<div class="image"></div>
+
 			</div>
 		);
 	}
