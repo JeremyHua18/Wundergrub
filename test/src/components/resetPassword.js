@@ -97,7 +97,7 @@ class ResetPassword extends Component {
                 </div>
 
                 <div className="return-home" style={{display: "none"}}>
-                    <Link className="link" to="/home"><h2>Return to Home Page</h2></Link>
+                    <Link className="link" to="/"><h2>Return to Home Page</h2></Link>
                 </div>
             </div>
         )
