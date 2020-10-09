@@ -9,11 +9,12 @@ class NewTransaction extends Component {
 		super(props);
         this.choice = ["pick up","delievery"];
 		this.state = {
+			pickup_date: new Date("01/00/2000"),
 			delieveryType: '',
 			userType: '',
-			wasteType: '',
+			frequency: '',
             weight: 0,
-            schedule: '',
+			wasteType: '',
 			comment: '',
 		};
 
@@ -41,12 +42,12 @@ class NewTransaction extends Component {
 			console.log( __dirname);
 			var data = JSON.stringify(this.state);
 			fs.writeFile("./myoutput1.json", data,
-			(err) => { 
-				if (err) throw err; 
+			(err) => {
+				if (err) throw err;
 				console.log('Data written to file');
 				alert("Data is successfully logged")
 				// frm.submit()
-				dataForm.reset() 
+				dataForm.reset()
 			});
 		}
 		console.log(this.state)
@@ -57,8 +58,8 @@ class NewTransaction extends Component {
     fakeToggle(open, value, text) {
         console.log(open, value, text);
 	}
-	
-	
+
+
 
 	render() {
 		const cookies = new Cookies();
@@ -68,7 +69,7 @@ class NewTransaction extends Component {
 			this.props.history.push("/");
 		}
 		return (
-			
+
 			<div className="transaction">
 				<form name = "newTrans"onSubmit={this.submitHandler}>
 				<h5><Link className = "link" to="/home">Home</Link></h5>
@@ -81,25 +82,20 @@ class NewTransaction extends Component {
 					<input type="date" name="dateofpickup" id="dateofpickup"></input>
 
 					<div class = "divCell"></div>
-
-
-					<div class="custom-select">
 						<select>
 							<option>Delievery Type</option>
 							<option>Pick up</option>
     						<option>Delivery</option>
 						</select>
-					</div>
+						{this.state.errormessage}
 
 					<div class = "divCell"></div>
-
-					<div class="custom-select">
 						<select>
 							<option>User Type</option>
 							<option>Donator</option>
     						<option>Subscriber</option>
 						</select>
-					</div>
+						{this.state.errormessage}
 
 					<div class = "divCell"></div>
 
@@ -108,7 +104,7 @@ class NewTransaction extends Component {
 						<input
 							type="text"
 							placeholder="For Subscribers: Please Enter Frequency"
-							name="schedule"
+							name="frequency"
 							onChange={this.updateHandler}
 						/>
 					</div>
@@ -136,16 +132,16 @@ class NewTransaction extends Component {
 					</div>
 
 					<div className="comments">
-                        <input 
-                            type="text" 
-                            placeholder="Comments" 
+                        <input
+                            type="text"
+                            placeholder="Comments"
                             name="comment" />
 					</div>
 
 					<input type="submit" value="Submit" />
-					<input type="reset" value="Cancel" />  	
+					<input type="reset" value="Cancel" />
 				</form>
-				
+
 				<Link className="link"to="/home">return home</Link>
 				<div class="image"></div>
 

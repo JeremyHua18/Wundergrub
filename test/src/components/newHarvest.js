@@ -9,9 +9,10 @@ class newHarvest extends Component {
 		super(props);
         this.choice = ["pick up","delievery"];
 		this.state = {
+			date: new Date("01/00/2000"),
 			user: '',
-			wasteType: '',
             weight: 0,
+            wasteType: '',
 			comment: '',
 		};
 
@@ -76,7 +77,7 @@ class newHarvest extends Component {
 					<input type="date" name="dateofpickup" id="dateofpickup"></input>
 
 					<div class = "divCell"></div>
-					
+
 					<div className="User">
 						<input
 							type="text"
@@ -96,6 +97,13 @@ class newHarvest extends Component {
 							required
 						/>
 						{this.state.errormessage}
+					</div>
+
+					<div className="FeedType">
+                        <input
+                            type="text"
+                            placeholder="Feed Type"
+                            name="feed" />
 					</div>
 
 					<div className="comments">
