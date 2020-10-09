@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 
 class Logout extends Component {
 	render() {
+		const cookies = new Cookies();
+		cookies.set('email', '', { path: '/' });
+		cookies.set('type', '', { path: '/' });
 		return (
 
         <div className="logout">
