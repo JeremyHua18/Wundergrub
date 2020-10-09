@@ -5,6 +5,10 @@ class UserDataService {
     return http.get("/users");
   }
 
+  getActive() {
+    return http.get("/users/active");
+  }
+
   get(username) {
     return http.get(`/users/${username}`);
   }

@@ -1,8 +1,8 @@
 const db = require("../models");
-const Users = db.users;
+const Harvests = db.harvests;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new User
+// Create and Save a new Harvest
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.username) {
@@ -12,35 +12,37 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a User
-  const user = {
+  // Create a Harvest
+  const harvest = {
     username: req.body.username,
-    password: req.body.password,
-    fullname: req.body.fullname,
-    account_type: req.body.account_type,
+    user_company: req.body.user_company,
+    date: req.body.date,
+    weight: req.body.weight,
+    feed_type: req.body.feed_type,
+    comments: req.body.comments,
     status: req.body.status
   };
 
-  // Save User in the database
-  Users.create(user)
+  // Save Harvest in the database
+  Harvests.create(harvest)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the User."
+          err.message || "Some error occurred while creating the Harvest."
       });
     });
 };
 
-// Retrieve all Users from the database.
+// Retrieve all Harvests from the database.
 exports.findAll = (req, res) => {
 
   const username = req.query.username;
   var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
 
-  Users.findAll({ where: condition })
+  Harvests.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
@@ -52,105 +54,103 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single User with an username
+// Find a single Harvest with an id
 exports.findOne = (req, res) => {
 
-  const username = req.params.username;
+  const id = req.params.id;
 
-  Users.findByPk(username)
+  Harvests.findByPk(id)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving User with id = " + id
+        message: "Error retrieving Harvest with id = " + id
       });
     });
 };
 
-// Update a User by the username in the request
+// Update a Harvest by the id in the request
 exports.update = (req, res) => {
 
-  const username = req.params.username;
+  const id = req.params.id;
 
-  Users.update(req.body, {
-    where: { username: username }
+  Harvests.update(req.body, {
+    where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "User was updated successfully."
+          message: "Harvest was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update User with username=${username}. Maybe User was not found or req.body is empty!`
+          message: `Cannot update Harvest with id=${id}. Maybe Harvest was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating User with username = " + username
+        message: "Error updating Harvest with id = " + id
       });
     });
 };
 
-// Delete a User with the specified username in the request
+// Delete a Harvest with the specified id in the request
 exports.delete = (req, res) => {
 
-  const username = req.params.username;
+  const id = req.params.id;
 
-  Users.destroy({
-    where: { username: username }
+  Harvests.destroy({
+    where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "User was deleted successfully!"
+          message: "Harvest was deleted successfully!"
         });
       } else {
         res.send({
-          message: `Cannot delete User with username=${username}. Maybe User was not found!`
+          message: `Cannot delete Harvest with id=${id}. Maybe Harvest was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete User with username=" + username
+        message: "Could not delete Transaction with id=" + id
       });
     });
 };
 
-// Delete all Users from the database.
+// Delete all Harvests from the database.
 exports.deleteAll = (req, res) => {
 
-  Users.destroy({
+  Harvests.destroy({
     where: {},
     truncate: false
   })
     .then(nums => {
-      res.send({ message: `${nums} Users were deleted successfully!` });
+      res.send({ message: `${nums} Harvests were deleted successfully!` });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all Users."
+          err.message || "Some error occurred while removing all Harvests."
       });
     });
-
 };
 
-// Find all active (not deleted) Users
-exports.findAllActive = (req, res) => {
+// Find all pending Harvests
+exports.findAllPending = (req, res) => {
 
-  Users.findAll({ where: { status: {[Op.not]: "Deleted"} } })
+  Harvests.findAll({ where: { status: "Pending" } })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving non-deleted Users."
+          err.message || "Some error occurred while retrieving pending Harvests."
       });
     });
-
 };

@@ -9,7 +9,10 @@ class manage_account extends Component {
 
 	deleteAccount(username) {
 		if (username != null) {
-			UserDataService.delete(username).then(response => {
+			var data = {
+                status: 'Deleted'
+            }
+            UserDataService.update(username, data).then(response => {
                 console.log(response.data);
                 alert('Your account has been deleted');
                 this.props.history.push("/");

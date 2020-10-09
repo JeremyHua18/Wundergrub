@@ -9,6 +9,9 @@ module.exports = app => {
   // Retrieve all Users
   router.get("/", users.findAll);
 
+  // Retrieve all Active Users
+  router.get("/active", users.findAllActive);
+
   // Retrieve a single User with username
   router.get("/:username", users.findOne);
 
