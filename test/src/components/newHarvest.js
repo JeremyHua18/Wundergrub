@@ -94,6 +94,8 @@ class newHarvest extends Component {
 				</form>
 
 				<Link className="link"to="/home">return home</Link>
+				<div class="image"></div>
+
 			</div>
 		);
 	}
