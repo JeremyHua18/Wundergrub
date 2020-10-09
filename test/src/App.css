@@ -259,6 +259,13 @@ button {
   display: block;
 }
 
+.image {
+   width: 150px;
+   height: 150px;
+   margin-left: 125px;
+   content:url(https://scontent.fhkg4-2.fna.fbcdn.net/v/t1.0-9/94240522_830042490739773_119336031391580160_n.jpg?_nc_cat=103&_nc_sid=09cbfe&_nc_ohc=AyIK-mT8BaoAX8PTbg-&_nc_ht=scontent.fhkg4-2.fna&oh=a9d24996dc2ed181ec7604501a3a979c&oe=5FA79EEB);
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
