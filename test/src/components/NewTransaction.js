@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 // import * as fs from 'fs';
 
 
@@ -58,6 +59,12 @@ class NewTransaction extends Component {
     }
 
 	render() {
+		const cookies = new Cookies();
+		var type = cookies.get('type');
+		var email = cookies.get('email');
+		if (type === '' || email === '') {
+			this.props.history.push("/");
+		}
 		return (
 			<div className="transaction">
 				<form name = "newTrans"onSubmit={this.submitHandler}>
