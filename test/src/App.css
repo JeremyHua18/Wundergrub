@@ -40,7 +40,8 @@ body {
 
 .login h3{
   font-size: 20px;
-  color: rgb(15, 148, 46);
+  /* color: rgb(15, 148, 46); */
+  color: #E57C55;
   text-transform: none;
   text-align: center;
   width: 100%;
@@ -53,7 +54,8 @@ body {
 .account h4,
 .help h4 {
   font-size: 20px;
-  color: rgb(15, 148, 46);
+  color: #E57C55;
+  /* color: rgb(15, 148, 46); */
   font-style: italic;
   text-transform: none;
   text-align: center;
@@ -99,7 +101,7 @@ input[type='password'] {
 
 input[type='submit'] {
   padding: 15px 0px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 10px;
@@ -110,7 +112,7 @@ input[type='submit'] {
 
 input[type='reset'] {
   padding: 15px 0px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 10px;
@@ -127,7 +129,7 @@ button {
   text-decoration: none;
   text-align: center;
   padding: 6px 50px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 5px;
@@ -164,7 +166,7 @@ button {
 }
 
 .dropbtn {
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: white;
   text-decoration: none;
   text-align: center;
@@ -209,12 +211,13 @@ button {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  /* background-color: #3e8e41; */
+  background-color: #E57C55;
 }
 
 .link {
   text-decoration: none;
-  color: rgb(3, 99, 22);
+  color: #E57C55;
   display: block;
   padding: 5px 0px;
   font-size: 20px;
@@ -231,7 +234,7 @@ button {
   display: block;
   text-decoration: none;
   padding: 5px 0px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 5px;
@@ -247,7 +250,7 @@ button {
   text-decoration: none;
   text-align: center;
   padding: 6px 50px;
-  background-color: #6bbb82;
+  background-color: #E57C55;
   color: #fff;
   font-size: 20px;
   margin-top: 5px;
@@ -279,7 +282,7 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-  background-color: #4CAF50;
+  background-color: #E57C55;
   color: white;
 }
 
