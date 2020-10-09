@@ -33,8 +33,12 @@ class manage_account extends Component {
 
 	render() {
 		// const {user} = this.props;
-        const cookies = new Cookies();
-        var email = cookies.get('email');
+		const cookies = new Cookies();
+		var type = cookies.get('type');
+		var email = cookies.get('email');
+		if (type === '' || email === '') {
+			this.props.history.push("/");
+		}
 		return (
 			<div className="account">
                 <h5><Link className = "link" to="/home">Home</Link> -> Manage account</h5>
