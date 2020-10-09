@@ -293,22 +293,26 @@ th {
 
 select {
   font: 15px sans-serif;
-  -webkit-appearance: none;
+  /*border: none;*/
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  position: center;
+  text-align-last:center;
+/*  -webkit-appearance: none;
   appearance: none;
-  color: var(--baseFg);
-  border: 1px solid var(--baseFg);
+  color: var(--baseFg);*/
+  /*border: 1px solid var(--baseFg);
   line-height: 1;
   outline: 0;
-  padding: 0px 10px 10px 150px;
   border-radius: var(--radius);
-  background-color: var(--baseBg);
-  background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+  background-color: var(--baseBg);*/
+  /*background-image: linear-gradient(var(--baseFg), var(--baseFg)),
     linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
     linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
     linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
-  background-position: right 20px center, right bottom, right bottom, right bottom;   
+  background-position: right 20px center, right bottom, right bottom, right bottom;*/
 }
 
 select:hover {
@@ -316,6 +320,7 @@ select:hover {
     linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
     linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
     linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+    width:100%;
 }
 
 select:active {
@@ -326,6 +331,11 @@ select:active {
   color: var(--accentBg);
   border-color: var(--accentFg);
   background-color: var(--accentFg);
+  width:100%;
+}
+
+select:focus {
+  width: 100%;
 }
 
 .transaction label,
