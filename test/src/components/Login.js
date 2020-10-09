@@ -9,7 +9,6 @@ import AutoLogout from "../logouter/AutoLogout";
 class Login extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			email: '',
 			password: ''
@@ -80,7 +79,11 @@ class Login extends Component {
 	}
 
 	render() {
+		const cookies = new Cookies();
+		var type = cookies.get('type');
+		var email = cookies.get('email');
 		return (
+
 			<div className="login">
 
 				<form >
@@ -107,12 +110,21 @@ class Login extends Component {
 					</div>
 
 					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Login </button>
+
+					<div className="if_logged_in" style={{display: type !== '' && type !== 'admin' && email !== '' ? "block": "none"}}>
+						<Link className="link" to="/home">I am already logged in...</Link>
+					</div>
+					<div className="if_logged_in" style={{display: type === 'admin' && email !== '' ? "block": "none"}}>
+						<Link className="link" to="/admin">I am already logged in...</Link>
+					</div>
 				</form>
 
 				<Link className="link" to="/register">Create an account</Link>
 				<Link className="link" to="/resetpassword">Forgot password?</Link>
 
 			</div>
+
+
 		);
 	}
 
