@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import UserDataService from "../services/user.service";
 import Cookies from 'universal-cookie';
+import AutoLogout from "../logouter/AutoLogout";
 
 
 class Login extends Component {
@@ -63,6 +64,7 @@ class Login extends Component {
 							} else {
 								self.props.history.push("/home");
 							}
+							const autologout = new AutoLogout(self.props);
 						} else if (status === 'Denied') {
 							alert("This account was denied by the administrator and is not able to be logged in.");
 						} else if (status === 'Pending') {
