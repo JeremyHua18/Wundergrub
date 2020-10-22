@@ -52,3 +52,7 @@ exports.sendResetPasswordCode = (req, res) => {
 
     res.send(data);
 }
+
+exports.sendTransactionEdition = (req, res) => {
+
+}
