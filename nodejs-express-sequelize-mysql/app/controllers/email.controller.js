@@ -56,3 +56,7 @@ exports.sendResetPasswordCode = (req, res) => {
 exports.sendTransactionEdition = (req, res) => {
 
 }
+
+exports.sendTransactionDenial = (req, res) => {
+
+}
