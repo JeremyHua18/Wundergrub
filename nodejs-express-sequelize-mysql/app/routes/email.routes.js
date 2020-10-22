@@ -6,5 +6,8 @@ module.exports = app => {
     // Send the code for resetting password
     router.get("/:email", emailing.sendResetPasswordCode);
 
+    // Send email for editing transaction
+    router.post("/transaction/", emailing.sendTransactionEdition)
+
     app.use('/api/email', router);
 };
