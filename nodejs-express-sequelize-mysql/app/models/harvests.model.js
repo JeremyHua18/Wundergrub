@@ -24,6 +24,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     status: {
       type: Sequelize.STRING
+    },
+    edited_by: {
+      type: Sequelize.STRING
     }
   });
 

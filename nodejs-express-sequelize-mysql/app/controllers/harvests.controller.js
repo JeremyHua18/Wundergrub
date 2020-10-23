@@ -20,7 +20,8 @@ exports.create = (req, res) => {
     weight: req.body.weight,
     feed_type: req.body.feed_type,
     comments: req.body.comments,
-    status: req.body.status
+    status: req.body.status,
+    edited_by: req.body.edited_by
   };
 
   // Save Harvest in the database

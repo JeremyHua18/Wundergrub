@@ -63,9 +63,12 @@ class manageTransactions extends Component {
     }
 
     handleApprove() {
+        const cookies = new Cookies();
+        var username = cookies.get('email');
         if (!this.state.editing) {
             var data = {
-                status: 'Approved'
+                status: 'Approved',
+                edited_by: username
             }
             TransactionDataService.update(this.state.id, data).then(response => {
                 console.log(response.data);
@@ -98,7 +101,8 @@ class manageTransactions extends Component {
                 frequency: this.state.frequency,
                 weight: this.state.weight,
                 waste_type: this.state.waste_type,
-                status: 'Approved'
+                status: 'Approved',
+                edited_by: username
             }
             console.log(data);
             TransactionDataService.update(this.state.id, data).then(response => {
@@ -114,8 +118,11 @@ class manageTransactions extends Component {
     }
 
     handleDecline() {
+        const cookies = new Cookies();
+        var username = cookies.get('email');
         var data = {
-            status: 'Declined'
+            status: 'Declined',
+            edited_by: username
         }
         TransactionDataService.update(this.state.id, data).then(response => {
             console.log(response.data);

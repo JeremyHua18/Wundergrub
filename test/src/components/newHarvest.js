@@ -14,7 +14,7 @@ class newHarvest extends Component {
 			userCompany: '',
             weight: 0,
             feedType: '',
-			comments: '',
+			comments: ''
 		};
 
 		this.updateHandler = this.updateHandler.bind(this);
@@ -47,7 +47,8 @@ class newHarvest extends Component {
 				weight: this.state.weight,
 				feed_type: this.state.feedType,
 				comments: this.state.comments,
-				status: 'Pending'
+				status: 'Pending',
+				edited_by: ''
 			}
 
 			HarvestDataService.create(data).then(response => {

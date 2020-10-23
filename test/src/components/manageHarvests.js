@@ -59,9 +59,12 @@ class manageHarvests extends Component {
     }
 
     handleApprove() {
+        const cookies = new Cookies();
+        var username = cookies.get('email');
         if (!this.state.editing) {
             var data = {
-                status: 'Approved'
+                status: 'Approved',
+                edited_by: username
             }
             HarvestDataService.update(this.state.id, data).then(response => {
                 console.log(response.data);
@@ -77,7 +80,8 @@ class manageHarvests extends Component {
             var data = {
                 weight: this.state.weight,
                 feed_type: this.state.feed_type,
-                status: 'Approved'
+                status: 'Approved',
+                edited_by: username
             }
             console.log(data);
             HarvestDataService.update(this.state.id, data).then(response => {
@@ -93,8 +97,11 @@ class manageHarvests extends Component {
     }
 
     handleDecline() {
+        const cookies = new Cookies();
+        var username = cookies.get('email');
         var data = {
-            status: 'Declined'
+            status: 'Declined',
+            edited_by: username
         }
         HarvestDataService.update(this.state.id, data).then(response => {
             console.log(response.data);

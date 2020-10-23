@@ -60,7 +60,8 @@ class NewTransaction extends Component {
 				weight: this.state.weight,
 				waste_type: this.state.wasteType,
 				comments: this.state.comments,
-				status: 'Pending'
+				status: 'Pending',
+				edited_by: ''
 			}
 
 			TransactionDataService.create(data).then(response => {
