@@ -9,6 +9,9 @@ module.exports = app => {
   // Retrieve all Transactions
   router.get("/", transactions.findAll);
 
+  // Retrieve all pending Transactions
+  router.get("/pending", transactions.findAllPending);
+
   // Retrieve a single Transaction with id
   router.get("/:id", transactions.findOne);
 
@@ -20,9 +23,6 @@ module.exports = app => {
 
   // Delete all Transactions
   router.delete("/", transactions.deleteAll);
-
-  // Retrieve all pending Transactions
-  router.get("/pending", transactions.findAllPending);
 
   app.use('/api/transactions', router);
 };

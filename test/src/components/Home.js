@@ -13,6 +13,16 @@ class Home extends Component {
 		</div>
 		)
 	}
+
+    renderInternal() {
+        return(
+        <div>
+        <Link className="linkhomepg"to="/manageTransactions">Manage Transactions</Link>
+        <Link className="linkhomepg"to="/manageHarvests">Manage Harvests</Link>
+        </div>
+        )
+    }
+
 	render() {
 		const cookies = new Cookies();
 		var type = cookies.get('type');
@@ -29,6 +39,9 @@ class Home extends Component {
 					{(type === 'admin') &&
 						this.renderAdmin()
 					}
+                    {(type === 'internal') &&
+                        this.renderInternal()
+                    }
 					<Link className="linkhomepg"to="/newtrans">New Transaction</Link>
 					<Link className="linkhomepg"to="/newHarvest">New Harvest</Link>
 					<Link className="linkhomepg"to="/transhistory">Transaction History</Link>
