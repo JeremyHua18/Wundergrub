@@ -12,5 +12,8 @@ module.exports = app => {
     // Send email for editing transaction
     router.post("/transaction/denial", emailing.sendTransactionDenial)
 
+    // Send email for decline a harvest
+    router.post("/harvest/denial", emailing.sendTransactionDenial)
+
     app.use('/api/email', router);
 };

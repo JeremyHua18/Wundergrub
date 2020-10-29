@@ -14,6 +14,11 @@ class WonderEmail {
         var data = args;
         return http.post(`/email/transaction/denial`, data);
     }
+
+    sendNotificationForDenyHarvest (args) {
+        var data = args;
+        return http.post(`/email/harvest/denial`, data);
+    }
 }
 
 export default new WonderEmail();

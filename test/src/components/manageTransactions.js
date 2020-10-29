@@ -130,12 +130,12 @@ class manageTransactions extends Component {
             edited_by: username,
             transaction_id: this.state.id
         }
+        WonderEmail.sendNotificationForDenyTransaction(email);
         TransactionDataService.update(this.state.id, data).then(response => {
             console.log(response.data);
+
             alert('Transaction has been declined');
             window.location.reload(false);
-
-            WonderEmail.sendNotificationForDenyTransaction(email);
         }).catch(e => {
             alert('Something went wrong. Please try again');
             console.log(e)
