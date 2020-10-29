@@ -105,9 +105,15 @@ class manageTransactions extends Component {
                 status: 'Approved',
                 edited_by: username
             }
+
+            var email = {
+                old_data: unedited,
+                new_data: data
+            }
             console.log(data);
             TransactionDataService.update(this.state.id, data).then(response => {
                 console.log(response.data);
+                WonderEmail.sendNotificationForEditTransaction(email);
                 alert('Transaction has been approved');
                 window.location.reload(false);
             }).catch(e => {
