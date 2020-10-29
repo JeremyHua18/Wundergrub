@@ -1,3 +1,7 @@
+const Service = 'gmail';
+const EmailAddress = 'WUNDERGrubsAWS@gmail.com';
+const PassWord = 'Drmv+8yJ';
+
 exports.sendResetPasswordCode = (req, res) => {
     if (!req.params.email) {
         res.status(400).send({
@@ -11,10 +15,10 @@ exports.sendResetPasswordCode = (req, res) => {
     var passwordHash = require('password-hash');
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: Service,
         auth: {
-            user: 'WUNDERGrubsAWS@gmail.com',
-            pass: 'Drmv+8yJ'
+            user: EmailAddress,
+            pass: PassWord
         }
     });
 
@@ -82,10 +86,10 @@ exports.sendTransactionEdition = (req, res) => {
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: Service,
         auth: {
-            user: 'WUNDERGrubsAWS@gmail.com',
-            pass: 'Drmv+8yJ'
+            user: EmailAddress,
+            pass: PassWord
         }
     });
 
@@ -158,10 +162,10 @@ exports.sendHarvestEdition = (req, res) => {
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: Service,
         auth: {
-            user: 'WUNDERGrubsAWS@gmail.com',
-            pass: 'Drmv+8yJ'
+            user: EmailAddress,
+            pass: PassWord
         }
     });
 
@@ -214,10 +218,10 @@ exports.sendTransactionDenial = (req, res) => {
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: Service,
         auth: {
-            user: 'WUNDERGrubsAWS@gmail.com',
-            pass: 'Drmv+8yJ'
+            user: EmailAddress,
+            pass: PassWord
         }
     });
 
@@ -260,10 +264,10 @@ exports.sendHarvestDenial = (req, res) => {
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: Service,
         auth: {
-            user: 'WUNDERGrubsAWS@gmail.com',
-            pass: 'Drmv+8yJ'
+            user: EmailAddress,
+            pass: PassWord
         }
     });
 
