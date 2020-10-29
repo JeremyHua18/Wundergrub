@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 
 import HarvestDataService from "../services/harvest.service";
 import WonderEmail from "../emailer/WonderEmail";
+import TransactionDataService from "../services/transaction.service";
 
 
 class manageHarvests extends Component {
@@ -76,22 +77,31 @@ class manageHarvests extends Component {
                 console.log(e)
             });
         } else {
-            var unedited = HarvestDataService.get(this.state.id);
-
-            var data = {
-                weight: this.state.weight,
-                feed_type: this.state.feed_type,
-                status: 'Approved',
-                edited_by: username
-            }
-            console.log(data);
-            HarvestDataService.update(this.state.id, data).then(response => {
-                console.log(response.data);
-                alert('Harvest has been approved');
-                window.location.reload(false);
-            }).catch(e => {
-                alert('Something went wrong. Please try again');
-                console.log(e)
+            var result = HarvestDataService.get(this.state.id);
+            var self = this;
+            result.then( function(result_data) {
+                var unedited = result_data.data;
+                var data = {
+                    weight: self.state.weight,
+                    feed_type: self.state.feed_type,
+                    status: 'Approved',
+                    edited_by: username
+                }
+                console.log(data);
+                unedited.username = self.state.username;
+                var email = {
+                    old_data: unedited,
+                    new_data: data
+                }
+                HarvestDataService.update(self.state.id, data).then(response => {
+                    console.log(response.data);
+                    WonderEmail.sendNotificationForEditHarvest(email);
+                    alert('Harvest has been approved');
+                    window.location.reload(false);
+                }).catch(e => {
+                    alert('Something went wrong. Please try again');
+                    console.log(e)
+                });
             });
         }
 
