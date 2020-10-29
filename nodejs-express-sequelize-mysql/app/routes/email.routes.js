@@ -13,7 +13,7 @@ module.exports = app => {
     router.post("/transaction/denial", emailing.sendTransactionDenial)
 
     // Send email for decline a harvest
-    router.post("/harvest/denial", emailing.sendTransactionDenial)
+    router.post("/harvest/denial", emailing.sendHarvestDenial)
 
     app.use('/api/email', router);
 };

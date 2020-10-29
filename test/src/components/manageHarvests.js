@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 import HarvestDataService from "../services/harvest.service";
+import WonderEmail from "../emailer/WonderEmail";
 
 
 class manageHarvests extends Component {
@@ -103,8 +104,14 @@ class manageHarvests extends Component {
             status: 'Declined',
             edited_by: username
         }
+        var email = {
+            address: this.state.username,
+            edited_by: username,
+            transaction_id: this.state.id
+        }
         HarvestDataService.update(this.state.id, data).then(response => {
             console.log(response.data);
+            WonderEmail.sendNotificationForDenyHarvest(email);
             alert('Harvest has been declined');
             window.location.reload(false);
         }).catch(e => {

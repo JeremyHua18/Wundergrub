@@ -86,7 +86,7 @@ exports.sendTransactionDenial = (req, res) => {
         text: "Hello, dear user \r\n" +
             "You are receiving this email because one of your transaction on WUNDERGrubs is DECLINED by an administrator." +
             "The ID of the declined transaction is " + transaction_id + ", and you can query detail information about this" +
-            "transaction on our website or app by searching this is.\r\n" +
+            "transaction on our website or app by searching this ID.\r\n" +
             "If you have any questions of this declination, you can go to our Help Center to ask questions or send an email to: " +
             "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n" +
             "We are sorry for the inconvenience."
@@ -132,7 +132,7 @@ exports.sendHarvestDenial = (req, res) => {
         text: "Hello, dear user \r\n" +
             "You are receiving this email because one of your harvest on WUNDERGrubs is DECLINED by an administrator." +
             "The ID of the declined harvest is " + transaction_id + ", and you can query detail information about this" +
-            "harvest on our website or app by searching this is.\r\n" +
+            "harvest on our website or app by searching this ID.\r\n" +
             "If you have any questions of this declination, you can go to our Help Center to ask questions or send an email to: " +
             "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n" +
             "We are sorry for the inconvenience."
