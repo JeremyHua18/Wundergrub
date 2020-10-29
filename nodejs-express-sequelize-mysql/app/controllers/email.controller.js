@@ -54,7 +54,85 @@ exports.sendResetPasswordCode = (req, res) => {
 }
 
 exports.sendTransactionEdition = (req, res) => {
+    var address = req.body.old_data.username;
+    var id = req.body.old_data.id;
+    var edited_by = req.body.new_data.edited_by;
+    var old = {
+        delivery_type: req.body.old_data.delivery_type,
+        donor_type: req.body.old_data.donor_type,
+        frequency: req.body.old_data.frequency,
+        weight: req.body.old_data.weight,
+        waste_type: req.body.old_data.waste_type,
+    }
+    var neo = {
+        delivery_type: req.body.new_data.delivery_type,
+        donor_type: req.body.new_data.donor_type,
+        frequency: req.body.new_data.frequency,
+        weight: req.body.new_data.weight,
+        waste_type: req.body.new_data.waste_type,
+    }
 
+    if (!address) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'WUNDERGrubsAWS@gmail.com',
+            pass: 'Drmv+8yJ'
+        }
+    });
+
+    var dif_list = "";
+
+    if (old.delivery_type !== neo.delivery_type) {
+        dif_list += "\tThe delivery type is changed FROM " + old.delivery_type + " TO " + neo.delivery_type + "\r\n";
+    }
+
+    if (old.donor_type !== neo.donor_type) {
+        dif_list += "\tThe donor Type is changed FROM " + old.donor_type + " TO " + neo.donor_type + "\r\n";
+    }
+
+    if (old.frequency !==  neo.frequency) {
+        dif_list += "\tThe frequency is changed FROM " + old.frequency + " TO " + neo.frequency + "\r\n";
+    }
+
+    if (old.waste_type !==  neo.waste_type) {
+        dif_list += "\tThe waste type is changed FROM " + old.waste_type + " TO " + neo.waste_type + "\r\n";
+    }
+
+    if (old.weight !==  neo.weight) {
+        dif_list += "\tThe weight is changed FROM " + old.weight + " TO " + neo.weight + "\r\n";
+    }
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: address,
+        subject: 'Your Transaction on WUNDERGrubs is Edited.',
+        text: "Hello, dear user \r\n" +
+            "You are receiving this email because one of your transaction on WUNDERGrubs is approved by some editing." +
+            "The following is the editing on your transaction \r\n" + dif_list +
+            "The ID of this transaction is " + id + ". You can query detail information about this transaction on our " +
+            "website or app by searching this ID.\r\n" +
+            "If you have any questions of this editing, you can go to our Help Center to ask questions or send an email to: " +
+            "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n" +
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    res.send("Email sent");
 }
 
 exports.sendTransactionDenial = (req, res) => {
