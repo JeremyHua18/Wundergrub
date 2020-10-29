@@ -80,45 +80,50 @@ class manageTransactions extends Component {
                 console.log(e)
             });
         } else {
-            var unedited = TransactionDataService.get(this.state.id);
+            var result = TransactionDataService.get(this.state.id);
+            var self = this;
+            result.then( function(result_data) {
+                var unedited = result_data.data;
+                // logic checks
+                if (self.state.delivery_type === "Delivery Type") {
+                    self.state.delivery_type = unedited.delivery_type;
+                }
+                if (self.state.donor_type === "User Type") {
+                    self.state.donor_type = unedited.donor_type;
+                }
+                if (self.state.frequency === "Frequency (Subscriber Only)") {
+                    self.state.frequency = unedited.frequency;
+                }
+                // check to make sure donators don't have a frequency
+                if (self.state.donor_type === "Donator") {
+                    self.state.frequency = '';
+                }
+                var data = {
+                    delivery_type: self.state.delivery_type,
+                    donor_type: self.state.donor_type,
+                    frequency: self.state.frequency,
+                    weight: self.state.weight,
+                    waste_type: self.state.waste_type,
+                    status: 'Approved',
+                    edited_by: username
+                }
 
-            // logic checks
-            if (this.state.delivery_type === "Delivery Type") {
-                this.state.delivery_type = unedited.delivery_type;
-            }
-            if (this.state.donor_type === "User Type") {
-                this.state.donor_type = unedited.donor_type;
-            }
-            if (this.state.frequency === "Frequency (Subscriber Only)") {
-                this.state.frequency = unedited.frequency;
-            }
-            // check to make sure donators don't have a frequency
-            if (this.state.donor_type === "Donator") {
-                this.state.frequency = '';
-            }
-            var data = {
-                delivery_type: this.state.delivery_type,
-                donor_type: this.state.donor_type,
-                frequency: this.state.frequency,
-                weight: this.state.weight,
-                waste_type: this.state.waste_type,
-                status: 'Approved',
-                edited_by: username
-            }
-
-            var email = {
-                old_data: unedited,
-                new_data: data
-            }
-            console.log(data);
-            TransactionDataService.update(this.state.id, data).then(response => {
-                console.log(response.data);
-                WonderEmail.sendNotificationForEditTransaction(email);
-                alert('Transaction has been approved');
-                window.location.reload(false);
-            }).catch(e => {
-                alert('Something went wrong. Please try again');
-                console.log(e)
+                unedited.username = self.state.username;
+                var email = {
+                    old_data: unedited,
+                    new_data: data
+                }
+                console.log(data);
+                console.log(email);
+                TransactionDataService.update(self.state.id, data).then(response => {
+                    console.log(response.data);
+                    WonderEmail.sendNotificationForEditTransaction(email);
+                    alert('Transaction has been approved');
+                    window.location.reload(false);
+                }).catch(e => {
+                    alert('Something went wrong. Please try again');
+                    console.log(e)
+                });
             });
         }
 

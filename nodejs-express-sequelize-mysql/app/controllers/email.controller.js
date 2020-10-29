@@ -121,7 +121,7 @@ exports.sendTransactionEdition = (req, res) => {
             "The ID of this transaction is " + id + ". You can query detail information about this transaction on our " +
             "website or app by searching this ID.\r\n" +
             "If you have any questions of this editing, you can go to our Help Center to ask questions or send an email to: " +
-            "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n" +
+            "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n"
     };
 
     transporter.sendMail(mailOptions, function(error, info){
