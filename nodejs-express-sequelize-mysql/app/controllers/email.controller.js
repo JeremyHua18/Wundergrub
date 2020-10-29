@@ -135,6 +135,70 @@ exports.sendTransactionEdition = (req, res) => {
     res.send("Email sent");
 }
 
+exports.sendHarvestEdition = (req, res) => {
+    var address = req.body.old_data.username;
+    var id = req.body.old_data.id;
+    var edited_by = req.body.new_data.edited_by;
+    var old = {
+        weight: req.body.old_data.weight,
+        feed_type: req.body.old_data.feed_type
+    }
+    var neo = {
+        weight: req.body.new_data.weight,
+        feed_type: req.body.new_data.feed_type
+    }
+
+    if (!address) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'WUNDERGrubsAWS@gmail.com',
+            pass: 'Drmv+8yJ'
+        }
+    });
+
+    var dif_list = "";
+
+    if (old.feed_type !== neo.feed_type) {
+        dif_list += "\tThe feed type is changed FROM " + old.feed_type + " TO " + neo.feed_type + "\r\n";
+    }
+
+    if (old.weight !== neo.weight) {
+        dif_list += "\tThe weight is changed FROM " + old.weight + " TO " + neo.weight + "\r\n";
+    }
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: address,
+        subject: 'Your Harvest on WUNDERGrubs is Edited.',
+        text: "Hello, dear user \r\n" +
+            "You are receiving this email because one of your harvest on WUNDERGrubs is approved by some editing." +
+            "The following is the editing on your harvest \r\n" + dif_list +
+            "The ID of this harvest is " + id + ". You can query detail information about this harvest on our " +
+            "website or app by searching this ID.\r\n" +
+            "If you have any questions of this editing, you can go to our Help Center to ask questions or send an email to: " +
+            "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n"
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    res.send("Email sent");
+}
+
 exports.sendTransactionDenial = (req, res) => {
     var address = req.body.address;
     var edited_by = req.body.edited_by;

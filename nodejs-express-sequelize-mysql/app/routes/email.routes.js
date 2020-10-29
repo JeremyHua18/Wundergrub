@@ -9,6 +9,9 @@ module.exports = app => {
     // Send email for editing transaction
     router.post("/transaction/edit", emailing.sendTransactionEdition)
 
+    // Send email for editing harvest
+    router.post("/harvest/edit", emailing.sendHarvestEdition)
+
     // Send email for editing transaction
     router.post("/transaction/denial", emailing.sendTransactionDenial)
 
