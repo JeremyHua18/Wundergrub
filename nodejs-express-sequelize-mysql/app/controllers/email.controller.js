@@ -58,5 +58,45 @@ exports.sendTransactionEdition = (req, res) => {
 }
 
 exports.sendTransactionDenial = (req, res) => {
+    var address = req.body.address;
+    var edited_by = req.body.edited_by;
+    var transaction_id = req.body.transaction_id;
 
+    if (!req.params.email) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'WUNDERGrubsAWS@gmail.com',
+            pass: 'Drmv+8yJ'
+        }
+    });
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: req.params.email,
+        subject: 'Your Transaction on WUNDERGrubs is Denied.',
+        text: "Hello, dear user \r\n" +
+            "You are receiving this email because one of your transaction on WUNDERGrubs is DECLINED by an administrator." +
+            "The ID of the declined transaction is " + transaction_id + ", and you can query detail information about this" +
+            "transaction on our website or app by searching this is.\r\n" +
+            "If you have any questions of this declination, you can go to our Help Center to ask questions or send an email to:" +
+            "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n" +
+            "We are sorry for the inconvenience."
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 }

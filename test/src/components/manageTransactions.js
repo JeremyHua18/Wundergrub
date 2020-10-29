@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 import TransactionDataService from "../services/transaction.service";
+import WonderEmail from "../emailer/WonderEmail";
 
 class manageTransactions extends Component {
 
@@ -124,10 +125,17 @@ class manageTransactions extends Component {
             status: 'Declined',
             edited_by: username
         }
+        var email = {
+            address: this.state.username,
+            edited_by: username,
+            transaction_id: this.state.id
+        }
         TransactionDataService.update(this.state.id, data).then(response => {
             console.log(response.data);
             alert('Transaction has been declined');
             window.location.reload(false);
+
+            WonderEmail.sendNotificationForDenyTransaction(email);
         }).catch(e => {
             alert('Something went wrong. Please try again');
             console.log(e)
