@@ -10,6 +10,11 @@ class WonderEmail {
         return http.post(`/email/transaction/edit`, data);
     }
 
+    sendNotificationForEditHarvest (args) {
+        var data = args;
+        return http.post(`/email/harvest/edit`, data);
+    }
+
     sendNotificationForDenyTransaction (args) {
         var data = args;
         return http.post(`/email/transaction/denial`, data);
