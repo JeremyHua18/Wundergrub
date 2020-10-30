@@ -22,7 +22,8 @@ exports.create = (req, res) => {
     weight: req.body.weight,
     waste_type: req.body.waste_type,
     comments: req.body.comments,
-    status: req.body.status
+    status: req.body.status,
+    edited_by: req.body.edited_by
   };
 
   // Save Transaction in the database

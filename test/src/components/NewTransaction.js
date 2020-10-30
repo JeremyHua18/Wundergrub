@@ -60,7 +60,8 @@ class NewTransaction extends Component {
 				weight: this.state.weight,
 				waste_type: this.state.wasteType,
 				comments: this.state.comments,
-				status: 'Pending'
+				status: 'Pending',
+				edited_by: ''
 			}
 
 			TransactionDataService.create(data).then(response => {
@@ -107,7 +108,6 @@ class NewTransaction extends Component {
 							<option value="Delivery Type">Delievery Type</option>
 							<option value="Pick Up">Pick up</option>
     						<option value = "Delivery">Delivery</option>
-
 						</select>
 						{this.state.errormessage}
 
@@ -122,11 +122,11 @@ class NewTransaction extends Component {
 					<div class = "divCell"></div>
 
                     <select name="frequency" onChange={this.updateHandler}>
-                            <option value="">Frequency (Subscriber Only)</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Weekly">Weekly</option>
-                            <option value="Monthly">Monthly</option>
-                        </select>
+                        <option value="">Frequency (Subscriber Only)</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
                         {this.state.errormessage}
 
                     <div class = "divCell"></div>
