@@ -118,7 +118,7 @@ exports.sendTransactionEdition = (req, res) => {
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
-        subject: 'Your Transaction on WUNDERGrubs is Edited.',
+        subject: 'Your Transaction on WUNDERGrubs has been Edited.',
         text: "Hello, \r\n" +
             "You are receiving this email because one of your transactions on WUNDERGrubs has been approved with some edits. " +
             "The following are the edits on your transaction: \r\n" + dif_list +
@@ -182,7 +182,7 @@ exports.sendHarvestEdition = (req, res) => {
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
-        subject: 'Your Harvest on WUNDERGrubs is Edited.',
+        subject: 'Your Harvest on WUNDERGrubs has been Edited.',
         text: "Hello, \r\n" +
             "You are receiving this email because one of your harvests on WUNDERGrubs has been approved with some edits. " +
             "The following are the edits on your harvest: \r\n" + dif_list +
@@ -228,7 +228,7 @@ exports.sendTransactionDenial = (req, res) => {
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
-        subject: 'Your Transaction on WUNDERGrubs is Denied.',
+        subject: 'Your Transaction on WUNDERGrubs has been Denied.',
         text: "Hello, \r\n" +
             "You are receiving this email because one of your transactions on WUNDERGrubs has been DECLINED by an administrator." +
             "The ID of the declined transaction is " + transaction_id + ", and you can query detailed information about this" +
@@ -274,7 +274,7 @@ exports.sendHarvestDenial = (req, res) => {
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
-        subject: 'Your Harvest on WUNDERGrubs is Denied.',
+        subject: 'Your Harvest on WUNDERGrubs has been Denied.',
         text: "Hello, \r\n" +
             "You are receiving this email because one of your harvests on WUNDERGrubs is DECLINED by an administrator." +
             "The ID of the declined harvest is " + transaction_id + ", and you can query detail information about this" +
