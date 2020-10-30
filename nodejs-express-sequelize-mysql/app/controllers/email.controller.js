@@ -119,12 +119,12 @@ exports.sendTransactionEdition = (req, res) => {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
         subject: 'Your Transaction on WUNDERGrubs is Edited.',
-        text: "Hello, dear user \r\n" +
-            "You are receiving this email because one of your transaction on WUNDERGrubs is approved by some editing." +
-            "The following is the editing on your transaction: \r\n" + dif_list +
-            "The ID of this transaction is " + id + ". You can query detail information about this transaction on our " +
+        text: "Hello, \r\n" +
+            "You are receiving this email because one of your transactions on WUNDERGrubs has been approved with some edits. " +
+            "The following are the edits on your transaction: \r\n" + dif_list +
+            "The ID of this transaction is " + id + ". You can query detailed information about this transaction on our " +
             "website or app by searching this ID.\r\n" +
-            "If you have any questions of this editing, you can go to our Help Center to ask questions or send an email to: " +
+            "If you have any questions about this edit, you can go to our Help Center to ask questions or send an email to: " +
             "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n"
     };
 
@@ -183,12 +183,12 @@ exports.sendHarvestEdition = (req, res) => {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
         subject: 'Your Harvest on WUNDERGrubs is Edited.',
-        text: "Hello, dear user \r\n" +
-            "You are receiving this email because one of your harvest on WUNDERGrubs is approved by some editing." +
-            "The following is the editing on your harvest: \r\n" + dif_list +
-            "The ID of this harvest is " + id + ". You can query detail information about this harvest on our " +
+        text: "Hello, \r\n" +
+            "You are receiving this email because one of your harvests on WUNDERGrubs has been approved with some edits. " +
+            "The following are the edits on your harvest: \r\n" + dif_list +
+            "The ID of this harvest is " + id + ". You can query detailed information about this harvest on our " +
             "website or app by searching this ID.\r\n" +
-            "If you have any questions of this editing, you can go to our Help Center to ask questions or send an email to: " +
+            "If you have any questions about this edit, you can go to our Help Center to ask questions or send an email to: " +
             "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n"
     };
 
@@ -229,9 +229,9 @@ exports.sendTransactionDenial = (req, res) => {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
         subject: 'Your Transaction on WUNDERGrubs is Denied.',
-        text: "Hello, dear user \r\n" +
-            "You are receiving this email because one of your transaction on WUNDERGrubs is DECLINED by an administrator." +
-            "The ID of the declined transaction is " + transaction_id + ", and you can query detail information about this" +
+        text: "Hello, \r\n" +
+            "You are receiving this email because one of your transactions on WUNDERGrubs has been DECLINED by an administrator." +
+            "The ID of the declined transaction is " + transaction_id + ", and you can query detailed information about this" +
             "transaction on our website or app by searching this ID.\r\n" +
             "If you have any questions of this declination, you can go to our Help Center to ask questions or send an email to: " +
             "WUNDERGrubsAWS@gmail.com or " + edited_by + ".\r\n" +
@@ -275,8 +275,8 @@ exports.sendHarvestDenial = (req, res) => {
         from: 'WUNDERGrubsAWS@gmail.com',
         to: address,
         subject: 'Your Harvest on WUNDERGrubs is Denied.',
-        text: "Hello, dear user \r\n" +
-            "You are receiving this email because one of your harvest on WUNDERGrubs is DECLINED by an administrator." +
+        text: "Hello, \r\n" +
+            "You are receiving this email because one of your harvests on WUNDERGrubs is DECLINED by an administrator." +
             "The ID of the declined harvest is " + transaction_id + ", and you can query detail information about this" +
             "harvest on our website or app by searching this ID.\r\n" +
             "If you have any questions of this declination, you can go to our Help Center to ask questions or send an email to: " +
