@@ -8,17 +8,17 @@ class help extends Component {
 		this.state = {
 		  value: 'Please leave your question here and our team will contact you later via email.'
 		};
-	
+
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.textAreaRef = React.createRef();
 
 	  }
-	
+
 	  handleChange(event) {
 		this.setState({value: event.target.value});
 	  }
-	
+
 	  handleSubmit(event) {
 		alert('Your question was submitted: ' + this.state.value);
 		event.preventDefault();
@@ -32,7 +32,7 @@ class help extends Component {
         ta.style.height = "100px";
         ta.style.height = ta.scrollHeight + "px";
     }
-	
+
 	  render() {
 		return (
 			<div className="help">
@@ -44,7 +44,7 @@ class help extends Component {
                 	<div className="form-group">
                   		<input type="text" className="form-control" name="title" placeholder="Question Title" required />
                 	</div>
-					<textarea ref={this.textAreaRef} style = {{width: 400}} value={this.state.value} onChange={this.handleChange}/>
+					<textarea ref={this.textAreaRef} style = {{width: 400}} placeholder={this.state.value} onChange={this.handleChange}/>
 					</label>
 					<input type="submit" value="Submit" />
 				</form>

@@ -34,10 +34,10 @@ require("./app/routes/users.routes")(app);
 
 require("./app/routes/transactions.routes")(app);
 require("./app/routes/harvests.routes")(app);
+require("./app/routes/announcements.routes")(app);
 
 // Not made yet
 
-// require("./app/routes/announcements.routes")(app);
 // require("./app/routes/reports.routes")(app);
 
 require("./app/routes/email.routes")(app);
