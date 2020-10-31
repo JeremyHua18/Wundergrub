@@ -11,7 +11,7 @@ body {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
 }
@@ -369,9 +369,6 @@ button {
   text-decoration: none;
   cursor: pointer;
 }
-
-
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -479,15 +476,16 @@ select:focus {
   opacity: 0;
 }
 
-* {
+/* Landing page css */
+/* * {
   margin: 0;
   padding: 0;
   /* box-sizing: border-box; */
-}
+/* } */
 
 #body {
-  min-height: 30vh;
-  min-width: 100%;
+  /* min-height: 100%;
+  min-width: 100%; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -504,16 +502,12 @@ select:focus {
   padding: 30px;
 }
 /* 
-.header-title {
+.header-text {
   font-size: 50px;
 } */
-
-.header-text {
-  font-size: 20px;
-}
 .section {
   flex-flow: row wrap;
-  width: 90%;
+  width: 100%;
   color: white;
   display: flex;
   flex-direction: row wrap;
@@ -537,9 +531,7 @@ select:focus {
   background-color: #2c2b2b;
 }
 
-.orange {
-  color: #e57c55;
-}
+
 
 .div-title {
   font-size: 30px;
@@ -551,7 +543,8 @@ select:focus {
     url("https://media-exp1.licdn.com/dms/image/C4D1BAQHcTprHPrBZQg/company-background_10000/0?e=2159024400&v=beta&t=JsdROP_aZkV13qRZYdlpuGSBQbGkdE1ZS3m7_eggy68");
 
   /* Set a specific height */
-  height: 200%;
+  height: 120%;
+  width: 200%;
 
   /* Position and center the image to scale nicely on all screens */
   background-position: center;
@@ -600,3 +593,4 @@ select:focus {
   display: block;
   content: url(https://www.wundergrubs.com/uploads/7/3/8/6/73866685/published/africa-globe.jpg?1602854619);
 }
+
