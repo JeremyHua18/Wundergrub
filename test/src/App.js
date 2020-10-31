@@ -11,9 +11,10 @@ import view_report from './components/view_report';
 import transaction_history from './components/transaction_history';
 import manage_account from './components/manage_account';
 import help from './components/help';
-import annoucement from './components/announcement';
-
-import ResetPassword from './components/resetPassword'
+import ResetPassword from './components/resetPassword';
+import manageHarvests from './components/manageHarvests';
+import manageTransactions from './components/manageTransactions';
+import viewAnnouncements from './components/viewAnnouncements';
 import './App.css';
 
 class App extends Component {
@@ -29,13 +30,14 @@ class App extends Component {
         <Route path="/viewreport" component={view_report} />
         <Route path="/account" component={manage_account} />
         <Route path="/help" component={help} />
-        <Route path="/annoucement" component={annoucement} />
+        <Route path="/viewAnnouncements" component={viewAnnouncements} />
 
 
         <Route path="/admin" component={Admin}/>
         <Route path="/logout" component={Logout}/>
         <Route path="/resetpassword" component={ResetPassword}/>
-
+        <Route path="/manageHarvests" component={manageHarvests}/>
+        <Route path="/manageTransactions" component={manageTransactions}/>
 
 
 
