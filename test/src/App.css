@@ -335,7 +335,7 @@ button {
 /* Modal Header */
 .modal-header {
   padding: 2px 16px;
-  background-color: #f3edeb;
+  background-color: #E57C55;
   color: white;
   position: relative;
   text-align: center;
@@ -394,8 +394,8 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-  background-color: #f5f2f0;
-  color: #E57C55;
+  background-color: #E57C55;
+  color: #ffffff;
 }
 
 .divCell {
@@ -513,7 +513,7 @@ select:focus {
   height: 100px;
   padding: 30px;
 }
-/* 
+/*
 .header-text {
   font-size: 50px;
 } */
