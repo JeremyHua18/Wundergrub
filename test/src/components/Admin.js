@@ -114,6 +114,7 @@ class Admin extends Component {
         if (type === 'admin') {
         return (
             <div>
+               <h5><Link className = "link" to="/home">Home</Link></h5>
                <h1 id='title'>Users</h1>
                <table id='users'>
                   <tr>
@@ -130,8 +131,7 @@ class Admin extends Component {
                   </tbody>
                </table>
                <br></br>
-               <Link className="link" to="/Logout">Logout Here</Link>
-		<div class="image"></div>
+               <Link className="link"to="/home">return home</Link>
 
             </div>
          )

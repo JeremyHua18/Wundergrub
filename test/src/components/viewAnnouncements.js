@@ -165,14 +165,30 @@ class viewAnnouncements extends React.Component {
         }).reverse()
     }
 
+    renderAdmin() {
+    	return(
+    	<div>
+    	    <button class="button4" onClick = {() => this.handleOpen()}>New Announcement</button>
+    	</div>
+    	)
+    }
+
 	render() {
+		const cookies = new Cookies();
+		var type = cookies.get('type');
+		var email = cookies.get('email');
+		if (type === '' || email === '') {
+			this.props.history.push("/");
+		}
 		return (
 		<div className="annoucement">
         <h5><Link className = "link" to="/home">Home</Link></h5>
         <h2>Annoucements</h2>
         	{this.newAnnouncement()}
         	{this.renderAnnouncement()}
-        	<button class="button4" onClick = {() => this.handleOpen()}>New Announcement</button>
+        	{(type === 'admin') &&
+				this.renderAdmin()
+			}
 			<table id='announcements' style={{minWidth: '100%'}}>
 	          <tr>
 	             <th>Date</th>
