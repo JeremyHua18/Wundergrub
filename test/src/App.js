@@ -12,15 +12,19 @@ import transaction_history from './components/transaction_history';
 import manage_account from './components/manage_account';
 import help from './components/help';
 import annoucement from './components/announcement';
-
-import ResetPassword from './components/resetPassword'
+import ResetPassword from './components/resetPassword';
+import manageHarvests from './components/manageHarvests';
+import manageTransactions from './components/manageTransactions';
+import viewAnnouncements from './components/viewAnnouncements';
+import Landing from "./components/landing";
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="container">
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/home" component={Home} />
         <Route path="/newtrans" component={NewTransaction} />
@@ -30,18 +34,20 @@ class App extends Component {
         <Route path="/account" component={manage_account} />
         <Route path="/help" component={help} />
         <Route path="/annoucement" component={annoucement} />
-
-
         <Route path="/admin" component={Admin}/>
         <Route path="/logout" component={Logout}/>
         <Route path="/resetpassword" component={ResetPassword}/>
-
-
-
-
+        <Route path="/manageHarvests" component={manageHarvests}/>
+        <Route path="/manageTransactions" component={manageTransactions}/>
+        <Route path="/viewAnnouncements" component={viewAnnouncements}/>
       </div>
     );
   }
 }
 
 export default App;
+
+
+
+
+
