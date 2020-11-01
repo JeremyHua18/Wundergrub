@@ -188,6 +188,11 @@ class viewAnnouncements extends React.Component {
         	{(type === 'admin') &&
 				this.renderAdmin()
 			}
+
+            {(type === 'internal') &&
+                this.renderAdmin()
+            }
+
 			<table id='announcements' style={{minWidth: '100%'}}>
 	          <tr>
 	             <th>Date</th>
