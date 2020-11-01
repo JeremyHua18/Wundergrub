@@ -104,7 +104,6 @@ class viewAnnouncements extends React.Component {
                   <h>New Announcement</h>
                   <span class="close" onClick = {(e) => this.handleClose(e)}>&times;</span>
                 </div>
-                <form name="announcementContent">
                 <div class="modal-body" name="body">
                   	<div>
 		                <div>
@@ -129,7 +128,6 @@ class viewAnnouncements extends React.Component {
                     <button class="button1" onClick = {() => this.handleSubmit()}>Submit</button>
                 </div>
                 </div>
-                </form>
               </div>
             </div>
         );
