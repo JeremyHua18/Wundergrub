@@ -1,5 +1,5 @@
 const db = require("../models");
-const Announcements = db.Announcements;
+const Announcements = db.announcements;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Announcement
