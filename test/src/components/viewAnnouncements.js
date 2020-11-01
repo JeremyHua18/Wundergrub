@@ -24,6 +24,7 @@ class viewAnnouncements extends React.Component {
 	            // console.log(result.data[i]);
 	            var temp = self.state.announcements;
 	            temp.push(result.data[i]);
+                self.setState({announcements: []});
 	            self.setState({announcements: temp});
 	        }
 
