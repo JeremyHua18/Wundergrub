@@ -18,7 +18,6 @@ import viewAnnouncements from './components/viewAnnouncements';
 
 import Landing from "./components/landing";
 import './App.css';
-import './Style.css'
 
 class App extends Component {
   render() {
