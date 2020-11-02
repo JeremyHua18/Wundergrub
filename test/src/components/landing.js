@@ -20,7 +20,6 @@ class Landing extends Component {
                         <a href="viewreport">Report</a>
                         <a href="Home">Why WUNDERGRUBS</a>
                         <a href="Home">Our Services</a>
-                        <a href="Home">Home</a>
                     </div>
                 <div class="logo"></div>
                 <br />
