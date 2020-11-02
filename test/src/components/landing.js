@@ -14,14 +14,14 @@ class Landing extends Component {
         const Header = () => {
             return (
                 <div className="header">
-                <div class="topnav">
-                <a class="active" href="Login"> Login</a>
-                <a href="Register">Register</a>
-                <a href="viewreport">Report</a>
-                <a href="Home">Why WUNDERGRUBS</a>
-                <a href="Home">Our Services</a>
-                <a href="Home">Home</a>
-                 </div>
+                    <div class="topnav">
+                        <a class="active" href="Login"> Login</a>
+                        <a href="Register">Register</a>
+                        <a href="viewreport">Report</a>
+                        <a href="Home">Why WUNDERGRUBS</a>
+                        <a href="Home">Our Services</a>
+                        <a href="Home">Home</a>
+                    </div>
                 <div class="logo"></div>
                 <br />
                 </div>
