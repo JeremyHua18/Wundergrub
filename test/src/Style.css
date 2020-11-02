@@ -2,7 +2,6 @@
 .Landing {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   width: 50%
 }
 
@@ -24,10 +23,7 @@
     height: 100px;
     padding: 30px;
   }
-  /* 
-  .header-text {
-    font-size: 50px;
-  } */
+
   .section {
     flex-flow: row wrap;
     width: 100%;
