@@ -35,7 +35,7 @@ class Admin extends Component {
             status: 'Approved'
         }
         UserDataService.update(username, data).then(response => {
-            WonderEmail.sendAccountApprovedNotification(username);
+            WonderEmail.sendAccountApprovedNotification({username: username});
             console.log(response.data);
             alert('User has been approved');
             window.location.reload(false);

@@ -54,7 +54,7 @@ exports.sendResetPasswordCode = (req, res) => {
     }
 
     res.send(data);
-}
+};
 
 exports.sendTransactionEdition = (req, res) => {
     var address = req.body.old_data.username;
@@ -136,7 +136,7 @@ exports.sendTransactionEdition = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
 exports.sendHarvestEdition = (req, res) => {
     var address = req.body.old_data.username;
@@ -200,7 +200,7 @@ exports.sendHarvestEdition = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
 exports.sendTransactionDenial = (req, res) => {
     var address = req.body.address;
@@ -246,7 +246,7 @@ exports.sendTransactionDenial = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
 exports.sendHarvestDenial = (req, res) => {
     var address = req.body.address;
@@ -292,10 +292,10 @@ exports.sendHarvestDenial = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
-exports.sendApproveAccount = (req, res) => {
-    if (!req.params.username) {
+exports.sendApproveAccountEmail = (req, res) => {
+    if (! req.body.username) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -314,11 +314,11 @@ exports.sendApproveAccount = (req, res) => {
 
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
-        to: req.params.username,
+        to: req.data.username,
         subject: 'Your Account on WUNDERGrubs is Approved!',
         text: "Hello, dear user \r\n" +
             "Congratulation, dear user. Your account on WUNDERGrubs is approved. Now, you can log into WUNDERGRubs with" +
-            "this E-mail address: " + req.params.username + " ."
+            "this E-mail address: " + req.data.username + " ."
     };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -328,9 +328,11 @@ exports.sendApproveAccount = (req, res) => {
             console.log('Email sent: ' + info.response);
         }
     });
-}
 
-exports.sendDenialAccount = (req, res) => {
+    res.send("Email sent");
+};
+
+exports.sendDenialAccountEamil = (req, res) => {
     if (!req.body.username) {
         res.status(400).send({
             message: "Content can not be empty!"
@@ -367,4 +369,6 @@ exports.sendDenialAccount = (req, res) => {
             console.log('Email sent: ' + info.response);
         }
     });
-}
+
+    res.send("Email sent");
+};

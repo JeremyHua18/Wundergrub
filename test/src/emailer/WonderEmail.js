@@ -26,11 +26,11 @@ class WonderEmail {
     }
 
     sendAccountApprovedNotification (address) {
-        return http.put(`/email/account/${address}`);
+        return http.post(`/email/account/approve`, address);
     }
 
     sendAccountDeniedNotification (args) {
-        return http.delete(`/email/account/denial`, args);
+        return http.post(`/email/account/denial`, args);
     }
 }
 
