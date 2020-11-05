@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 import UserDataService from "../services/user.service";
+import WonderEmail from "../emailer/WonderEmail";
 
 class Admin extends Component {
     constructor(props) {
@@ -37,6 +38,7 @@ class Admin extends Component {
             status: 'Approved'
         }
         UserDataService.update(username, data).then(response => {
+            WonderEmail.sendAccountApprovedNotification(username);
             console.log(response.data);
             alert('User has been approved');
             window.location.reload(false);
