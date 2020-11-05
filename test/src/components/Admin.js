@@ -26,12 +26,9 @@ class Admin extends Component {
 
     }
 
-
-
     update(e) {
         this.setState();
     }
-
 
     handleApprove(username) {
         var data = {
@@ -52,7 +49,14 @@ class Admin extends Component {
         var data = {
             status: 'Deleted'
         }
+        var cookies = new Cookies()
+        var editor = cookies.get('email');
         UserDataService.update(username, data).then(response => {
+            var email_data = {
+                username: username,
+                editor: editor
+            };
+            WonderEmail.sendAccountDeniedNotification(email_data);
             console.log(response.data);
             alert('User has been deleted');
             window.location.reload(false);
