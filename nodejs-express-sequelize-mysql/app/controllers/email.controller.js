@@ -294,3 +294,11 @@ exports.sendHarvestDenial = (req, res) => {
 
     res.send("Email sent");
 }
+
+exports.sendApproveAccount = (req, res) => {
+
+}
+
+exports.sendDenialAccount = (req, res) => {
+
+}
