@@ -27,7 +27,6 @@ exports.sendResetPasswordCode = (req, res) => {
         charset: 'alphanumeric'
     });
 
-    console.log(code)
 
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
@@ -296,9 +295,72 @@ exports.sendHarvestDenial = (req, res) => {
 }
 
 exports.sendApproveAccount = (req, res) => {
+    if (!req.params.username) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
 
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: Service,
+        auth: {
+            user: EmailAddress,
+            pass: PassWord
+        }
+    });
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: req.params.username,
+        subject: 'Your Account on WUNDERGrubs is Approved!',
+        text: "Hello, dear user \r\n" +
+            "Congratulation, dear user. Your account on WUNDERGrubs is approved. Now, you can log into WUNDERGRubs with" +
+            "this E-mail address: " + req.params.username + " ."
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 }
 
 exports.sendDenialAccount = (req, res) => {
+    if (!req.params.username) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
 
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: Service,
+        auth: {
+            user: EmailAddress,
+            pass: PassWord
+        }
+    });
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: req.params.username,
+        subject: 'Your Account on WUNDERGrubs is Declined!',
+        text: "Hello, dear user \r\n" +
+            "We are sorry to inform you that your account application on WUNDERGrubs"
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 }
