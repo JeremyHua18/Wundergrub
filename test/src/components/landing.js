@@ -14,15 +14,14 @@ class Landing extends Component {
         const Header = () => {
             return (
                 <div className="header">
-                <div class="topnav">
-                <a class="active" href="Login"> Login</a>
-                <a href="Register">Register</a>
-                <a href="viewreport">Report</a>
-                <a href="Home">Why WUNDERGRUBS</a>
-                <a href="Home">Our Services</a>
-                <a href="Home">Home</a>
-            </div>
-            <div class="logo"></div>
+                    <div class="topnav">
+                        <a class="active" href="Login"> Login</a>
+                        <a href="Register">Register</a>
+                        <a href="viewreport">Report</a>
+                        <a href="Home">Why WUNDERGRUBS</a>
+                        <a href="Home">Our Services</a>
+                    </div>
+                <div class="logo"></div>
                 <br />
                 </div>
         );
@@ -48,7 +47,6 @@ class Landing extends Component {
             <div class="main" id="body">
             <Header />
             <Card className="section"
-            // img="./Capture1.PNG"
             title="About the Company"
             description= "It all started when Akissi and Karim watched an episode of Anthony
             Bourdain: No Reservations | Haiti and saw communities still experiencing food
@@ -61,7 +59,6 @@ class Landing extends Component {
             />
 
             <Card className="section bg-grey"
-            // img="./Capture3.PNG"
             title="Our Values"
             description="We envision an insect-centric food system that
             empowers communities, restores and regenerates natural resources,
@@ -69,7 +66,6 @@ class Landing extends Component {
             />
 
             <Card className="section"
-            // img="./Capture1.PNG"
             title="Our Mission"
             description="We're on a mission to feed over 1 million people in the Southeast
             Region with the production of our nutritious, affordable and tasty protein

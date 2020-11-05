@@ -22,24 +22,28 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/home" component={Home} />
-        <Route path="/newtrans" component={NewTransaction} />
-        <Route path="/newHarvest" component={newHarvest} />
-        <Route path="/transhistory" component={transaction_history} />
-        <Route path="/viewreport" component={view_report} />
-        <Route path="/account" component={manage_account} />
-        <Route path="/help" component={help} />
-        <Route path="/viewAnnouncements" component={viewAnnouncements} />
-        <Route path="/admin" component={Admin}/>
-        <Route path="/logout" component={Logout}/>
-        <Route path="/resetpassword" component={ResetPassword}/>
-        <Route path="/manageHarvests" component={manageHarvests}/>
-        <Route path="/manageTransactions" component={manageTransactions}/>
+      <div class = 'app'>
+        <div class="Landing">
+          <Route exact path="/" component={Landing}/>
+        </div>
+        <div className="container">
+          <Route exact path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/home" component={Home} />
+          <Route path="/newtrans" component={NewTransaction} />
+          <Route path="/newHarvest" component={newHarvest} />
+          <Route path="/transhistory" component={transaction_history} />
+          <Route path="/viewreport" component={view_report} />
+          <Route path="/account" component={manage_account} />
+          <Route path="/help" component={help} />
+          <Route path="/viewAnnouncements" component={viewAnnouncements} />
+          <Route path="/admin" component={Admin}/>
+          <Route path="/logout" component={Logout}/>
+          <Route path="/resetpassword" component={ResetPassword}/>
+          <Route path="/manageHarvests" component={manageHarvests}/>
+          <Route path="/manageTransactions" component={manageTransactions}/>
 
+      </div>
       </div>
     );
   }
