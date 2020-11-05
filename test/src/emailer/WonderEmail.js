@@ -29,8 +29,8 @@ class WonderEmail {
         return http.put(`/email/account/${address}`);
     }
 
-    sendAccountDeniedNotification (address) {
-        return http.delete(`/email/account/${address}`);
+    sendAccountDeniedNotification (args) {
+        return http.delete(`/email/account/denial`, args);
     }
 }
 

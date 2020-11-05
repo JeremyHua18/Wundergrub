@@ -22,7 +22,7 @@ module.exports = app => {
     router.put("/account/:username", emailing.sendApproveAccount())
 
     // Send email for decline account
-    router.delete("/account/:username", emailing.sendDenialAccount())
+    router.post("/account/denial", emailing.sendDenialAccount())
 
     app.use('/api/email', router);
 };

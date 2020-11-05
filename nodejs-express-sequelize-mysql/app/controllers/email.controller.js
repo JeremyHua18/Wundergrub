@@ -331,7 +331,7 @@ exports.sendApproveAccount = (req, res) => {
 }
 
 exports.sendDenialAccount = (req, res) => {
-    if (!req.params.username) {
+    if (!req.body.username) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -350,10 +350,14 @@ exports.sendDenialAccount = (req, res) => {
 
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
-        to: req.params.username,
+        to: req.body.username,
         subject: 'Your Account on WUNDERGrubs is Declined!',
         text: "Hello, dear user \r\n" +
-            "We are sorry to inform you that your account application on WUNDERGrubs"
+            "We are sorry to inform you that your account application on WUNDERGrubs was declined by our administrator." +
+            "Therefore, you cannot log into WUNDERGrubs with this E-mail, " + req.body.username + ", anymore. \r\n If you have" +
+            "any question about why your account was declined, you can send E-mail to this address: " + req.body.editor + " ." +
+            "Or, you can try to register another account again.\r\n" +
+            "We are sorry for the inconvenience."
     };
 
     transporter.sendMail(mailOptions, function(error, info){
