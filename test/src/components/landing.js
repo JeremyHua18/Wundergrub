@@ -15,13 +15,13 @@ class Landing extends Component {
             return (
                 <div className="header">
                     <div class="topnav">
+                         <img class="logo"></img>
                         <a class="active" href="Login"> Login</a>
                         <a href="Register">Register</a>
                         <a href="viewreport">Report</a>
                         <a href="Home">Why WUNDERGRUBS</a>
                         <a href="Home">Our Services</a>
                     </div>
-                <div class="logo"></div>
                 <br />
                 </div>
         );
