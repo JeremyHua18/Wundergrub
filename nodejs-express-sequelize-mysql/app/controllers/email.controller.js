@@ -314,11 +314,11 @@ exports.sendApproveAccountEmail = (req, res) => {
 
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
-        to: req.data.username,
+        to: req.body.username,
         subject: 'Your Account on WUNDERGrubs is Approved!',
         text: "Hello, dear user \r\n" +
             "Congratulation, dear user. Your account on WUNDERGrubs is approved. Now, you can log into WUNDERGRubs with" +
-            "this E-mail address: " + req.data.username + " ."
+            "this E-mail address: " + req.body.username + " ."
     };
 
     transporter.sendMail(mailOptions, function(error, info){
