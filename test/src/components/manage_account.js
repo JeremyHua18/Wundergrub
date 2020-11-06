@@ -25,7 +25,7 @@ class manage_account extends Component {
 			/*
 			second clicking will redirect back to login page
 			*/
-			this.props.history.push("/");
+			this.props.history.push("/login");
 		}
 
 	}
