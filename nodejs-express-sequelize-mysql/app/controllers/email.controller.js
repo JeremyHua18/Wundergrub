@@ -27,7 +27,6 @@ exports.sendResetPasswordCode = (req, res) => {
         charset: 'alphanumeric'
     });
 
-    console.log(code)
 
     var mailOptions = {
         from: 'WUNDERGrubsAWS@gmail.com',
@@ -55,7 +54,7 @@ exports.sendResetPasswordCode = (req, res) => {
     }
 
     res.send(data);
-}
+};
 
 exports.sendTransactionEdition = (req, res) => {
     var address = req.body.old_data.username;
@@ -137,7 +136,7 @@ exports.sendTransactionEdition = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
 exports.sendHarvestEdition = (req, res) => {
     var address = req.body.old_data.username;
@@ -201,7 +200,7 @@ exports.sendHarvestEdition = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
 exports.sendTransactionDenial = (req, res) => {
     var address = req.body.address;
@@ -247,7 +246,7 @@ exports.sendTransactionDenial = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
 
 exports.sendHarvestDenial = (req, res) => {
     var address = req.body.address;
@@ -293,4 +292,83 @@ exports.sendHarvestDenial = (req, res) => {
     });
 
     res.send("Email sent");
-}
+};
+
+exports.sendApproveAccountEmail = (req, res) => {
+    if (! req.body.username) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: Service,
+        auth: {
+            user: EmailAddress,
+            pass: PassWord
+        }
+    });
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: req.body.username,
+        subject: 'Your Account on WUNDERGrubs is Approved!',
+        text: "Hello, dear user \r\n" +
+            "Congratulation, dear user. Your account on WUNDERGrubs is approved. Now, you can log into WUNDERGRubs with" +
+            "this E-mail address: " + req.body.username + " ."
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    res.send("Email sent");
+};
+
+exports.sendDenialAccountEamil = (req, res) => {
+    if (!req.body.username) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: Service,
+        auth: {
+            user: EmailAddress,
+            pass: PassWord
+        }
+    });
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: req.body.username,
+        subject: 'Your Account on WUNDERGrubs is Declined!',
+        text: "Hello, dear user \r\n" +
+            "We are sorry to inform you that your account application on WUNDERGrubs was declined by our administrator." +
+            "Therefore, you cannot log into WUNDERGrubs with this E-mail, " + req.body.username + ", anymore. \r\n If you have" +
+            "any question about why your account was declined, you can send E-mail to this address: " + req.body.editor + " ." +
+            "Or, you can try to register another account again.\r\n" +
+            "We are sorry for the inconvenience."
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    res.send("Email sent");
+};

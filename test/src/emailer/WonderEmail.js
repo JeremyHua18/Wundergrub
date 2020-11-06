@@ -24,6 +24,14 @@ class WonderEmail {
         var data = args;
         return http.post(`/email/harvest/denial`, data);
     }
+
+    sendAccountApprovedNotification (address) {
+        return http.post(`/email/account/approve`, address);
+    }
+
+    sendAccountDeniedNotification (args) {
+        return http.post(`/email/account/denial`, args);
+    }
 }
 
 export default new WonderEmail();

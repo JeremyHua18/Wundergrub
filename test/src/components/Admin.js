@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 import UserDataService from "../services/user.service";
+import WonderEmail from "../emailer/WonderEmail";
 
 class Admin extends Component {
     constructor(props) {
@@ -25,18 +26,16 @@ class Admin extends Component {
 
     }
 
-
-
     update(e) {
         this.setState();
     }
-
 
     handleApprove(username) {
         var data = {
             status: 'Approved'
         }
         UserDataService.update(username, data).then(response => {
+            WonderEmail.sendAccountApprovedNotification({username: username});
             console.log(response.data);
             alert('User has been approved');
             window.location.reload(false);
@@ -50,7 +49,14 @@ class Admin extends Component {
         var data = {
             status: 'Deleted'
         }
+        var cookies = new Cookies()
+        var editor = cookies.get('email');
         UserDataService.update(username, data).then(response => {
+            var email_data = {
+                username: username,
+                editor: editor
+            };
+            WonderEmail.sendAccountDeniedNotification(email_data);
             console.log(response.data);
             alert('User has been deleted');
             window.location.reload(false);
