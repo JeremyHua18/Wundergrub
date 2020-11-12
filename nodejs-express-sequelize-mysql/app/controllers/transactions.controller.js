@@ -157,3 +157,21 @@ exports.findAllPending = (req, res) => {
       });
     });
 };
+
+// Find a user's transaction history
+exports.findHistory = (req, res) => {
+
+  const username = req.params.username;
+
+  Transactions.findAll({ where: { username: username } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving pending Transactions."
+      });
+    });
+};
+

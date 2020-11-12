@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
       }
     },
     file_name: {
-      type: Sequelize.BLOB
+      type: Sequelize.STRING
     }
   });
 

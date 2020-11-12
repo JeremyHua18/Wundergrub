@@ -12,6 +12,9 @@ module.exports = app => {
   // Retrieve all pending Transactions
   router.get("/pending", transactions.findAllPending);
 
+  // Retrieve transaciton history
+  router.get("/history/:username", transactions.findHistory);
+
   // Retrieve a single Transaction with id
   router.get("/:id", transactions.findOne);
 

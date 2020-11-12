@@ -9,6 +9,10 @@ class TransactionDataService {
     return http.get("/transactions/pending");
   }
 
+  getHistory(username) {
+    return http.get(`/transactions/history/${username}`);
+  }
+
   get(id) {
     return http.get(`/transactions/${id}`);
   }
