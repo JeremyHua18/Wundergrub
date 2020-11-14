@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.8.9",
     "axios": "^0.20.0",
     "browserify-fs": "^1.0.0",
     "level-filesystem": "^1.2.0",
@@ -14,6 +16,10 @@
     "react": "^16.4.2",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.4.2",
+    "react-native-gesture-handler": "^1.8.0",
+    "react-native-reanimated": "^1.13.1",
+    "react-native-safe-area-context": "^3.1.9",
+    "react-native-screens": "^2.14.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5"
   },
