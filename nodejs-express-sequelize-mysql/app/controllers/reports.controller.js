@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Report
   const report = {
-    author: req.body.author,
+    recipient: req.body.recipient,
     file_name: req.body.file_name
   };
 
@@ -34,8 +34,8 @@ exports.create = (req, res) => {
 // Retrieve all Reports from the database.
 exports.findAll = (req, res) => {
 
-  const author = req.query.author;
-  var condition = author ? { author: { [Op.like]: `%${author}%` } } : null;
+  const recipient = req.query.recipient;
+  var condition = recipient ? { recipient: { [Op.like]: `%${recipient}%` } } : null;
 
   Reports.findAll({ where: condition })
     .then(data => {
