@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const Reports = sequelize.define("reports", {
-    author: {
+    recipient: {
       type: Sequelize.STRING,
       references: {
         model: 'users',
