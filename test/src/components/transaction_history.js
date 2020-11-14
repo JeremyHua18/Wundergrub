@@ -82,6 +82,12 @@ class transaction_history extends Component {
     }
 
     renderTransaction() {
+        if (typeof type === 'undefined' || typeof email === 'undefined') {
+            this.props.history.push("/");
+        }
+        if (type === '' || email === '') {
+            this.props.history.push("/");
+        }
         return (
             <div id="details" class="modal">
               <div class="modal-content">

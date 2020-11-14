@@ -58,7 +58,6 @@ class Login extends Component {
 							cookies.set('type', userAccountType, { path: '/' });
 							console.log(cookies.get('email'));
 							console.log(cookies.get('type'));
-							self.props.history.push("/home");
 							const autologout = new AutoLogout(self.props);
 						} else if (status === 'Deleted') {
 							alert("This account was deleted by the administrator or the user and is not able to be logged in.");
@@ -107,7 +106,8 @@ class Login extends Component {
 
 					<button onClick = {this.handleClick.bind(this)} ref={(button) => this.button = button} > Login </button>
 
-					<div className="if_logged_in" style={{display: type !== '' && type !== 'admin' && email !== '' ? "block": "none"}}>
+					<div className="if_logged_in" style={{display: type !== '' && type !== 'admin'
+					&& email !== '' && typeof type !== 'undefined' && typeof email !== 'undefined' ? "block": "none"}}>
 						<Link className="link" to="/home">I am already logged in...</Link>
 					</div>
 					<div className="if_logged_in" style={{display: type === 'admin' && email !== '' ? "block": "none"}}>

@@ -45,11 +45,6 @@ class NewTransaction extends Component {
         } else if (!Number(weight)) {
 			alert("Weight must be a number");
 		} else {
-			const fs = require('browserify-fs')
-			// const path = require('path');
-			// const filePath = path.join(__dirname, '/output.json');
-			// console.log(filePath);
-			console.log( __dirname);
 			const cookies = new Cookies();
 			var data = {
 				username: cookies.get('email'),
@@ -87,6 +82,9 @@ class NewTransaction extends Component {
 		const cookies = new Cookies();
 		var type = cookies.get('type');
 		var email = cookies.get('email');
+		if (typeof type === 'undefined' || typeof email === 'undefined') {
+            this.props.history.push("/");
+        }
 		if (type === '' || email === '') {
 			this.props.history.push("/");
 		}
