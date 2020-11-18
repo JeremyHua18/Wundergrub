@@ -59,6 +59,7 @@ class Login extends Component {
 							console.log(cookies.get('email'));
 							console.log(cookies.get('type'));
 							const autologout = new AutoLogout(self.props);
+							self.props.history.push("/home");
 						} else if (status === 'Deleted') {
 							alert("This account was deleted by the administrator or the user and is not able to be logged in.");
 						} else if (status === 'Pending') {
