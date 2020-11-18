@@ -9,6 +9,9 @@ module.exports = app => {
   // Retrieve all Reports
   router.get("/", reports.findAll);
 
+  // Retrieve all Reports for a user
+  router.get("/user/:username", reports.findUser);
+
   // Retrieve a single Report with id
   router.get("/:id", reports.findOne);
 

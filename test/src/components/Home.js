@@ -48,7 +48,7 @@ class Home extends Component {
 					<Link className="linkhomepg"to="/newtrans">New Transaction</Link>
 					<Link className="linkhomepg"to="/newHarvest">New Harvest</Link>
 					<Link className="linkhomepg"to="/transhistory">Transaction History</Link>
-					<Link className="linkhomepg"to="/viewreport">View Report</Link>
+					<Link className="linkhomepg"to="/viewreport">View Reports</Link>
 					<Link className="linkhomepg"to="/account">Manage Account</Link>
 					<Link className="linkhomepg"to="/help">Help Center</Link>
 

@@ -341,10 +341,14 @@ button {
   color: white;
   position: relative;
   text-align: center;
+  word-wrap: break-word;
 }
 
 /* Modal Body */
-.modal-body {padding: 2px 16px;}
+.modal-body {
+  padding: 2px 16px;
+  word-wrap: break-word;
+}
 
 /* Modal Footer */
 .modal-footer {
