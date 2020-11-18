@@ -49,28 +49,55 @@ class view_report extends Component {
 	}
 
 	handleOpen(fileAddress) {
-
+		var details = document.getElementById("details");
+		details.style.display = "block";
 	}
 
 	renderData() {
 		console.log(this.state.reports.length +"last");
 		if (this.state.reports.length > 0) {
 			return (
-				<table id='users'>
-					<tr>
-						<th>Index</th>
-						<th>Report</th>
-						<th>Date</th>
-						<th>View Report</th>
-					</tr>
-					<tbody>
-						{this.renderTableData()}
-					</tbody>
-				</table>
+				<div>
+					<div>{this.renderPopup()}</div>
+					<table id='users'>
+						<tr>
+							<th>Index</th>
+							<th>Report</th>
+							<th>Date</th>
+							<th>View Report</th>
+						</tr>
+						<tbody>
+							{this.renderTableData()}
+						</tbody>
+					</table>
+				</div>
 			)
 		} else {
 			return (<h4>You have no availabe report now.</h4>);
 		}
+	}
+
+	renderPopup() {
+		return (
+			<div id="details" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2>Report</h2>
+						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
+					</div>
+
+					<div class="modal-body">
+						file should be here
+						<div>
+							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
+							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
+							<button class="button3" onClick = {() => this.sharingLink()}>Linking</button>
+							<button class="button3" onClick = {() => this.handleClose()}>Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
 	}
 
 	render() {
@@ -91,6 +118,25 @@ class view_report extends Component {
 			</div>
 		);
 	}
+
+	downloadFile() {
+
+	}
+
+	sharingEmail() {
+
+	}
+
+	sharingLink() {
+
+	}
+
+	handleClose() {
+		var details = document.getElementById("details");
+		this.setState({editing: false});
+		details.style.display = "none";
+	}
+
 }
 
 export default view_report;
