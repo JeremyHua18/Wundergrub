@@ -54,7 +54,7 @@ exports.findOne = (req, res) => {
 
   const id = req.params.id;
 
-  Reports.findByPk(id)
+  Reports.findAll( {where: {recipient: id}})
     .then(data => {
       res.send(data);
     })

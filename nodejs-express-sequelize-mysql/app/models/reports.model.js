@@ -10,6 +10,14 @@ module.exports = (sequelize, Sequelize) => {
     file_name: {
       type: Sequelize.STRING
     }
+  },
+  {
+    indexes: [
+      {
+        unique: true,
+        fields: ['recipient', 'file_name']
+      }
+    ]
   });
 
   return Reports;
