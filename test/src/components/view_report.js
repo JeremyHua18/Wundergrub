@@ -132,8 +132,8 @@ class view_report extends Component {
 
 
 		AWS.config = new AWS.Config();
-		AWS.config.accessKeyId = "AKIAIF2GKPWOBNV6YFEA";
-		AWS.config.secretAccessKey = "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";
+		AWS.config.accessKeyId = "AKIAI3JIGBTRQL22EWEQ";
+		AWS.config.secretAccessKey = "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";
 		AWS.config.region = "us-east-1";
 
 		var s3 = new AWS.S3();
