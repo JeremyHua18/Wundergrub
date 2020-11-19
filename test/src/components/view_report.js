@@ -10,7 +10,8 @@ class view_report extends Component {
 		this.state = {
 			reports: [],
 			username: '',
-			report: null
+			report: '',
+			source: ''
 		}
 
 		const cookies = new Cookies();
@@ -49,6 +50,8 @@ class view_report extends Component {
 	}
 
 	handleOpen(fileAddress) {
+		this.state.report = fileAddress;
+
 		var details = document.getElementById("details");
 		details.style.display = "block";
 	}
@@ -85,9 +88,8 @@ class view_report extends Component {
 						<h2>Report</h2>
 						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
 					</div>
-
 					<div class="modal-body">
-						file should be here
+						<embed src="http://web.lancastercountryday.org/books/latin/OxfordLatin.pdf" width="100%" height="1000px"/>
 						<div>
 							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
 							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
