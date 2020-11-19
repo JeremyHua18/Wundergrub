@@ -6,5 +6,8 @@ module.exports = app => {
   // Retrieve presigned URL
   router.post("/", download.getURL);
 
+  // get file
+  router.post("/file/", download.getURL);
+
   app.use('/api/download', router);
 };
