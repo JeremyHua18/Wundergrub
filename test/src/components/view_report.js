@@ -122,7 +122,35 @@ class view_report extends Component {
 	}
 
 	downloadFile() {
+		//s3://wundergrubsreports/jfan75@gatech.edu/testreport.csv
+		const AWS = require('aws-sdk');
+		const fs = require('fs');
+		const filePath = './downloaded.json';
+		const bucketName = 'wundergrubsreports';
+		const key = 'jfan75@gatech.edu/testreport.csv';
 
+
+
+		AWS.config = new AWS.Config();
+		AWS.config.accessKeyId = "AKIAIF2GKPWOBNV6YFEA";
+		AWS.config.secretAccessKey = "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";
+		AWS.config.region = "us-east-1";
+
+		var s3 = new AWS.S3();
+
+		const downloadFile = (filePath, bucketName, key) => {
+			const params = {
+				Bucket: bucketName,
+				Key: key
+			};
+			s3.getObject(params, (err, data) => {
+				if (err) console.error(err);
+				fs.writeFileSync(filePath, data.Body.toString());
+				//console.log(`${filePath} has been created!`);
+			});
+		};
+
+		downloadFile(filePath, bucketName, key);
 	}
 
 	sharingEmail() {
