@@ -26,16 +26,18 @@ exports.getURL = (req, res) => {
 };
 
 exports.getFile = (req, res) => {
-  ar s3 = new AWS.S3();
+  var s3 = new AWS.S3();
   const bucket = req.body.bucket;
   const key = req.body.key;
+  var info = "";
   try {
     var params = {Bucket: bucket, Key: key};
-    s3.getObject(params, (err, data) => {
-      if (err) console.error(err);
-      res.send({fileContent: data});
+    info = {params: params};
+    s3.getObject( params, (err, data) => {
+      res.send(data);
+
     });
   } catch(err) {
-    res.send(err.message);
+    res.send({error: err, data: info});
   }
 };

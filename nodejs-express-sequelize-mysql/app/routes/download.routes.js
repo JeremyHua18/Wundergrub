@@ -7,7 +7,7 @@ module.exports = app => {
   router.post("/", download.getURL);
 
   // get file
-  router.post("/file/", download.getURL);
+  router.post("/file/", download.getFile);
 
   app.use('/api/download', router);
 };

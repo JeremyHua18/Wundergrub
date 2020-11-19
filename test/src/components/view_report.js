@@ -18,7 +18,8 @@ class view_report extends Component {
 			file_name: '',
 			title: '',
 			url: '',
-			emailTo: ''
+			emailTo: '',
+			nurl: '',
 		}
 
 		const cookies = new Cookies();
@@ -65,12 +66,26 @@ class view_report extends Component {
 			bucket: bucket,
 			key: key
 		}
+		var self = this;
 		DownloadDataService.getFileContent(data)
 			.then((res) => {
-				console.log(res.data);
-				var newUrls = window.URL.createObjectURL(res.data);
-				var ele = document.getElementById("embed-element");
-				ele.setAttribute("src", newUrls);
+				console.log(res);
+				// var newblob = new Blob(res.data.fileContent, "text/csv");
+				console.log(typeof res);
+				var file = new File(res.data.Body.data, key, {
+					type: res.data.ContentType,
+				});
+				// new F
+				console.log(file);
+				//res.data.fileContent.pipe(file);
+				var newUrls = window.URL.createObjectURL(file).substring(5);
+				// fs.writeFileSync(newUrls, res.data.fileContent.Body.toString());
+				// var ele = document.getElementById("embed-element");
+				console.log(newUrls);
+				self.setState({nurl: newUrls});
+
+				// ele.setAttribute("src", newUrls.substring(5));
+				// //console.log(ele.getAttribute("src"));
 			});
 
 		var details = document.getElementById("details");
@@ -110,7 +125,7 @@ class view_report extends Component {
 						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
 					</div>
 					<div class="modal-body">
-						<embed id="embed-element" src="http://web.lancastercountryday.org/books/latin/OxfordLatin.pdf" width="100%" height="1000px"/>
+						<embed id="embed-element" src={this.state.nurl} width="100%" height="1000px"/>
 						<div>
 							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
 							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
