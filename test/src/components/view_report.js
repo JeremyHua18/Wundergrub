@@ -90,6 +90,8 @@ class view_report extends Component {
 
 		var details = document.getElementById("details");
 		details.style.display = "block";
+		var emailing = document.getElementById("enter-email");
+		emailing.style.display = "none";
 	}
 
 	renderData() {
@@ -125,12 +127,17 @@ class view_report extends Component {
 						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
 					</div>
 					<div class="modal-body">
-						<embed id="embed-element" src={this.state.nurl} width="100%" height="1000px"/>
+						<embed id="embed-element" src={this.state.nurl} width="100%" height="500px"/>
 						<div>
 							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
 							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
 							<button class="button3" onClick = {() => this.sharingLink()}>Linking</button>
 							<button class="button3" onClick = {() => this.handleClose()}>Close</button>
+						</div>
+						<div id="enter-email">
+							<input type="text" id="email-input" name="email-input"></input>
+							<button class="button3" onClick = {() => this.sendEmail()}>Send</button>
+							<button class="button3" onClick = {() => this.closeSharing()}>Cancel</button>
 						</div>
 					</div>
 				</div>
@@ -138,26 +145,11 @@ class view_report extends Component {
 		);
 	}
 
-
 	update(e) {
         let name = e.target.name;
         let value = e.target.value;
         this.setState({[name]: value});
     }
-
-	handleDownload(report) {
-		const bucket = report.file_name.split("/")[2];
-		const key = report.file_name.split(bucket + "/")[1];
-		var data = {
-			bucket: bucket,
-			key: key
-		}
-		DownloadDataService.getURL(data)
-			.then((res) => {
-        		console.log(res.data);
-        		var win = window.open(res.data.url, '_blank');
-        	});
-	}
 
 	render() {
 		const cookies = new Cookies();
@@ -196,7 +188,8 @@ class view_report extends Component {
 	}
 
 	sharingEmail() {
-
+		var details = document.getElementById("enter-email");
+		details.style.display = "block";
 	}
 
 	sharingLink() {
