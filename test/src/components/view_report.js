@@ -202,6 +202,11 @@ class view_report extends Component {
 		details.style.display = "none";
 	}
 
+	closeSharing() {
+		var details = document.getElementById("enter-email");
+		details.style.display = "none";
+	}
+
 }
 
 export default view_report;
