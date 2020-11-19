@@ -407,5 +407,5 @@ exports.sendShareEmail = (req, res) => {
         }
     });
 
-    res.send("ok");
+    res.send({feedback: "ok"});
 };

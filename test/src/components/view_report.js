@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FileViewer from 'react-file-viewer';
 import { Link } from 'react-router-dom';
 
 import Cookies from 'universal-cookie';
@@ -16,10 +17,12 @@ class view_report extends Component {
 			fullname: '',
 			username: '',
 			report: '',
+			type: '',
 			source: '',
 			recipient: '',
 			file_name: '',
-			nurl: '',
+			url: '',
+			content: ''
 		}
 
 		const cookies = new Cookies();
@@ -74,23 +77,20 @@ class view_report extends Component {
 			key: key
 		}
 		var self = this;
+		DownloadDataService.getURL(data)
+			.then((res) => {
+				console.log(res.data.url);
+				self.setState({url: res.data.url});
+
+				// ele.setAttribute("src", newUrls.substring(5));
+				// //console.log(ele.getAttribute("src"));
+			});
+
 		DownloadDataService.getFileContent(data)
 			.then((res) => {
-				console.log(res);
-				// var newblob = new Blob(res.data.fileContent, "text/csv");
-				console.log(typeof res);
-				var file = new File(res.data.Body.data, key, {
-					type: res.data.ContentType,
-				});
-				// new F
-				console.log(file);
-				//res.data.fileContent.pipe(file);
-				var newUrls = window.URL.createObjectURL(file).substring(5);
-				// fs.writeFileSync(newUrls, res.data.fileContent.Body.toString());
-				// var ele = document.getElementById("embed-element");
-				console.log(newUrls);
-				self.setState({nurl: newUrls});
-
+				console.log(res.data);
+				self.setState({type: res.data.ContentType});
+				self.setState({content: res.data.Body});
 				// ele.setAttribute("src", newUrls.substring(5));
 				// //console.log(ele.getAttribute("src"));
 			});
@@ -99,6 +99,8 @@ class view_report extends Component {
 		details.style.display = "block";
 		var emailing = document.getElementById("enter-email");
 		emailing.style.display = "none";
+		var details = document.getElementById("url-div");
+		details.innerText = "";
 	}
 
 	renderData() {
@@ -134,7 +136,10 @@ class view_report extends Component {
 						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
 					</div>
 					<div class="modal-body">
-						<embed id="embed-element" src={this.state.nurl} width="100%" height="500px"/>
+						<FileViewer id="embed-element"
+							fileType={this.state.type.substring(this.state.type.lastIndexOf("/") + 1)}
+							filePath={this.state.url}
+							width="100%" height="500px"/>
 						<div>
 							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
 							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
@@ -145,6 +150,8 @@ class view_report extends Component {
 							<input type="text" id="email-input" name="email-input"></input>
 							<button class="button3" onClick = {() => this.sendEmail()}>Send</button>
 							<button class="button3" onClick = {() => this.closeSharing()}>Cancel</button>
+						</div>
+						<div id="url-div" width="80%" height="50px">
 						</div>
 					</div>
 				</div>
@@ -200,12 +207,12 @@ class view_report extends Component {
 	}
 
 	sharingLink() {
-
+		var details = document.getElementById("url-div");
+		details.innerText = this.state.url;
 	}
 
 	handleClose() {
 		var details = document.getElementById("details");
-		this.setState({editing: false});
 		details.style.display = "none";
 	}
 
@@ -230,23 +237,21 @@ class view_report extends Component {
 			}
 			var userFullName = this.state.nickname;
 			var userEmail = this.state.username;
-			DownloadDataService.getURL(data)
-				.then((res) => {
-					var info = {
-						address: targetAddress,
-						sharable: res.data.url,
-						from: userEmail,
-						name: userFullName
-					}
-					var emailSent = WonderEmail.sendSharedReport(info);
-					emailSent.then((result) => {
-						if (result.data === "ok") {
-							alert("E-mail has been sent.");
-						} else {
-							alert("E-mail has not been sent.")
-						}
-					})
-				});
+			var info = {
+				address: targetAddress,
+				sharable: this.state.url,
+				from: userEmail,
+				name: userFullName
+			}
+			var emailSent = WonderEmail.sendSharedReport(info);
+			emailSent.then((result) => {
+				console.log(result)
+				if (result.data.feedback === "ok") {
+					alert("E-mail has been sent.");
+				} else {
+					alert("E-mail has not been sent.")
+				}
+			})
 		}
 	}
 
