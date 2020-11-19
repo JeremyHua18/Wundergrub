@@ -130,27 +130,6 @@ class view_report extends Component {
         	});
 	}
 
-	renderDetails(report) {
-		const bucket = report.file_name.split("/")[2];
-		const key = report.file_name.split(bucket + "/")[1];
-		const title = report.file_name.split(report.recipient + "/")[1];
-		var data = {
-			bucket: bucket,
-			key: key
-		}
-		DownloadDataService.getURL(data)
-			.then((res) => {
-				this.setState({
-					title: title,
-					url: res.data.url
-				});
-				var details = document.getElementById("details");
-				details.style.display = "block";
-			});
-		console.log(this.state)
-
-	}
-
 	render() {
 		const cookies = new Cookies();
 		var type = cookies.get('type');
@@ -163,7 +142,7 @@ class view_report extends Component {
 		}
 		return (
 			<div className="report">
-                <h5><Link className = "link" to="/home">Home</Link></h5>\
+                <h5><Link className = "link" to="/home">Home</Link></h5>
                 <h2>Report</h2>
 				{this.renderData()}
 				<Link className="link"to="/home">return home</Link>
@@ -174,35 +153,17 @@ class view_report extends Component {
 	}
 
 	downloadFile() {
-		//s3://wundergrubsreports/jfan75@gatech.edu/testreport.csv
-		const AWS = require('aws-sdk');
-		const fs = require('fs');
-		const filePath = './downloaded.json';
-		const bucketName = 'wundergrubsreports';
-		const key = 'jfan75@gatech.edu/testreport.csv';
-
-
-
-		AWS.config = new AWS.Config();
-		AWS.config.accessKeyId = "AKIAI3JIGBTRQL22EWEQ";
-		AWS.config.secretAccessKey = "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";
-		AWS.config.region = "us-east-1";
-
-		var s3 = new AWS.S3();
-
-		const downloadFile = (filePath, bucketName, key) => {
-			const params = {
-				Bucket: bucketName,
-				Key: key
-			};
-			s3.getObject(params, (err, data) => {
-				if (err) console.error(err);
-				fs.writeFileSync(filePath, data.Body.toString());
-				//console.log(`${filePath} has been created!`);
-			});
-		};
-
-		downloadFile(filePath, bucketName, key);
+		const bucket = this.state.report.split("/")[2];
+		const key = this.state.report.split(bucket + "/")[1];
+		var data = {
+			bucket: bucket,
+			key: key
+		}
+		DownloadDataService.getURL(data)
+			.then((res) => {
+				console.log(res.data);
+				var win = window.open(res.data.url, '_blank');
+		});
 	}
 
 	sharingEmail() {
