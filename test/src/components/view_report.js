@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import ReportDataService from "../services/report.service";
 import DownloadDataService from "../services/download.service";
+import WonderEmail from "../emailer/WonderEmail";
+import UserDataService from "../services/user.service";
 
 
 class view_report extends Component {
@@ -11,14 +13,12 @@ class view_report extends Component {
 		super(props);
 		this.state = {
 			reports: [],
+			fullname: '',
 			username: '',
 			report: '',
 			source: '',
 			recipient: '',
 			file_name: '',
-			title: '',
-			url: '',
-			emailTo: '',
 			nurl: '',
 		}
 
@@ -36,6 +36,13 @@ class view_report extends Component {
 				temp.push(result.data[i]);
 				self.setState({reports: temp});
 			}
+		});
+
+		var userInfo = UserDataService.get(this.state.username);
+		userInfo.then(function (result) {
+			self.setState({nickname: result.data.fullname})
+			console.log(result);
+			console.log("read above");
 		});
 	}
 
@@ -205,6 +212,42 @@ class view_report extends Component {
 	closeSharing() {
 		var details = document.getElementById("enter-email");
 		details.style.display = "none";
+	}
+
+	sendEmail() {
+		var details = document.getElementById("email-input");
+		var targetAddress = details.value;
+
+		const expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i
+		if (!expression.test(String(targetAddress).toLowerCase())) {
+			alert("Your E-mail address is not valid.");
+		} else {
+			const bucket = this.state.report.split("/")[2];
+			const key = this.state.report.split(bucket + "/")[1];
+			var data = {
+				bucket: bucket,
+				key: key
+			}
+			var userFullName = this.state.nickname;
+			var userEmail = this.state.username;
+			DownloadDataService.getURL(data)
+				.then((res) => {
+					var info = {
+						address: targetAddress,
+						sharable: res.data.url,
+						from: userEmail,
+						name: userFullName
+					}
+					var emailSent = WonderEmail.sendSharedReport(info);
+					emailSent.then((result) => {
+						if (result.data === "ok") {
+							alert("E-mail has been sent.");
+						} else {
+							alert("E-mail has not been sent.")
+						}
+					})
+				});
+		}
 	}
 
 }

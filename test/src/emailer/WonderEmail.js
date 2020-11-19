@@ -32,6 +32,10 @@ class WonderEmail {
     sendAccountDeniedNotification (args) {
         return http.post(`/email/account/denial`, args);
     }
+
+    sendSharedReport(args) {
+        return http.post(`/email/share`, args);
+    }
 }
 
 export default new WonderEmail();
