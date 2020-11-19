@@ -108,10 +108,12 @@ class Admin extends Component {
     }
 
 	render() {
-
         const cookies = new Cookies();
         var type = cookies.get('type');
         var email = cookies.get('email');
+        if (typeof type === 'undefined' || typeof email === 'undefined') {
+            this.props.history.push("/");
+        }
         if (type === '' || email === '') {
             this.props.history.push("/");
         } else if (type !== 'admin') {

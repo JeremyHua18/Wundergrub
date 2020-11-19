@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import Cookies from 'universal-cookie';
-import ReportDataService from "../services/report.service"
+import ReportDataService from "../services/report.service";
+import DownloadDataService from "../services/download.service";
 
 
 class view_report extends Component {
@@ -11,7 +13,12 @@ class view_report extends Component {
 			reports: [],
 			username: '',
 			report: '',
-			source: ''
+			source: '',
+			recipient: '',
+			file_name: '',
+			title: '',
+			url: '',
+			emailTo: ''
 		}
 
 		const cookies = new Cookies();
@@ -102,20 +109,65 @@ class view_report extends Component {
 		);
 	}
 
+
+	update(e) {
+        let name = e.target.name;
+        let value = e.target.value;
+        this.setState({[name]: value});
+    }
+
+	handleDownload(report) {
+		const bucket = report.file_name.split("/")[2];
+		const key = report.file_name.split(bucket + "/")[1];
+		var data = {
+			bucket: bucket,
+			key: key
+		}
+		DownloadDataService.getURL(data)
+			.then((res) => {
+        		console.log(res.data);
+        		var win = window.open(res.data.url, '_blank');
+        	});
+	}
+
+	renderDetails(report) {
+		const bucket = report.file_name.split("/")[2];
+		const key = report.file_name.split(bucket + "/")[1];
+		const title = report.file_name.split(report.recipient + "/")[1];
+		var data = {
+			bucket: bucket,
+			key: key
+		}
+		DownloadDataService.getURL(data)
+			.then((res) => {
+				this.setState({
+					title: title,
+					url: res.data.url
+				});
+				var details = document.getElementById("details");
+				details.style.display = "block";
+			});
+		console.log(this.state)
+
+	}
+
 	render() {
 		const cookies = new Cookies();
 		var type = cookies.get('type');
 		var email = cookies.get('email');
+		if (typeof type === 'undefined' || typeof email === 'undefined') {
+            this.props.history.push("/");
+        }
 		if (type === '' || email === '') {
 			this.props.history.push("/");
 		}
 		return (
 			<div className="report">
-                <h5><Link className = "link" to="/home">Home</Link></h5>
+                <h5><Link className = "link" to="/home">Home</Link></h5>\
                 <h2>Report</h2>
 				{this.renderData()}
 				<Link className="link"to="/home">return home</Link>
-							<div class="image"></div>
+				<div class="image"></div>
 
 			</div>
 		);

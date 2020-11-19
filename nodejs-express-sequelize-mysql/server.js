@@ -41,6 +41,8 @@ require("./app/routes/announcements.routes")(app);
 require("./app/routes/reports.routes")(app);
 
 require("./app/routes/email.routes")(app);
+require("./app/routes/download.routes")(app);
+
 
 
 // set port, listen for requests

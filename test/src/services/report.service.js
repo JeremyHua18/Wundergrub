@@ -9,6 +9,10 @@ class ReportDataService {
     return http.get(`/reports/${id}`);
   }
 
+  getUser(id) {
+    return http.get(`/reports/user/${id}`);
+  }
+
   create(data) {
     return http.post("/reports", data);
   }
