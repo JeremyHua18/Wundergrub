@@ -59,6 +59,20 @@ class view_report extends Component {
 	handleOpen(fileAddress) {
 		this.state.report = fileAddress;
 
+		const bucket = this.state.report.split("/")[2];
+		const key = this.state.report.split(bucket + "/")[1];
+		var data = {
+			bucket: bucket,
+			key: key
+		}
+		DownloadDataService.getFileContent(data)
+			.then((res) => {
+				console.log(res.data);
+				var newUrls = window.URL.createObjectURL(res.data);
+				var ele = document.getElementById("embed-element");
+				ele.setAttribute("src", newUrls);
+			});
+
 		var details = document.getElementById("details");
 		details.style.display = "block";
 	}
@@ -96,7 +110,7 @@ class view_report extends Component {
 						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
 					</div>
 					<div class="modal-body">
-						<embed src="http://web.lancastercountryday.org/books/latin/OxfordLatin.pdf" width="100%" height="1000px"/>
+						<embed id="embed-element" src="http://web.lancastercountryday.org/books/latin/OxfordLatin.pdf" width="100%" height="1000px"/>
 						<div>
 							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
 							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
