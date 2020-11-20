@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 
 class help extends Component {
@@ -33,7 +34,16 @@ class help extends Component {
         ta.style.height = ta.scrollHeight + "px";
     }
 
-	  render() {
+	render() {
+        const cookies = new Cookies();
+        var type = cookies.get('type');
+        var email = cookies.get('email');
+        if (typeof type === 'undefined' || typeof email === 'undefined') {
+            this.props.history.push("/");
+        }
+        if (type === '' || email === '') {
+            this.props.history.push("/");
+        }
 		return (
 			<div className="help">
 				<h5><Link className = "link" to="/home">Home</Link></h5>

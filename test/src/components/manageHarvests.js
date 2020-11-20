@@ -215,6 +215,15 @@ class manageHarvests extends Component {
     }
 
     render() {
+        const cookies = new Cookies();
+        var type = cookies.get('type');
+        var email = cookies.get('email');
+        if (typeof type === 'undefined' || typeof email === 'undefined') {
+            this.props.history.push("/");
+        }
+        if (type === '' || email === '') {
+            this.props.history.push("/");
+        }
         return (
             <div className="manageHarvests">
                 <h5><Link className = "link" to="/home">Home</Link></h5>

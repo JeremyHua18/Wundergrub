@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const Service = 'gmail';
-const EmailAddress = 'WUNDERGrubsAWS@gmail.com';
-const PassWord = 'Drmv+8yJ';
+const EmailAddress = process.env.EMAIL_ADDRESS;
+const PassWord = process.env.PASSWORD;
 
 exports.sendResetPasswordCode = (req, res) => {
     if (!req.params.email) {
@@ -371,4 +373,41 @@ exports.sendDenialAccountEamil = (req, res) => {
     });
 
     res.send("Email sent");
+};
+
+exports.sendShareEmail = (req, res) => {
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: Service,
+        auth: {
+            user: EmailAddress,
+            pass: PassWord
+        }
+    });
+
+    var mailOptions = {
+        from: 'WUNDERGrubsAWS@gmail.com',
+        to: req.body.address,
+        subject: 'Share on WUNDERGRubs',
+        text: "Hello, \r\n" +
+            "You are receiving this email because our user " + req.body.name + " (E-mail: " + req.body.from + " ) shares " +
+            "his/her information with you, and the following is the shared content.",
+        attachments: [
+            {
+                filename: 'text1.txt',
+                path: req.body.sharable
+            }
+        ]
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            res.send(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    res.send({feedback: "ok"});
 };

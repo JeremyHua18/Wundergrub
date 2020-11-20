@@ -24,5 +24,7 @@ module.exports = app => {
     // Send email for decline account
     router.post("/account/denial", emailing.sendDenialAccountEamil)
 
+    router.post("/share", emailing.sendShareEmail)
+
     app.use('/api/email', router);
 };

@@ -54,7 +54,7 @@ exports.findOne = (req, res) => {
 
   const id = req.params.id;
 
-  Reports.findByPk(id)
+  Reports.findAll( {where: {recipient: id}})
     .then(data => {
       res.send(data);
     })
@@ -64,6 +64,24 @@ exports.findOne = (req, res) => {
       });
     });
 };
+
+// Find all of one user's reports
+exports.findUser = (req, res) => {
+
+  const username = req.params.username;
+
+  Reports.findAll({ where: { recipient: username } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving this user's Reports."
+      });
+    });
+};
+
 
 // Update a Report by the id in the request
 exports.update = (req, res) => {
