@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "ec2-18-207-128-58.compute-1.amazonaws.com:3000"
+  origin: "http://ec2-18-207-128-58.compute-1.amazonaws.com:3000"
 };
 
 // CORS Options
