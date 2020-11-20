@@ -148,7 +148,7 @@ class view_report extends Component {
 							<button class="button3" onClick = {() => this.handleClose()}>Close</button>
 						</div>
 						<div id="enter-email">
-							<input type="text" id="email-input" name="email-input"></input>
+							<input type="email" id="email-input" name="email-input"></input>
 							<button class="button3" onClick = {() => this.sendEmail()}>Send</button>
 							<button class="button3" onClick = {() => this.closeSharing()}>Cancel</button>
 						</div>

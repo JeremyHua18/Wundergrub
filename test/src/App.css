@@ -89,6 +89,16 @@ input[type='text'] {
   text-align: center;
 }
 
+input[type='email'] {
+  background-color: #e6e6e6;
+  color: #827ffe;
+  margin-bottom: 20px;
+  border: none;
+  width: 100%;
+  padding: 0px 0px;
+  text-align: center;
+}
+
 input[type='edit'] {
   background-color: #e6e6e6;
   color: #827ffe;

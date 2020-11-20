@@ -1,12 +1,12 @@
 var AWS = require('aws-sdk');
 
 // Replace these with environment variables once we get fully migrated
-AWS.config.update(
-  {
-    accessKeyId: "AKIAI3JIGBTRQL22EWEQ",
-    secretAccessKey: "6soMeGorof5N0OD/A/sFynUu/SKsPoy24nu/AL7E",
-  }
-);
+// AWS.config.update(
+//   {
+//     accessKeyId: "",
+//     secretAccessKey: "",
+//   }
+// );
 
 // Return a presigned URL for the object
 exports.getURL = (req, res) => {
