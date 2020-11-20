@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const Service = 'gmail';
-const EmailAddress = 'WUNDERGrubsAWS@gmail.com';
-const PassWord = 'Drmv+8yJ';
+const EmailAddress = process.env.EMAIL_ADDRESS;
+const PassWord = process.env.PASSWORD;
 
 exports.sendResetPasswordCode = (req, res) => {
     if (!req.params.email) {

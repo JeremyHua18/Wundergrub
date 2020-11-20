@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 module.exports = {
   HOST: "wundergrubs.c32icb01p6yc.us-east-1.rds.amazonaws.com",
-  USER: "WUNDERGrubsAWS",
-  PASSWORD: "Drmv+8yJ",
+  USER: process.env.DB_USER,
+  PASSWORD: process.env.DB_PASSWORD,
   DB: "WUNDERGrubs",
   dialect: "mysql",
   pool: {

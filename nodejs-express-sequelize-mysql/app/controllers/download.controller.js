@@ -1,12 +1,17 @@
+require('dotenv').config();
+
 var AWS = require('aws-sdk');
 
+var accessKey = process.env.ACCESS_KEY
+var secretKey = process.env.SECRET_ACCESS_KEY
+
 // Replace these with environment variables once we get fully migrated
-// AWS.config.update(
-//   {
-//     accessKeyId: "",
-//     secretAccessKey: "",
-//   }
-// );
+AWS.config.update(
+  {
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey,
+  }
+);
 
 // Return a presigned URL for the object
 exports.getURL = (req, res) => {
