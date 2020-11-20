@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FileViewer from 'react-file-viewer';
+import { CsvToHtmlTable } from 'react-csv-to-table';
 import { Link } from 'react-router-dom';
 
 import Cookies from 'universal-cookie';
@@ -17,7 +17,7 @@ class view_report extends Component {
 			fullname: '',
 			username: '',
 			report: '',
-			type: '',
+			type: 'csv',
 			source: '',
 			recipient: '',
 			file_name: '',
@@ -51,8 +51,8 @@ class view_report extends Component {
 
 	renderTableData(){
 		return this.state.reports.map((report, index) => {
-			console.log(report);
-			console.log(index);
+			// console.log(report);
+			// console.log(index);
 			const {recipient, file_name, createdAt} = report;
 			var startIndex = file_name.lastIndexOf('/') + 1;
 			var filename = file_name.substr(startIndex);
@@ -61,10 +61,10 @@ class view_report extends Component {
 				<td>{index}</td>
 				<td>{filename}</td>
 				<td>{createdAt.substring(0,10)}</td>
-				<td> <button class="button button1" onClick = {() => this.handleOpen(file_name)}>view</button> </td>
+				<td> <button class="button button1" onClick = {() => this.handleOpen(file_name)}>View</button> </td>
 			</tr>
 		)
-		})
+		}).reverse()
 	}
 
 	handleOpen(fileAddress) {
@@ -89,8 +89,9 @@ class view_report extends Component {
 		DownloadDataService.getFileContent(data)
 			.then((res) => {
 				console.log(res.data);
-				self.setState({type: res.data.ContentType});
-				self.setState({content: res.data.Body});
+				console.log("breakpoint");
+				// self.setState({type: res.data.ContentType});
+				self.setState({content: res.data});
 				// ele.setAttribute("src", newUrls.substring(5));
 				// //console.log(ele.getAttribute("src"));
 			});
@@ -136,14 +137,14 @@ class view_report extends Component {
 						<span class="close" onClick = {() => this.handleClose()}>&times;</span>
 					</div>
 					<div class="modal-body">
-						<FileViewer id="embed-element"
-							fileType={this.state.type.substring(this.state.type.lastIndexOf("/") + 1)}
-							filePath={this.state.url}
-							width="100%" height="500px"/>
+						<CsvToHtmlTable
+						  data={this.state.content}
+						  csvDelimiter=","
+						/>
 						<div>
 							<button class="button3" onClick = {() => this.downloadFile()}>Download</button>
-							<button class="button3" onClick = {() => this.sharingEmail()}>Emailing</button>
-							<button class="button3" onClick = {() => this.sharingLink()}>Linking</button>
+							<button class="button3" onClick = {() => this.sharingEmail()}>Share via. Email</button>
+							<button class="button3" onClick = {() => this.sharingLink()}>Share via. Link</button>
 							<button class="button3" onClick = {() => this.handleClose()}>Close</button>
 						</div>
 						<div id="enter-email">

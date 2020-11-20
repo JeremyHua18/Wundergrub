@@ -34,7 +34,7 @@ exports.getFile = (req, res) => {
     var params = {Bucket: bucket, Key: key};
     info = {params: params};
     s3.getObject( params, (err, data) => {
-      res.send(data);
+      res.send(data.Body);
 
     });
   } catch(err) {
