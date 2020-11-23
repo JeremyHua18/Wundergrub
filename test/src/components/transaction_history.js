@@ -103,7 +103,7 @@ class transaction_history extends Component {
     renderBody() {
         return(
             <div>
-            	<p name="status">Waste Type: {this.state.status}</p>
+            	<p name="status">Status: {this.state.status}</p>
                 <p name="delivery_type">Delivery Type: {this.state.delivery_type}</p>
                 <p name="donor_type">Donor Type: {this.state.donor_type}</p>
                 <p name="frequency">Frequency: {this.state.frequency}</p>
