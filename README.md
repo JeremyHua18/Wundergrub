@@ -25,7 +25,7 @@ KNOWN BUGS
 
 Pre-Requisites:
 
-- The only prerequisite to access this application is a working browser on either a computer or a mobile device.
+- The only prerequisite to access this application is a working browser on either a computer or a mobile device, as everything is being hosted as a website on the cloud.
 
 Dependent Libraries:
 
