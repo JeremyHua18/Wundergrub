@@ -35,8 +35,9 @@ Run Instructions:
 
 - To access the application, go to one of the two links provided below (they both lead to the same website):
 
-http://tinyurl.com/wundergrubs
-http://ec2-18-207-128-58.compute-1.amazonaws.com:3000/
+	http://tinyurl.com/wundergrubs
+
+	http://ec2-18-207-128-58.compute-1.amazonaws.com:3000/
 
 Troubleshooting:
 
